@@ -75,29 +75,19 @@ function init() {
 	$("#title").append(TITLE);
 	$("#subtitle").append(BYLINE);	
 
-	var mapDeferred = esri.arcgis.utils.createMap(WEBMAP_ID, "map", {
-		mapOptions: {
-			slider: false,
-			wrapAround180: true,
-			extent:_homeExtent
-		},
-		ignorePopups: false,
-		geometryServiceURL: GEOMETRY_SERVICE_URL
-	});
-	
-	mapDeferred.addCallback(function(response) {	  
 
-		_map = response.map;
-
-		if(_map.loaded){
+	_map = new esri.Map("map",
+						{
+							basemap:"gray",
+							slider: false
+						});						
+	if(_map.loaded){
+		finishInit();
+	} else {
+		dojo.connect(_map,"onLoad",function(){
 			finishInit();
-		} else {
-			dojo.connect(_map,"onLoad",function(){
-				finishInit();
-			});
-		}
-				
-	});
+		});
+	}
 	
 	_spreadSheet = new Spreadsheet();
 	_spreadSheet.doLoad(
@@ -131,6 +121,18 @@ function finishInit() {
 			},500);
 		}	
 	}
+
+	var sr = new esri.SpatialReference(4326);	
+	$.each(_spreadSheet.getRecords(), function(index, value) {
+		var pt = new esri.geometry.Point(value.x, value.y, sr);
+		var sym = new esri.symbol.SimpleMarkerSymbol(
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10,
+				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2),
+				new dojo.Color([255,0,0,0.5])
+			);
+		var graphic = new esri.Graphic(pt, sym, value);		
+		_map.graphics.add(graphic);
+	});
 	
 	/*
 	
