@@ -79,7 +79,8 @@ function init() {
 	_map = new esri.Map("map",
 						{
 							basemap:"gray",
-							slider: false
+							slider: false,
+							extent: new esri.geometry.Extent({xmin:-13854058,ymin:2382389,xmax:-7592337,ymax:6530779,spatialReference:{wkid:102100}})							
 						});						
 	if(_map.loaded){
 		finishInit();
@@ -126,7 +127,7 @@ function finishInit() {
 	$.each(_spreadSheet.getRecords(), function(index, value) {
 		var pt = new esri.geometry.Point(value.x, value.y, sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10,
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8,
 				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2),
 				new dojo.Color([255,0,0,0.5])
 			);
