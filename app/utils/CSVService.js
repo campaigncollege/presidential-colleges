@@ -9,17 +9,8 @@ function CSVService() {
 	// methods...
 	// **********
 
-	this.process = function(csv) {
-		$.ajax({
-		  type: 'GET',
-		  url: csv,
-		  cache: false,
-		  success: function(text) {
-			_arr = CSVToArray(text);	
-			$(_self).trigger("complete");
-		  }
-		});	
-		
+	this.process = function(text) {
+		_arr = CSVToArray(text);		
 	}
 
 	this.getLines = function() {

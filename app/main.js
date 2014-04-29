@@ -9,6 +9,7 @@ var TITLE = "This is the title."
 var BYLINE = "This is the byline"
 var WEBMAP_ID = "caca75ada5f14f1dad84a560db831a50";
 var GEOMETRY_SERVICE_URL = "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer";
+var CSV_URL = "data/colleges.csv"
 
 /******************************************************
 ***************** end config section ******************
@@ -25,6 +26,7 @@ var _homeExtent; // set this in init() if desired; otherwise, it will
 var _isMobile = isMobile();
 var _isIE = (navigator.appVersion.indexOf("MSIE") > -1);
 var _isEmbed = false;
+var _spreadSheet;
 
 /*
 
@@ -97,9 +99,23 @@ function init() {
 				
 	});
 	
+	_spreadSheet = new Spreadsheet();
+	_spreadSheet.doLoad(
+		CSV_URL, 
+		function(){$("#waitMsg").html("Unpacking...")}, 
+		function(){reportLoadTime();finishInit()}
+		);
+
+	
 }
 
 function finishInit() {
+	
+	if (!_map) return;
+	if (!_map.loaded) return;
+	if (_spreadSheet) {
+		if (!_spreadSheet.getRecords()) return;
+	}	
 	
 	// if _homeExtent hasn't been set, then default to the initial extent
 	// of the web map.  On the other hand, if it HAS been set AND we're using
@@ -213,3 +229,12 @@ function handleWindowResize() {
 	$("#map").width($("body").width());
 	_map.resize();
 }
+
+function reportLoadTime()
+{
+	console.log(_spreadSheet.getLoadTime());
+	console.log(_spreadSheet.getFetchTime());
+	console.log(_spreadSheet.getParseTime());									
+}
+
+
