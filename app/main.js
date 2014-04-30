@@ -23,7 +23,7 @@ var _jqueryReady = false;
 var _homeExtent; // set this in init() if desired; otherwise, it will 
 				 // be the default extent of the web map;
 
-var _isMobile = isMobile();
+var _isMobile = Helper.isMobile();
 var _isIE = (navigator.appVersion.indexOf("MSIE") > -1);
 var _isEmbed = false;
 var _spreadSheet;
@@ -127,7 +127,7 @@ function finishInit() {
 	$.each(_spreadSheet.getRecords(), function(index, value) {
 		var pt = new esri.geometry.Point(value.x, value.y, sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8,
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8*(value.count+1),
 				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2),
 				new dojo.Color([255,0,0,0.5])
 			);
