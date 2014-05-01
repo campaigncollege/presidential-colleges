@@ -135,68 +135,41 @@ function finishInit() {
 		_map.graphics.add(graphic);
 	});
 	
-	/*
 	
-	use this for layer interactivity
-	
-	dojo.connect(_layerOV, "onMouseOver", layerOV_onMouseOver);
-	dojo.connect(_layerOV, "onMouseOut", layerOV_onMouseOut);
-	dojo.connect(_layerOV, "onClick", layerOV_onClick);		
-	*/
+	dojo.connect(_map.graphics, "onMouseOver", layer_onMouseOver);
+	dojo.connect(_map.graphics, "onMouseOut", layer_onMouseOut);
+	dojo.connect(_map.graphics, "onClick", layer_onClick);		
 	
 	handleWindowResize();
 	$("#whiteOut").fadeOut();
 	
 }
 
-/*
 
-sample layer event code.
-
-function layerOV_onMouseOver(event) 
+function layer_onMouseOver(event) 
 {
 	if (_isMobile) return;
 	var graphic = event.graphic;
 	_map.setMapCursor("pointer");
-	if ($.inArray(graphic, _selected) == -1) {
-		graphic.setSymbol(resizeSymbol(graphic.symbol, _lutBallIconSpecs.medium));
-	}
 	if (!_isIE) moveGraphicToFront(graphic);	
-	$("#hoverInfo").html("<b>"+graphic.attributes.getLanguage()+"</b>"+"<p>"+graphic.attributes.getRegion());
+	$("#hoverInfo").html("<b>"+graphic.attributes.college+"</b> ("+graphic.attributes.count+")");
 	var pt = _map.toScreen(graphic.geometry);
 	hoverInfoPos(pt.x,pt.y);	
 }
 
 
-function layerOV_onMouseOut(event) 
+function layer_onMouseOut(event) 
 {
 	var graphic = event.graphic;
 	_map.setMapCursor("default");
 	$("#hoverInfo").hide();
-	if ($.inArray(graphic, _selected) == -1) {
-		graphic.setSymbol(resizeSymbol(graphic.symbol, _lutBallIconSpecs.tiny));
-	}
 }
 
 
-function layerOV_onClick(event) 
+function layer_onClick(event) 
 {
 	$("#hoverInfo").hide();
 	var graphic = event.graphic;
-	_languageID = graphic.attributes.getLanguageID();
-	$("#selectLanguage").val(_languageID);
-	changeState(STATE_SELECTION_OVERVIEW);
-	scrollToPage($.inArray($.grep($("#listThumbs").children("li"),function(n,i){return n.value == _languageID})[0], $("#listThumbs").children("li")));	
-}
-
-function createIconMarker(iconPath, spec) 
-{
-	return new esri.symbol.PictureMarkerSymbol(iconPath, spec.getWidth(), spec.getHeight()); 
-}
-
-function resizeSymbol(symbol, spec)
-{
-	return symbol.setWidth(spec.getWidth()).setHeight(spec.getHeight())	
 }
 
 function moveGraphicToFront(graphic)
@@ -220,9 +193,6 @@ function hoverInfoPos(x,y){
 	}
 	$("#hoverInfo").show();
 }
-
-*/
-
 
 function handleWindowResize() {
 }
