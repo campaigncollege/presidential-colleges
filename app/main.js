@@ -127,7 +127,7 @@ function finishInit() {
 	$.each(_spreadSheet.getRecords(), function(index, value) {
 		var pt = new esri.geometry.Point(value.x, value.y, sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8*(value.count+1),
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value.count)),
 				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2),
 				new dojo.Color([255,0,0,0.5])
 			);
