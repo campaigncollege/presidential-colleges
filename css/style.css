@@ -154,3 +154,6 @@ a:hover{
 	cursor:pointer;
 }
 
+.esriPopup .titleButton.maximize {
+	visibility:hidden;
+}
