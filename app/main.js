@@ -26,7 +26,7 @@ var _homeExtent; // set this in init() if desired; otherwise, it will
 var _isMobile = Helper.isMobile();
 var _isIE = (navigator.appVersion.indexOf("MSIE") > -1);
 var _isEmbed = false;
-var _spreadSheet;
+var _tableColleges;
 
 /*
 
@@ -90,8 +90,8 @@ function init() {
 		});
 	}
 	
-	_spreadSheet = new Spreadsheet();
-	_spreadSheet.doLoad(
+	_tableColleges = new Spreadsheet();
+	_tableColleges.doLoad(
 		CSV_URL, 
 		function(){$("#waitMsg").html("Unpacking...")}, 
 		function(){reportLoadTime();finishInit()}
@@ -104,8 +104,8 @@ function finishInit() {
 	
 	if (!_map) return;
 	if (!_map.loaded) return;
-	if (_spreadSheet) {
-		if (!_spreadSheet.getRecords()) return;
+	if (_tableColleges) {
+		if (!_tableColleges.getRecords()) return;
 	}	
 	
 	// if _homeExtent hasn't been set, then default to the initial extent
@@ -124,7 +124,7 @@ function finishInit() {
 	}
 
 	var sr = new esri.SpatialReference(4326);	
-	$.each(_spreadSheet.getRecords(), function(index, value) {
+	$.each(_tableColleges.getRecords(), function(index, value) {
 		var pt = new esri.geometry.Point(value.x, value.y, sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
 				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value.count)),
@@ -201,9 +201,9 @@ function handleWindowResize() {
 
 function reportLoadTime()
 {
-	console.log(_spreadSheet.getLoadTime());
-	console.log(_spreadSheet.getFetchTime());
-	console.log(_spreadSheet.getParseTime());									
+	console.log(_tableColleges.getLoadTime());
+	console.log(_tableColleges.getFetchTime());
+	console.log(_tableColleges.getParseTime());									
 }
 
 
