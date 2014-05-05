@@ -15,7 +15,7 @@ function Spreadsheet() {
 		  url: url,
 		  cache: false,
 		  success: function(text) {	
-			  onFetch();
+			  if (onFetch) onFetch();
 			  setTimeout(function(){
 				_fetchTime = (new Date() - time1) / 1000;
 				var before = new Date();
@@ -24,7 +24,7 @@ function Spreadsheet() {
 				_recs = new RecordParser().getRecs(serviceTornadoes.getLines());
 				_parseTime = (new Date() - before) / 1000;
 				_loadTime = (new Date() - time1) / 1000;
-				onParse();
+				if (onParse) onParse();
 			  }, 100);
 		  }
 		});	

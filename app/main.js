@@ -91,12 +91,7 @@ function init() {
 	}
 	
 	_tableColleges = new Spreadsheet();
-	_tableColleges.doLoad(
-		CSV_URL, 
-		function(){$("#waitMsg").html("Unpacking...")}, 
-		function(){reportLoadTime();finishInit()}
-		);
-
+	_tableColleges.doLoad(CSV_URL, null, function(){finishInit()});
 	
 }
 
@@ -197,13 +192,6 @@ function hoverInfoPos(x,y){
 }
 
 function handleWindowResize() {
-}
-
-function reportLoadTime()
-{
-	console.log(_tableColleges.getLoadTime());
-	console.log(_tableColleges.getFetchTime());
-	console.log(_tableColleges.getParseTime());									
 }
 
 
