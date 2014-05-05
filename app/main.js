@@ -9,7 +9,9 @@ var TITLE = "This is the title."
 var BYLINE = "This is the byline"
 var WEBMAP_ID = "caca75ada5f14f1dad84a560db831a50";
 var GEOMETRY_SERVICE_URL = "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer";
-var CSV_URL = "data/colleges.csv"
+
+var CSV_COLLEGES_URL = "data/colleges.csv";
+var CSV_PRESIDENTS_URL = "data/presidents.csv";
 
 /******************************************************
 ***************** end config section ******************
@@ -27,6 +29,7 @@ var _isMobile = Helper.isMobile();
 var _isIE = (navigator.appVersion.indexOf("MSIE") > -1);
 var _isEmbed = false;
 var _tableColleges;
+var _tablePresidents;
 
 /*
 
@@ -91,17 +94,30 @@ function init() {
 	}
 	
 	_tableColleges = new Spreadsheet();
-	_tableColleges.doLoad(CSV_URL, null, function(){finishInit()});
+	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
+	
+	_tablePresidents = new Spreadsheet();
+	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
 	
 }
 
 function finishInit() {
 	
-	if (!_map) return;
-	if (!_map.loaded) return;
-	if (_tableColleges) {
+	if (!_map) {
+		return;
+	} else {
+		if (!_map.loaded) return;
+	}
+	if (!_tableColleges) {
+		return;
+	} else {
 		if (!_tableColleges.getRecords()) return;
-	}	
+	}
+	if (!_tablePresidents) {
+		return;
+	} else {
+		if (!_tablePresidents.getRecords()) return;
+	}
 	
 	// if _homeExtent hasn't been set, then default to the initial extent
 	// of the web map.  On the other hand, if it HAS been set AND we're using
