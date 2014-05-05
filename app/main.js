@@ -128,8 +128,8 @@ function finishInit() {
 		var pt = new esri.geometry.Point(value.x, value.y, sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
 				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value.count)),
-				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 2),
-				new dojo.Color([255,0,0,0.5])
+				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 2),
+				new dojo.Color([0,0,255,0.5])
 			);
 		var graphic = new esri.Graphic(pt, sym, value);		
 		_map.graphics.add(graphic);
@@ -170,6 +170,8 @@ function layer_onClick(event)
 {
 	$("#hoverInfo").hide();
 	var graphic = event.graphic;
+	_map.infoWindow.setTitle(graphic.attributes.college);
+	_map.infoWindow.show(graphic.geometry);
 }
 
 function moveGraphicToFront(graphic)
