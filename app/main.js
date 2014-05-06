@@ -26,6 +26,7 @@ var FIELDNAME_PRESIDENT_URL = "field1";
 
 var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
 var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
+var FIELDNAME_RELATIONSHIP_NOTE = "note";
 
 /******************************************************
 ***************** end config section ******************
@@ -236,6 +237,7 @@ function postSelection()
 	var ul = $("<ul></ul>");
 	var img;
 	var li;
+	var relationship;
 	$(div).append(ul);
 	$.each(presidents, function(index, value){
 		img = $("<img/>");
@@ -244,6 +246,18 @@ function postSelection()
 		li = $("<li></li>");
 		$(li).append(img);
 		$(li).append("<div>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
+		relationships = $.grep(
+			_tableRelationships.getRecords(), 
+			function(n, i){return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] && n[FIELDNAME_RELATIONSHIP_PRESIDENT] == value[FIELDNAME_PRESIDENT_ID]}
+		);
+		if (relationships.length > 0) {
+			var note = relationships[0][FIELDNAME_RELATIONSHIP_NOTE];
+			if (note) {
+				if ($.trim(note) != "") {
+					$(li).append("<div class='note'>"+note+"</div>");
+				}
+			}
+		}
 		$(ul).append(li);
 	});
 	var bogus = $("<div></div>");
@@ -252,7 +266,7 @@ function postSelection()
 	if (presidents.length > 1) {
 		var slidey = $('.banner').unslider({
 			speed: 500,               //  The speed to animate each slide (in milliseconds)
-			delay: 3000,               //  The delay between slide animations (in milliseconds)
+			delay: 3000,              //  The delay between slide animations (in milliseconds)
 			complete: function() {},  //  A function that gets called after every slide animation
 			keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 			dots: true,               //  Display dot navigation
