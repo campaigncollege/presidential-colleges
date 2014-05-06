@@ -211,6 +211,14 @@ function postSelection()
 {
 	_map.infoWindow.setTitle(_selectedCollege.attributes.college);
 	_map.infoWindow.show(_selectedCollege.geometry);
+	// find all presidents associated with this college
+	var ids = $.map(
+					$.grep(_tableRelationships.getRecords(), function(n, i){
+						return n.college == _selectedCollege.attributes.id;
+					}), 
+					function(val, i){return val.president}
+				);
+	console.log(ids);
 }
 
 function moveGraphicToFront(graphic)
