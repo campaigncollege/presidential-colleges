@@ -1,43 +1,43 @@
 "ID","President","College","Code","Note"
-3,2,1,1,
-4,3,2,1,
-5,4,3,1,
-6,5,2,1,
-7,6,1,1,
-8,9,4,1,"withdrew"
-9,10,2,1,
-10,11,5,1,
-11,14,6,1,
-12,15,7,1,
-13,18,8,1,
-14,19,9,1,
-15,20,10,1,
-16,21,27,1,
-17,23,11,1,
-18,25,12,1,"withdrew"
-19,26,1,1,
-20,27,13,1,
-21,28,3,1,
-24,30,29,1,
-25,31,14,1,
-26,32,1,1,
-27,33,30,1,"withdrew"
-28,34,8,1,
-29,35,1,1,
-30,36,33,1,
-31,37,15,1,
-32,38,34,1,
-33,39,16,1,
-34,40,17,1,
-35,41,13,1,
-36,42,19,1,
-37,43,13,1,
-38,44,20,1,
-39,6,24,2,
-40,20,26,2,
-41,28,21,2,
-42,35,3,2,
-43,39,32,2,
-44,44,22,2,
-45,39,31,3,
-46,29,28,1,
+3,2,1,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+4,3,2,1,"The University of Virginia is the university most associated with Jefferson, since he founded that institution in 1819.  However, Jefferson studied at William and Mary"
+5,4,3,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+6,5,2,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+7,6,1,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+8,9,4,1,"Harrison entered Hampden-Sydney at the age of 14.  We was later removed by his father."
+9,10,2,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+10,11,5,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+11,14,6,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+12,15,7,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+13,18,8,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+14,19,9,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+15,20,10,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+16,21,27,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+17,23,11,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+18,25,12,1,"President McKinley studied at Allegheny for one year before withdrawing."
+19,26,1,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+20,27,13,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+21,28,3,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+24,30,29,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+25,31,14,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+26,32,1,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+27,33,30,1,"Truman took business classes at this Kansas City school, but stayed for only one semester.  He is the most recent U.S. president who did not earn a college degree."
+28,34,8,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+29,35,1,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+30,36,33,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+31,37,15,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+32,38,34,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+33,39,16,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+34,40,17,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+35,41,13,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+36,42,19,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+37,43,13,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+38,44,20,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+39,6,24,2,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+40,20,26,2,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+41,28,21,2,"Woodrow Wilson studied for one year at Davidson College before transferring to Princeton."
+42,35,3,2,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+43,39,32,2,"In between his time at Georgia Southwestern College and the US Naval Academy, President Carter took some mathematics courses at Georgia Tech."
+44,44,22,2,"President Obama studied for one year at Occidental before transferring to Columbia University."
+45,39,31,3,"President Carter began his studies at Georgia Southwestern, before eventually transferring to the US Naval Academy (with a brief stopover at Georgia Tech)."
+46,29,28,1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
