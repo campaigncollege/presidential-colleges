@@ -231,7 +231,9 @@ function postSelection()
 					}), 
 					function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
 				);
-	console.log(ids);
+	var presidents = $.grep(_tablePresidents.getRecords(), function(n, i){
+		return $.inArray(n[FIELDNAME_PRESIDENT_ID], ids) > -1;
+	});
 }
 
 function moveGraphicToFront(graphic)
