@@ -22,7 +22,7 @@ var FIELDNAME_COLLEGE_COUNT = "count";
 
 var FIELDNAME_PRESIDENT_ID = "id";
 var FIELDNAME_PRESIDENT_NAME = "president";
-var FIELDNAME_PRESIDENT_URL = "url";
+var FIELDNAME_PRESIDENT_URL = "field1";
 
 var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
 var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
@@ -222,8 +222,6 @@ function layer_onClick(event)
 
 function postSelection()
 {
-	_map.infoWindow.setTitle(_selectedCollege.attributes.college);
-	_map.infoWindow.show(_selectedCollege.geometry);
 	// find all presidents associated with this college
 	var ids = $.map(
 					$.grep(_tableRelationships.getRecords(), function(n, i){
@@ -234,6 +232,36 @@ function postSelection()
 	var presidents = $.grep(_tablePresidents.getRecords(), function(n, i){
 		return $.inArray(n[FIELDNAME_PRESIDENT_ID], ids) > -1;
 	});
+	var div = $("<div class='banner'></div>");
+	var ul = $("<ul></ul>");
+	var img;
+	var li;
+	$(div).append(ul);
+	$.each(presidents, function(index, value){
+		img = $("<img/>");
+		$(img).addClass("presidentialPortrait");
+		$(img).attr("src", value[FIELDNAME_PRESIDENT_URL]);
+		li = $("<li></li>");
+		$(li).append(img);
+		$(li).append("<div>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
+		$(ul).append(li);
+	});
+	var bogus = $("<div></div>");
+	$(bogus).append(div);
+	_map.infoWindow.setContent($(bogus).html());
+	if (presidents.length > 1) {
+		var slidey = $('.banner').unslider({
+			speed: 500,               //  The speed to animate each slide (in milliseconds)
+			delay: 3000,               //  The delay between slide animations (in milliseconds)
+			complete: function() {},  //  A function that gets called after every slide animation
+			keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+			dots: true,               //  Display dot navigation
+		});
+		var data = slidey.data("unslider");
+		data.stop();
+	}
+	_map.infoWindow.setTitle(_selectedCollege.attributes.college);
+	_map.infoWindow.show(_selectedCollege.geometry);	
 }
 
 function moveGraphicToFront(graphic)
