@@ -14,6 +14,19 @@ var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
 var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 
+var FIELDNAME_COLLEGE_ID = "id";
+var FIELDNAME_COLLEGE_NAME = "college";
+var FIELDNAME_COLLEGE_X = "x";
+var FIELDNAME_COLLEGE_Y = "y";
+var FIELDNAME_COLLEGE_COUNT = "count";
+
+var FIELDNAME_PRESIDENT_ID = "id";
+var FIELDNAME_PRESIDENT_NAME = "president";
+var FIELDNAME_PRESIDENT_URL = "url";
+
+var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
+var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
+
 /******************************************************
 ***************** end config section ******************
 *******************************************************/
@@ -150,9 +163,9 @@ function finishInit() {
 
 	var sr = new esri.SpatialReference(4326);	
 	$.each(_tableColleges.getRecords(), function(index, value) {
-		var pt = new esri.geometry.Point(value.x, value.y, sr);
+		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y], sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value.count)),
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
 				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 2),
 				new dojo.Color([0,0,255,0.5])
 			);
@@ -186,7 +199,7 @@ function layer_onMouseOver(event)
 	var graphic = event.graphic;
 	_map.setMapCursor("pointer");
 	if (!_isIE) moveGraphicToFront(graphic);	
-	$("#hoverInfo").html("<b>"+graphic.attributes.college+"</b> ("+graphic.attributes.count+")");
+	$("#hoverInfo").html("<b>"+graphic.attributes[FIELDNAME_COLLEGE_NAME]+"</b> ("+graphic.attributes[FIELDNAME_COLLEGE_COUNT]+")");
 	var pt = _map.toScreen(graphic.geometry);
 	hoverInfoPos(pt.x,pt.y);	
 }
@@ -214,9 +227,9 @@ function postSelection()
 	// find all presidents associated with this college
 	var ids = $.map(
 					$.grep(_tableRelationships.getRecords(), function(n, i){
-						return n.college == _selectedCollege.attributes.id;
+						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
 					}), 
-					function(val, i){return val.president}
+					function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
 				);
 	console.log(ids);
 }
