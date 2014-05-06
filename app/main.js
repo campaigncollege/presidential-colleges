@@ -12,6 +12,7 @@ var GEOMETRY_SERVICE_URL = "http://tasks.arcgisonline.com/ArcGIS/rest/services/G
 
 var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
+var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 
 /******************************************************
 ***************** end config section ******************
@@ -28,8 +29,10 @@ var _homeExtent; // set this in init() if desired; otherwise, it will
 var _isMobile = Helper.isMobile();
 var _isIE = (navigator.appVersion.indexOf("MSIE") > -1);
 var _isEmbed = false;
+
 var _tableColleges;
 var _tablePresidents;
+var _tableRelationships;
 
 /*
 
@@ -92,13 +95,16 @@ function init() {
 			finishInit();
 		});
 	}
-	
+
 	_tableColleges = new Spreadsheet();
 	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
 	
 	_tablePresidents = new Spreadsheet();
 	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
 	
+	_tableRelationships = new Spreadsheet();
+	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
+			
 }
 
 function finishInit() {
@@ -117,6 +123,11 @@ function finishInit() {
 		return;
 	} else {
 		if (!_tablePresidents.getRecords()) return;
+	}
+	if (!_tableRelationships) {
+		return;
+	} else {
+		if (!_tableRelationships.getRecords()) return;
 	}
 	
 	// if _homeExtent hasn't been set, then default to the initial extent
