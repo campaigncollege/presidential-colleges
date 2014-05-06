@@ -34,6 +34,9 @@ var _tableColleges;
 var _tablePresidents;
 var _tableRelationships;
 
+var _selectedPresident;
+var _selectedCollege;
+
 /*
 
 might need this if you're using icons.
@@ -160,7 +163,16 @@ function finishInit() {
 	
 	dojo.connect(_map.graphics, "onMouseOver", layer_onMouseOver);
 	dojo.connect(_map.graphics, "onMouseOut", layer_onMouseOut);
-	dojo.connect(_map.graphics, "onClick", layer_onClick);		
+	dojo.connect(_map.graphics, "onClick", layer_onClick);	
+	
+	// click action on the map where there's no graphic 
+	// causes a deselect.
+
+	dojo.connect(_map, 'onClick', function(event){
+		if (event.graphic == null) {
+			_map.infoWindow.hide();
+		}
+	});		
 	
 	handleWindowResize();
 	$("#whiteOut").fadeOut();
@@ -191,9 +203,14 @@ function layer_onMouseOut(event)
 function layer_onClick(event) 
 {
 	$("#hoverInfo").hide();
-	var graphic = event.graphic;
-	_map.infoWindow.setTitle(graphic.attributes.college);
-	_map.infoWindow.show(graphic.geometry);
+	_selectedCollege = event.graphic;
+	postSelection();
+}
+
+function postSelection()
+{
+	_map.infoWindow.setTitle(_selectedCollege.attributes.college);
+	_map.infoWindow.show(_selectedCollege.geometry);
 }
 
 function moveGraphicToFront(graphic)
