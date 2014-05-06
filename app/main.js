@@ -245,7 +245,7 @@ function postSelection()
 		$(img).attr("src", value[FIELDNAME_PRESIDENT_URL]);
 		li = $("<li></li>");
 		$(li).append(img);
-		$(li).append("<div>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
+		$(li).append("<div style='font-weight:bold'>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
 		relationships = $.grep(
 			_tableRelationships.getRecords(), 
 			function(n, i){return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] && n[FIELDNAME_RELATIONSHIP_PRESIDENT] == value[FIELDNAME_PRESIDENT_ID]}
