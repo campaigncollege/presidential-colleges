@@ -101,10 +101,10 @@ function init() {
 
 	_map = new esri.Map("map",
 						{
-							basemap:"gray",
 							slider: false,
 							extent: new esri.geometry.Extent({xmin:-13854058,ymin:2382389,xmax:-7592337,ymax:6530779,spatialReference:{wkid:102100}})							
 						});						
+	_map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/DGCM_2Msmaller_BASE/MapServer"));
 	if(_map.loaded){
 		finishInit();
 	} else {
@@ -167,8 +167,8 @@ function finishInit() {
 		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y], sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
 				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
-				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,255]), 2),
-				new dojo.Color([0,0,255,0.5])
+				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255]), 2),
+				new dojo.Color([0,255,255,0.5])
 			);
 		var graphic = new esri.Graphic(pt, sym, value);		
 		_map.graphics.add(graphic);
