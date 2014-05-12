@@ -24,7 +24,6 @@ table {border-collapse:collapse; border-spacing:0;}
 td {vertical-align:top;}
 
 html,body {
-	min-width:750px;
 	margin:auto	
 }
 
@@ -200,4 +199,20 @@ a:hover{
 .esriPopup .sizer {
 	width: 240px;
 	text-align: center;
+}
+
+.esriPopup .titleButton.close {
+	visibility:hidden;
+}
+
+#alt-info {
+	position:absolute;
+	z-index:100;
+	background-color:white;
+	bottom:-270px;
+	width:240px;
+	height:250px;
+	padding:10px;
+	text-align:center;
+	overflow:auto;
 }

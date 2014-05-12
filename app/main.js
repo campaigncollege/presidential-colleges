@@ -51,6 +51,8 @@ var _tableRelationships;
 var _selectedPresident;
 var _selectedCollege;
 
+var _bSmall = false;
+
 /*
 
 might need this if you're using icons.
@@ -184,7 +186,9 @@ function finishInit() {
 
 	dojo.connect(_map, 'onClick', function(event){
 		if (event.graphic == null) {
-			_map.infoWindow.hide();
+			_selectedCollege = null;
+			if (_bSmall) retract();
+			else _map.infoWindow.hide();
 		}
 	});		
 	
@@ -262,7 +266,18 @@ function postSelection()
 	});
 	var bogus = $("<div></div>");
 	$(bogus).append(div);
-	_map.infoWindow.setContent($(bogus).html());
+
+	if (_bSmall) {
+		$("#alt-info").html($(bogus).html());
+		if ($("#alt-info").css("bottom") != "0px") {
+			$("#alt-info").animate({"bottom":0}, function(){_map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(0, - (_map.extent.getHeight() / 4)))});
+		}
+	} else {
+		_map.infoWindow.setContent($(bogus).html());
+		_map.infoWindow.setTitle(_selectedCollege.attributes[FIELDNAME_COLLEGE_NAME]);
+		_map.infoWindow.show(_selectedCollege.geometry);	
+	}
+	
 	if (presidents.length > 1) {
 		var slidey = $('.banner').unslider({
 			speed: 500,               //  The speed to animate each slide (in milliseconds)
@@ -274,8 +289,8 @@ function postSelection()
 		var data = slidey.data("unslider");
 		data.stop();
 	}
-	_map.infoWindow.setTitle(_selectedCollege.attributes.college);
-	_map.infoWindow.show(_selectedCollege.geometry);	
+
+
 }
 
 function moveGraphicToFront(graphic)
@@ -301,6 +316,28 @@ function hoverInfoPos(x,y){
 }
 
 function handleWindowResize() {
+	
+	$("#alt-info").css("left", ($("body").width() / 2) - ($("#alt-info").outerWidth() / 2));
+	
+	var changed = _bSmall;
+	_bSmall = $("body").width() < 600 || $("body").height() < 500;
+	changed = (changed != _bSmall);
+
+	if (changed && _selectedCollege) {
+		if (_bSmall) {
+			_map.infoWindow.hide();
+			_map.infoWindow.setContent("");
+		} else {
+			retract();
+			$("#alt-info").empty();
+		}
+		postSelection();
+	}
+}
+
+function retract() 
+{
+	$("#alt-info").animate({"bottom":-$("#alt-info").outerHeight()});
 }
 
 
