@@ -52,6 +52,7 @@ var _selectedPresident;
 var _selectedCollege;
 
 var _bSmall = false;
+var _bLandscape;
 
 /*
 
@@ -278,9 +279,13 @@ function postSelection()
 	$(bogus).append(div);
 
 	if (_bSmall) {
+		setDimensions();
 		$("#alt-info").html($(bogus).html());
 		if ($("#alt-info").css("bottom") != "0px") {
-			$("#alt-info").animate({"bottom":0}, function(){_map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(0, - (_map.extent.getHeight() / 4)))});
+			$("#alt-info").animate({"bottom":0}, function(){
+				if (_bLandscape) _map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(-(_map.extent.getWidth() / 4), 0));
+				else _map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(0, - (_map.extent.getHeight() / 4)));
+			});
 		}
 	} else {
 		_map.infoWindow.setContent($(bogus).html());
@@ -321,22 +326,39 @@ function hoverInfoPos(x,y){
 
 function handleWindowResize() {
 	
-	$("#alt-info").css("left", ($("body").width() / 2) - ($("#alt-info").outerWidth() / 2));
 	
-	var changed = _bSmall;
+	var bSmall = _bSmall;
+	var bLandscape = _bLandscape;
+	
 	_bSmall = $("body").width() < 600 || $("body").height() < 500;
-	changed = (changed != _bSmall);
+	_bLandscape = $("body").width() > $("body").height();
+	
+	var changed = (bSmall != _bSmall) || (bLandscape != _bLandscape);
 
-	if (changed && _selectedCollege) {
-		if (_bSmall) {
-			_map.infoWindow.hide();
-			_map.infoWindow.setContent("");
-		} else {
-			retract();
-			$("#alt-info").empty();
+	if (changed) {
+		if (_selectedCollege) {
+			if (_bSmall) {
+				_map.infoWindow.hide();
+				_map.infoWindow.setContent("");
+			} else {
+				retract();
+				$("#alt-info").empty();
+			}
+			postSelection();
 		}
-		postSelection();
 	}
+	
+}
+
+function setDimensions()
+{
+	if (_bLandscape) {
+		$("#alt-info").width(240);
+		$("#alt-info").height($("body").height()-20);
+	} else {
+		$("#alt-info").width(300);
+		$("#alt-info").height(250);				
+	}	
 }
 
 function retract() 

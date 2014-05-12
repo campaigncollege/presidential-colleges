@@ -209,10 +209,9 @@ a:hover{
 	position:absolute;
 	z-index:100;
 	background-color:white;
-	bottom:-270px;
-	width:240px;
-	height:250px;
+	bottom:-500px;
 	padding:10px;
 	text-align:center;
 	overflow:auto;
+	max-height:500px;
 }
