@@ -163,20 +163,30 @@ function finishInit() {
 			},500);
 		}	
 	}
+	
+	var layerIcons = new esri.layers.GraphicsLayer();
 
 	var sr = new esri.SpatialReference(4326);
 	var recs = sortRecsByCount(_tableColleges.getRecords());	
 	$.each(recs, function(index, value) {
 		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y], sr);
+
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
-				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255]), 2),
-				new dojo.Color([0,255,255,0.5])
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
+				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255,0]), 2),
+				new dojo.Color([0,255,255,0])
 			);
-		var graphic = new esri.Graphic(pt, sym, value);		
-		_map.graphics.add(graphic);
+
+		var iconSym = new esri.symbol.PictureMarkerSymbol(
+					"resources/icons/green-circle.png", 
+					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT]), 
+					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT])
+				);
+		layerIcons.add(new esri.Graphic(pt, iconSym, value));
+		_map.graphics.add(new esri.Graphic(pt, sym, value));
 	});
 	
+	_map.addLayer(layerIcons);
 	
 	dojo.connect(_map.graphics, "onMouseOver", layer_onMouseOver);
 	dojo.connect(_map.graphics, "onMouseOut", layer_onMouseOut);
