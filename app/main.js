@@ -199,8 +199,20 @@ function finishInit() {
 	dojo.connect(_map, 'onClick', function(event){
 		if (event.graphic == null) {
 			_selectedCollege = null;
-			if (_bSmall) retract();
-			else _map.infoWindow.hide();
+			if (_bSmall) {
+				retract();
+				$("#map").multiTips({
+					pointArray : [],
+					labelValue: "",
+					mapVariable : _map,
+					labelDirection : "top",
+					backgroundColor : "#FFFFFF",
+					textColor : "#000000",
+					pointerColor: "#FFFFFF"
+				});
+			} else {
+				_map.infoWindow.hide();
+			}
 		}
 	});		
 	
@@ -279,6 +291,15 @@ function postSelection()
 	$(bogus).append(div);
 
 	if (_bSmall) {
+		$("#map").multiTips({
+			pointArray : [_selectedCollege],
+			labelValue: _selectedCollege.attributes[FIELDNAME_COLLEGE_NAME],
+			mapVariable : _map,
+			labelDirection : "top",
+			backgroundColor : "#FFFFFF",
+			textColor : "#000000",
+			pointerColor: "#FFFFFF"
+		});			
 		setDimensions();
 		$("#alt-info").html($(bogus).html());
 		if ($("#alt-info").css("bottom") != "0px") {

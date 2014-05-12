@@ -31,7 +31,7 @@
 		settings = $.extend({
 			'pointArray' : [],
 			'mapVariable' : null,
-			'attributeLabelField' : "",
+			'labelValue' : "",
 			'zoomToPoints' : false,
 			"backgroundColor" : "#000000",
 			"pointerColor" : "#000000",
@@ -105,13 +105,13 @@
 			
 		$.each(settings.pointArray,function(i,pt){
 			mapDiv.append("<div id='arrow"+i+"' class='mtArrow'></div>").append("<div id='multiTip"+i+"' class='multiTip'></div>");
-			$('#multiTip'+i).html(pt.attributes[settings.attributeLabelField]);
+			$('#multiTip'+i).html(settings.labelValue);
 			$('#multiTip'+i).css("background-color",settings.backgroundColor);
 			$('#multiTip'+i).css("color",settings.textColor);
 			$('#multiTip'+i).css("white-space","nowrap");
 			$('#multiTip'+i).css("padding","5px");
 			$('#multiTip'+i).css("position","absolute");
-			$('#multiTip'+i).css("z-index","1000");			
+			$('#multiTip'+i).css("z-index","100");			
 			$("#arrow"+i).css("position","absolute");
 			$("#arrow"+i).css("width","0");
 			$("#arrow"+i).css("height","0");			
@@ -150,6 +150,13 @@
 		//labelDown(scrPt,i,settings);
 		//labelRight(scrPt,i,settings);
 		//labelLeft(scrPt,i,settings);
+		$(".multiTip").each(function() {
+			$(this).css("top",parseInt($(this).css("top"))-10);
+		});
+		$(".mtArrow").each(function() {
+			$(this).css("top",parseInt($(this).css("top"))-10);
+		});
+		if (settings.pointerColor == "#FF0000") $(".mtArrow").css("display", "none");
 	}
 	
 	var chkVrtDst = function(settings,curPt){
