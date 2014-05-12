@@ -364,6 +364,15 @@ function handleWindowResize() {
 			} else {
 				retract();
 				$("#alt-info").empty();
+				$("#map").multiTips({
+					pointArray : [],
+					labelValue: "",
+					mapVariable : _map,
+					labelDirection : "top",
+					backgroundColor : "#FFFFFF",
+					textColor : "#000000",
+					pointerColor: "#FFFFFF"
+				});				
 			}
 			postSelection();
 		}
