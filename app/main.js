@@ -164,8 +164,9 @@ function finishInit() {
 		}	
 	}
 
-	var sr = new esri.SpatialReference(4326);	
-	$.each(_tableColleges.getRecords(), function(index, value) {
+	var sr = new esri.SpatialReference(4326);
+	var recs = sortRecsByCount(_tableColleges.getRecords());	
+	$.each(recs, function(index, value) {
 		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y], sr);
 		var sym = new esri.symbol.SimpleMarkerSymbol(
 				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
@@ -203,7 +204,6 @@ function layer_onMouseOver(event)
 	if (_isMobile) return;
 	var graphic = event.graphic;
 	_map.setMapCursor("pointer");
-	if (!_isIE) moveGraphicToFront(graphic);	
 	$("#hoverInfo").html("<b>"+graphic.attributes[FIELDNAME_COLLEGE_NAME]+"</b> ("+graphic.attributes[FIELDNAME_COLLEGE_COUNT]+")");
 	var pt = _map.toScreen(graphic.geometry);
 	hoverInfoPos(pt.x,pt.y);	
@@ -293,12 +293,6 @@ function postSelection()
 
 }
 
-function moveGraphicToFront(graphic)
-{
-	var dojoShape = graphic.getDojoShape();
-	if (dojoShape) dojoShape.moveToFront();
-}
-
 function hoverInfoPos(x,y){
 	if (x <= ($("#map").width())-230){
 		$("#hoverInfo").css("left",x+15);
@@ -339,5 +333,13 @@ function retract()
 {
 	$("#alt-info").animate({"bottom":-$("#alt-info").outerHeight()});
 }
+
+sortRecsByCount = function(recs) 
+{
+	var list = $.extend(true, [], recs);
+	list.sort(function(a,b){return b.count - a.count});
+	return list;
+}
+
 
 
