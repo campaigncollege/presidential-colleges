@@ -220,7 +220,8 @@ function layer_onMouseOver(event)
 	if (_isMobile) return;
 	var graphic = event.graphic;
 	_map.setMapCursor("pointer");
-	$("#hoverInfo").html("<b>"+graphic.attributes[FIELDNAME_COLLEGE_NAME]+"</b> ("+graphic.attributes[FIELDNAME_COLLEGE_COUNT]+")");
+	$("#hoverInfo").html("<b>"+graphic.attributes[FIELDNAME_COLLEGE_NAME]+
+						"</b> ("+graphic.attributes[FIELDNAME_COLLEGE_COUNT]+")");
 	var pt = _map.toScreen(graphic.geometry);
 	hoverInfoPos(pt.x,pt.y);	
 }
@@ -268,7 +269,10 @@ function postSelection()
 		$(li).append("<div style='font-weight:bold'>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
 		relationships = $.grep(
 			_tableRelationships.getRecords(), 
-			function(n, i){return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] && n[FIELDNAME_RELATIONSHIP_PRESIDENT] == value[FIELDNAME_PRESIDENT_ID]}
+			function(n, i){
+				return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] && 
+					   n[FIELDNAME_RELATIONSHIP_PRESIDENT] == value[FIELDNAME_PRESIDENT_ID];
+			}
 		);
 		if (relationships.length > 0) {
 			var note = relationships[0][FIELDNAME_RELATIONSHIP_NOTE];
@@ -296,8 +300,7 @@ function postSelection()
 		$("#alt-info").html($(bogus).html());
 		if ($("#alt-info").css("bottom") != "0px") {
 			$("#alt-info").animate({"bottom":0}, function(){
-				if (_bLandscape) _map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(-(_map.extent.getWidth() / 4), 0));
-				else _map.centerAt(esri.geometry.geographicToWebMercator(_selectedCollege.geometry).offset(0, - (_map.extent.getHeight() / 4)));
+				offsetCenter();
 			});
 		}
 	} else {
@@ -361,6 +364,7 @@ function handleWindowResize() {
 	
 	if ((bLandscape != _bLandscape) && _bSmall) {
 		setDimensions();
+		if (_selectedCollege) setTimeout(function(){offsetCenter()}, 1000);
 	}
 	
 }
@@ -401,3 +405,9 @@ function clearMultiTips()
 	});	
 }
 
+function offsetCenter()
+{
+	var pt = esri.geometry.geographicToWebMercator(_selectedCollege.geometry);
+	if (_bLandscape) _map.centerAt(pt.offset(-(_map.extent.getWidth() / 4), 0));
+	else _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));	
+}
