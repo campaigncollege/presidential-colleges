@@ -209,7 +209,6 @@ function finishInit() {
 		}
 	});		
 	
-	handleWindowResize();
 	setDimensions();
 	$("#whiteOut").fadeOut();
 	
