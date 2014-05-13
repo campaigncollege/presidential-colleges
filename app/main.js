@@ -300,7 +300,6 @@ function postSelection()
 			textColor : "#000000",
 			pointerColor: "#FFFFFF"
 		});			
-		setDimensions();
 		$("#alt-info").html($(bogus).html());
 		if ($("#alt-info").css("bottom") != "0px") {
 			$("#alt-info").animate({"bottom":0}, function(){
@@ -354,28 +353,29 @@ function handleWindowResize() {
 	_bSmall = $("body").width() < 600 || $("body").height() < 500;
 	_bLandscape = $("body").width() > $("body").height();
 	
-	var changed = (bSmall != _bSmall) || (bLandscape != _bLandscape);
-
-	if (changed) {
-		if (_selectedCollege) {
-			if (_bSmall) {
-				_map.infoWindow.hide();
-				_map.infoWindow.setContent("");
-			} else {
-				retract();
-				$("#alt-info").empty();
-				$("#map").multiTips({
-					pointArray : [],
-					labelValue: "",
-					mapVariable : _map,
-					labelDirection : "top",
-					backgroundColor : "#FFFFFF",
-					textColor : "#000000",
-					pointerColor: "#FFFFFF"
-				});				
-			}
-			postSelection();
+	if ((bSmall != _bSmall) && _selectedCollege) {
+		if (_bSmall) {
+			_map.infoWindow.hide();
+			_map.infoWindow.setContent("");
+			setDimensions();
+		} else {
+			retract();
+			$("#alt-info").empty();
+			$("#map").multiTips({
+				pointArray : [],
+				labelValue: "",
+				mapVariable : _map,
+				labelDirection : "top",
+				backgroundColor : "#FFFFFF",
+				textColor : "#000000",
+				pointerColor: "#FFFFFF"
+			});				
 		}
+		postSelection();
+	}
+	
+	if ((bLandscape != _bLandscape) && _bSmall) {
+		setDimensions();
 	}
 	
 }
