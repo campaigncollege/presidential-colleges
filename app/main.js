@@ -9,6 +9,7 @@ var TITLE = "This is the title."
 var BYLINE = "This is the byline"
 var WEBMAP_ID = "caca75ada5f14f1dad84a560db831a50";
 var GEOMETRY_SERVICE_URL = "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer";
+var BASEMAP_SERVICE_URL = "http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/DGCM_2Msmaller_BASE/MapServer";
 
 var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
@@ -106,7 +107,7 @@ function init() {
 								spatialReference:{wkid:102100}
 							})							
 						});						
-	_map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/DGCM_2Msmaller_BASE/MapServer"));
+	_map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer(BASEMAP_SERVICE_URL));
 	if(_map.loaded){
 		finishInit();
 	} else {
