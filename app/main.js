@@ -52,7 +52,7 @@ var _tableRelationships;
 var _selectedPresident;
 var _selectedCollege;
 
-var _bSmall = false;
+var _bSmall;
 var _bLandscape;
 
 dojo.addOnLoad(function() {_dojoReady = true;init()});
@@ -63,8 +63,9 @@ function init() {
 	if (!_jqueryReady) return;
 	if (!_dojoReady) return;
 	
-	// initialize landscape variable
+	// initialize responsiveness-related variables
 	
+	_bSmall = $("body").width() < 600 || $("body").height() < 500;
 	_bLandscape = $("body").width() > $("body").height();
 	
 	// determine whether we're in embed mode
@@ -201,15 +202,7 @@ function finishInit() {
 			_selectedCollege = null;
 			if (_bSmall) {
 				retract();
-				$("#map").multiTips({
-					pointArray : [],
-					labelValue: "",
-					mapVariable : _map,
-					labelDirection : "top",
-					backgroundColor : "#FFFFFF",
-					textColor : "#000000",
-					pointerColor: "#FFFFFF"
-				});
+				clearMultiTips();
 			} else {
 				_map.infoWindow.hide();
 			}
@@ -217,6 +210,7 @@ function finishInit() {
 	});		
 	
 	handleWindowResize();
+	setDimensions();
 	$("#whiteOut").fadeOut();
 	
 }
@@ -361,15 +355,7 @@ function handleWindowResize() {
 		} else {
 			retract();
 			$("#alt-info").empty();
-			$("#map").multiTips({
-				pointArray : [],
-				labelValue: "",
-				mapVariable : _map,
-				labelDirection : "top",
-				backgroundColor : "#FFFFFF",
-				textColor : "#000000",
-				pointerColor: "#FFFFFF"
-			});				
+			clearMultiTips();
 		}
 		postSelection();
 	}
@@ -403,5 +389,16 @@ sortRecsByCount = function(recs)
 	return list;
 }
 
-
+function clearMultiTips()
+{
+	$("#map").multiTips({
+		pointArray : [],
+		labelValue: "",
+		mapVariable : _map,
+		labelDirection : "top",
+		backgroundColor : "#FFFFFF",
+		textColor : "#000000",
+		pointerColor: "#FFFFFF"
+	});	
+}
 
