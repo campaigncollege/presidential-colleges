@@ -54,17 +54,6 @@ var _selectedCollege;
 var _bSmall = false;
 var _bLandscape;
 
-/*
-
-might need this if you're using icons.
-
-var _lutBallIconSpecs = {
-	tiny:new IconSpecs(24,24,12,12),
-	medium:new IconSpecs(30,30,15,15),
-	large:new IconSpecs(30,30,15,15)
-}
-*/
-
 dojo.addOnLoad(function() {_dojoReady = true;init()});
 jQuery(document).ready(function() {_jqueryReady = true;init()});
 
