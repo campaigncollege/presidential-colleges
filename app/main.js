@@ -62,6 +62,10 @@ function init() {
 	if (!_jqueryReady) return;
 	if (!_dojoReady) return;
 	
+	// initialize landscape variable
+	
+	_bLandscape = $("body").width() > $("body").height();
+	
 	// determine whether we're in embed mode
 	
 	var queryString = esri.urlToObject(document.location.href).query;
