@@ -98,7 +98,13 @@ function init() {
 	_map = new esri.Map("map",
 						{
 							slider: false,
-							extent: new esri.geometry.Extent({xmin:-13854058,ymin:2382389,xmax:-7592337,ymax:6530779,spatialReference:{wkid:102100}})							
+							extent: new esri.geometry.Extent({
+								xmin:-13854058,
+								ymin:2382389,
+								xmax:-7592337,
+								ymax:6530779,
+								spatialReference:{wkid:102100}
+							})							
 						});						
 	_map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/DGCM_2Msmaller_BASE/MapServer"));
 	if(_map.loaded){
