@@ -186,7 +186,27 @@ function finishInit() {
 				_map.infoWindow.hide();
 			}
 		}
-	});		
+	});
+	
+	var img,tile,footer,num,title;
+	
+	$.each(_tablePresidents.getRecords(), function(index, value) {
+
+		tile = $('<li id="item'+value[FIELDNAME_PRESIDENT_ID]+'">');
+		
+		footer = $('<div class="footer"></div>');
+		num = $('<div class="num" style="background-color:black">'+value[FIELDNAME_PRESIDENT_ID]+'</div>');
+		title = $('<div class="blurb">'+value[FIELDNAME_PRESIDENT_NAME]+'</div>');	
+		$(footer).append(num);		
+		$(footer).append(title);
+		$(tile).append(footer);			
+
+		img = $('<img src="'+value[FIELDNAME_PRESIDENT_URL]+'">');
+		$(tile).append(img);
+		
+		$("#myList").append(tile);
+		
+	});
 	
 	handleWindowResize();
 	
@@ -361,7 +381,11 @@ function handleWindowResize() {
 	
 	$("#map").css("left", $("#paneLeft").outerWidth());
 	$("#map").height($("body").height());
-	$("#map").width($("body").width() - $("#paneLeft").outerWidth());	
+	$("#map").width($("body").width() - $("#paneLeft").outerWidth());
+	
+	$("#paneLeft").height($("body").height());	
+	$(".tilelist").height($("#paneLeft").height() - 18);
+	$(".tilelist").width($("#paneLeft").width() + 7);		
 	
 	_map.resize();
 	
