@@ -99,14 +99,7 @@ function init() {
 
 	_map = new esri.Map("map",
 						{
-							slider: false,
-							extent: new esri.geometry.Extent({
-								xmin:-13854058,
-								ymin:2382389,
-								xmax:-7592337,
-								ymax:6530779,
-								spatialReference:{wkid:102100}
-							})							
+							slider: false
 						});						
 	_map.addLayer(new esri.layers.ArcGISTiledMapServiceLayer(BASEMAP_SERVICE_URL));
 	if(_map.loaded){
@@ -151,20 +144,6 @@ function finishInit() {
 		if (!_tableRelationships.getRecords()) return;
 	}
 	
-	// if _homeExtent hasn't been set, then default to the initial extent
-	// of the web map.  On the other hand, if it HAS been set AND we're using
-	// the embed option, we need to reset the extent (because the map dimensions
-	// have been changed on the fly).
-
-	if (!_homeExtent) {
-		_homeExtent = _map.extent;
-	} else {
-		if (_isEmbed) {
-			setTimeout(function(){
-				_map.setExtent(_homeExtent)
-			},500);
-		}	
-	}
 	
 	var layerIcons = new esri.layers.GraphicsLayer();
 
@@ -209,8 +188,20 @@ function finishInit() {
 		}
 	});		
 	
-	setDimensions();
-	$("#whiteOut").fadeOut();
+	handleWindowResize();
+	
+	_homeExtent = new esri.geometry.Extent({
+		xmin:-12672646,
+		ymin:2661230,
+		xmax:-8861802,
+		ymax:7372197,
+		spatialReference:{wkid:102100}
+	})							
+		
+	setTimeout(function(){
+		_map.setExtent(_homeExtent, true);
+		setTimeout(function(){$("#whiteOut").fadeOut()},500);
+	}, 500);
 	
 }
 
@@ -342,6 +333,7 @@ function hoverInfoPos(x,y){
 
 function handleWindowResize() {
 	
+	console.log("handleWindowResize");
 	
 	var bSmall = _bSmall;
 	var bLandscape = _bLandscape;
@@ -360,12 +352,18 @@ function handleWindowResize() {
 			clearMultiTips();
 		}
 		postSelection();
-	}
-	
-	if ((bLandscape != _bLandscape) && _bSmall) {
+	} else if ((bLandscape != _bLandscape) && _bSmall) {
 		setDimensions();
 		if (_selectedCollege) setTimeout(function(){offsetCenter()}, 1000);
+	} else {
+		// nothing
 	}
+	
+	$("#map").css("left", $("#paneLeft").outerWidth());
+	$("#map").height($("body").height());
+	$("#map").width($("body").width() - $("#paneLeft").outerWidth());	
+	
+	_map.resize();
 	
 }
 
