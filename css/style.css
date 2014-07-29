@@ -215,6 +215,7 @@ a:hover{
 	text-align:center;
 	overflow:auto;
 	max-height:500px;
+	right:10px;
 }
 
 #paneLeft {

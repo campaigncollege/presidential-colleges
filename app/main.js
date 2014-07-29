@@ -353,19 +353,16 @@ function hoverInfoPos(x,y){
 
 function handleWindowResize() {
 	
-	console.log("handleWindowResize");
-	
 	var bSmall = _bSmall;
 	var bLandscape = _bLandscape;
 	
 	_bSmall = $("body").width() < 600 || $("body").height() < 500;
 	_bLandscape = $("body").width() > $("body").height();
-	
+
 	if ((bSmall != _bSmall) && _selectedCollege) {
 		if (_bSmall) {
 			_map.infoWindow.hide();
 			_map.infoWindow.setContent("");
-			setDimensions();
 		} else {
 			retract();
 			$("#alt-info").empty();
@@ -373,7 +370,6 @@ function handleWindowResize() {
 		}
 		postSelection();
 	} else if ((bLandscape != _bLandscape) && _bSmall) {
-		setDimensions();
 		if (_selectedCollege) setTimeout(function(){offsetCenter()}, 1000);
 	} else {
 		// nothing
@@ -386,20 +382,12 @@ function handleWindowResize() {
 	$("#paneLeft").height($("body").height());	
 	$(".tilelist").height($("#paneLeft").height() - 18);
 	$(".tilelist").width($("#paneLeft").width() + 7);		
+
+	$("#alt-info").width(300);
+	$("#alt-info").height(250);					
 	
 	_map.resize();
 	
-}
-
-function setDimensions()
-{
-	if (_bLandscape) {
-		$("#alt-info").width(240);
-		$("#alt-info").height($("body").height()-20);
-	} else {
-		$("#alt-info").width(300);
-		$("#alt-info").height(250);				
-	}	
 }
 
 function retract() 
@@ -430,6 +418,9 @@ function clearMultiTips()
 function offsetCenter()
 {
 	var pt = esri.geometry.geographicToWebMercator(_selectedCollege.geometry);
+	 _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));
+	/*
 	if (_bLandscape) _map.centerAt(pt.offset(-(_map.extent.getWidth() / 4), 0));
 	else _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));	
+	*/
 }
