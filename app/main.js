@@ -383,9 +383,7 @@ function handleWindowResize() {
 	$(".tilelist").height($("#paneLeft").height() - 18);
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
-	$("#alt-info").width(300);
-	$("#alt-info").height(250);					
-	
+	$("#alt-info").css("left", ($("#map").outerWidth() - $("#alt-info").outerWidth())/2);	
 	_map.resize();
 	
 }
@@ -419,8 +417,4 @@ function offsetCenter()
 {
 	var pt = esri.geometry.geographicToWebMercator(_selectedCollege.geometry);
 	 _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));
-	/*
-	if (_bLandscape) _map.centerAt(pt.offset(-(_map.extent.getWidth() / 4), 0));
-	else _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));	
-	*/
 }
