@@ -413,8 +413,8 @@ function handleWindowResize() {
 	var bSmall = _bSmall;
 	var bLandscape = _bLandscape;
 	
-	_bSmall = $("body").width() < 600 || $("body").height() < 500;
-	_bLandscape = $("body").width() > $("body").height();
+	_bSmall = true; 	//$("body").width() < 600 || $("body").height() < 500;
+	_bLandscape = true; //$("body").width() > $("body").height();
 
 	if ((bSmall != _bSmall) && _selectedCollege) {
 		if (_bSmall) {
