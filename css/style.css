@@ -212,11 +212,32 @@ a:hover{
 	background-color:white;
 	bottom:-520px;
 	padding:10px;
+}
+
+#college-title {
+	width:100%;
+	text-align:center;
+	font-size:24px;
+}
+
+#college-info {
+	padding:10px;
+	float:left;
+	text-align:center;
+}
+
+#college-seal {
+	max-width:150px;
+}
+
+#prez-info {
+	width:300px;
+	height:250px;	
+	padding:10px;
 	text-align:center;
 	overflow:auto;
 	max-height:500px;
-	width:300px;
-	height:250px;	
+	float:left;
 }
 
 #paneLeft {

@@ -19,6 +19,7 @@ var FIELDNAME_COLLEGE_ID = "id";
 var FIELDNAME_COLLEGE_NAME = "college";
 var FIELDNAME_COLLEGE_X = "x";
 var FIELDNAME_COLLEGE_Y = "y";
+var FIELDNAME_COLLEGE_IMAGE = "logo"
 var FIELDNAME_COLLEGE_COUNT = "count";
 
 var FIELDNAME_PRESIDENT_ID = "id";
@@ -321,6 +322,10 @@ function postSelection(index)
 	var presidents = $.grep(_tablePresidents.getRecords(), function(n, i){
 		return $.inArray(n[FIELDNAME_PRESIDENT_ID], ids) > -1;
 	});
+	
+	$("#college-title").html(_selectedCollege.attributes[FIELDNAME_COLLEGE_NAME]);
+	$("#college-seal").attr("src", _selectedCollege.attributes[FIELDNAME_COLLEGE_IMAGE]);
+	
 	var div = $("<div class='banner'></div>");
 	var ul = $("<ul></ul>");
 	var img;
@@ -364,7 +369,7 @@ function postSelection(index)
 			textColor : "#000000",
 			pointerColor: "#FFFFFF"
 		});			
-		$("#alt-info").html($(bogus).html());
+		$("#prez-info").html($(bogus).html());
 		if ($("#alt-info").css("bottom") != "0px") {
 			$("#alt-info").animate({"bottom":0}, function(){
 				offsetCenter();
