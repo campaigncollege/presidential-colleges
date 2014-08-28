@@ -28,10 +28,14 @@ var FIELDNAME_PRESIDENT_URL = "field1";
 var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
 var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
 var FIELDNAME_RELATIONSHIP_NOTE = "note";
+var FIELDNAME_RELATIONSHIP_CODE = "code";
 
 /******************************************************
 ***************** end config section ******************
 *******************************************************/
+
+var COLOR_DIM = "#E7E7E7";
+var COLOR_FULL = "#FFFFFF";
 
 var _map;
 
@@ -207,6 +211,10 @@ function finishInit() {
 		$("#myList").append(tile);
 		
 	});
+
+	$("ul.tilelist li").mouseover(tile_onMouseOver);
+	$("ul.tilelist li").mouseout(tile_onMouseOut);
+	$("ul.tilelist li").click(tile_onClick);	
 	
 	handleWindowResize();
 	
@@ -253,7 +261,55 @@ function layer_onClick(event)
 	postSelection();
 }
 
-function postSelection()
+function tile_onMouseOver(e) {
+	 $(this).css('background-color', COLOR_FULL);
+}
+
+function tile_onMouseOut(e) {
+	$(this).css('background-color', COLOR_DIM);
+}
+
+function tile_onClick(e) {
+	
+	var president = _tablePresidents.getRecords()[$.inArray(this, $(".tilelist li"))];
+	
+	var relationships = $.grep(
+		_tableRelationships.getRecords(), 
+		function(n, i){
+			return n[FIELDNAME_RELATIONSHIP_PRESIDENT] == president[FIELDNAME_PRESIDENT_ID] 
+		}
+	);
+	
+	if (relationships.length == 0) {
+		alert("President "+president[FIELDNAME_PRESIDENT_NAME]+" did not attend college.");
+		return;
+	}
+	
+	var lastRelationship = $.grep(relationships, function(n, i){return n[FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+	_selectedCollege = $.grep(_map.graphics.graphics, function(n, i){
+		if (!n.attributes) return false;
+		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
+	})[0];
+	
+	var relationships2 = $.grep(
+		_tableRelationships.getRecords(), 
+		function(n, i){
+			return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] 
+		}
+	);
+	
+	var ids = $.map(
+					$.grep(_tableRelationships.getRecords(), function(n, i){
+						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
+					}), 
+					function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
+				);
+				
+	postSelection($.inArray(president[FIELDNAME_PRESIDENT_ID],ids));
+	
+}
+
+function postSelection(index)
 {
 	// find all presidents associated with this college
 	var ids = $.map(
@@ -329,6 +385,7 @@ function postSelection()
 			dots: true,               //  Display dot navigation
 		});
 		var data = slidey.data("unslider");
+		if (index) data.move(index, function(){});
 		data.stop();
 	}
 
