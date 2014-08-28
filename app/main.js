@@ -374,6 +374,8 @@ function postSelection(index)
 			$("#alt-info").animate({"bottom":0}, function(){
 				offsetCenter();
 			});
+		} else {
+			offsetCenter();
 		}
 	} else {
 		_map.infoWindow.setContent($(bogus).html());
