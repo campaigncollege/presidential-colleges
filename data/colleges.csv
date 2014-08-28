@@ -1,32 +1,32 @@
-"ID","College","Y","X","Count"
-1,"Harvard",42.37,-71.11,5
-2,"William and Mary",37.27,-76.71,3
-3,"Princeton",40.34,-74.65,3
-4,"Hampden-Sydney",37.24,-78.46,1
-5,"U. of North Carolina",35.90,-79.04,1
-6,"Bowdoin",43.90,-69.96,1
-7,"Dickinson",40.20,-77.19,1
-8,"US Military Academy",41.39,-73.96,2
-9,"Kenyon",40.37,-82.39,1
-10,"Williams",42.71,-73.20,1
-11,"Miami University (Ohio)",39.51,-84.73,1
-12,"Allegheny College",41.64,-80.14,1
-13,"Yale",41.31,-72.92,3
-14,"Stanford",37.42,-122.16,1
-15,"Whittier",33.97,-118.03,1
-16,"US Naval Academy",38.98,-76.48,1
-17,"Eureka College",40.71,-89.26,1
-19,"Georgetown",38.90,-77.07,1
-20,"Columbia University",40.80,-73.96,1
-21,"Davidson College",35.50,-80.84,1
-22,"Occidental College",34.12,-118.21,1
-24,"Leiden University",52.15,4.48,1
-26,"Hiram College",41.31,-81.14,1
-27,"Union College",42.81,-73.93,1
-28,"Ohio Central College",40.10,-82.82,1
-29,"Amherst",42.37,-72.51,1
-30,"Spalding's Commercial College",39.10,-94.58,1
-31,"Georgia Southwestern College",32.05,-84.21,1
-32,"Georgia Institute of Technology",33.77,-84.39,1
-33,"Southwest Texas State College",29.88,-97.94,1
-34,"University of Michigan",42.27,-83.73,1
+"ID","College","Logo","Y","X","Count"
+1,"Harvard","http://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Harvard_Wreath_Logo_1.svg/220px-Harvard_Wreath_Logo_1.svg.png",42.37,-71.11,5
+2,"William and Mary","http://upload.wikimedia.org/wikipedia/en/thumb/2/2e/College_of_William_%26_Mary_logo.jpg/250px-College_of_William_%26_Mary_logo.jpg",37.27,-76.71,3
+3,"Princeton","http://upload.wikimedia.org/wikipedia/en/thumb/7/71/Princeton_shield.svg/200px-Princeton_shield.svg.png",40.34,-74.65,3
+4,"Hampden-Sydney","http://upload.wikimedia.org/wikipedia/en/thumb/3/3e/HampdenSydneyLogo.PNG/170px-HampdenSydneyLogo.PNG",37.24,-78.46,1
+5,"U. of North Carolina","http://upload.wikimedia.org/wikipedia/en/thumb/4/4d/UNC_Chapel_Hill_seal.svg/225px-UNC_Chapel_Hill_seal.svg.png",35.90,-79.04,1
+6,"Bowdoin","http://upload.wikimedia.org/wikipedia/en/a/af/Bowdoin_College_Seal.png",43.90,-69.96,1
+7,"Dickinson","http://www.ranklogos.com/wp-content/uploads/2012/05/Dickinson-College.jpg",40.20,-77.19,1
+8,"US Military Academy","http://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/U.S._Military_Academy_COA.png/250px-U.S._Military_Academy_COA.png",41.39,-73.96,2
+9,"Kenyon","http://upload.wikimedia.org/wikipedia/en/f/fe/KCshield_3CU.png",40.37,-82.39,1
+10,"Williams","http://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Williams_College_Seal.png/150px-Williams_College_Seal.png",42.71,-73.20,1
+11,"Miami University (Ohio)","http://upload.wikimedia.org/wikipedia/en/1/16/Seal_of_Miami_University.png",39.51,-84.73,1
+12,"Allegheny College","http://upload.wikimedia.org/wikipedia/en/9/91/Alleghenycollegelogo.png",41.64,-80.14,1
+13,"Yale","http://upload.wikimedia.org/wikipedia/commons/c/ca/Yale_logo.png",41.31,-72.92,3
+14,"Stanford","http://upload.wikimedia.org/wikipedia/en/thumb/b/b7/Stanford_University_seal_2003.svg/220px-Stanford_University_seal_2003.svg.png",37.42,-122.16,1
+15,"Whittier","http://upload.wikimedia.org/wikipedia/en/4/49/WhittierCollegeSeal.png",33.97,-118.03,1
+16,"US Naval Academy","http://upload.wikimedia.org/wikipedia/commons/d/dd/USNA_Gold_Seal.png",38.98,-76.48,1
+17,"Eureka College","http://upload.wikimedia.org/wikipedia/en/b/b3/Eureka_College_%28logo%29.jpg",40.71,-89.26,1
+19,"Georgetown","http://upload.wikimedia.org/wikipedia/en/thumb/0/08/Georgetown_University_Seal.svg/241px-Georgetown_University_Seal.svg.png",38.90,-77.07,1
+20,"Columbia University","http://upload.wikimedia.org/wikipedia/en/thumb/6/66/ColumbiaU_Wordmarklogo.svg/362px-ColumbiaU_Wordmarklogo.svg.png",40.80,-73.96,1
+21,"Davidson College","http://upload.wikimedia.org/wikipedia/en/2/2b/Davidson_College_%28seal%29.jpg",35.50,-80.84,1
+22,"Occidental College","http://upload.wikimedia.org/wikipedia/en/8/81/Seal-OccidentalCollege.png",34.12,-118.21,1
+24,"Leiden University","http://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Leiden_University_Seal.png/800px-Leiden_University_Seal.png",52.15,4.48,1
+26,"Hiram College","http://upload.wikimedia.org/wikipedia/en/0/01/HIRAM_logo.png",41.31,-81.14,1
+27,"Union College","http://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/UnionCollegeSeal.svg/390px-UnionCollegeSeal.svg.png",42.81,-73.93,1
+28,"Ohio Central College","http://www.hmdb.org/Photos/66/Photo66432o.jpg",40.10,-82.82,1
+29,"Amherst","http://upload.wikimedia.org/wikipedia/en/c/c2/Amherst_College_Seal.png",42.37,-72.51,1
+30,"Spalding's Commercial College","http://www.vintagekansascity.com/education/spaldingscollege/spaulding_college_logo.gif",39.10,-94.58,1
+31,"Georgia Southwestern College","http://upload.wikimedia.org/wikipedia/en/7/70/GASouthwesternULogo.png",32.05,-84.21,1
+32,"Georgia Institute of Technology","http://upload.wikimedia.org/wikipedia/commons/6/6b/Georgia_Tech_shortened_logo.png",33.77,-84.39,1
+33,"Southwest Texas State College","http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Texas_State_University%E2%80%93San_Marcos_Logo.svg/437px-Texas_State_University%E2%80%93San_Marcos_Logo.svg.png",29.88,-97.94,1
+34,"University of Michigan","http://upload.wikimedia.org/wikipedia/en/b/b8/Umichigan_color_seal.png",42.27,-83.73,1
