@@ -226,7 +226,6 @@ a:hover{
 	padding:10px;
 	float:left;
 	text-align:center;
-	border-style:solid;
 }
 
 #college-seal {
@@ -241,7 +240,6 @@ a:hover{
 	overflow:auto;
 	max-height:500px;
 	float:left;
-	border-style:solid;
 }
 
 #paneLeft {
