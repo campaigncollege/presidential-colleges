@@ -38,6 +38,11 @@ var FIELDNAME_RELATIONSHIP_CODE = "code";
 var COLOR_DIM = "#E7E7E7";
 var COLOR_FULL = "#FFFFFF";
 
+var LEFT_PANE_WIDTH_TWO_COLUMN = 327;
+var LEFT_PANE_WIDTH_THREE_COLUMN = 485;
+
+var TWO_COLUMN_THRESHOLD = 960;
+
 var _map;
 
 var _dojoReady = false;
@@ -439,11 +444,17 @@ function handleWindowResize() {
 		// nothing
 	}
 	
+	$("#paneLeft").height($("body").height());
+			
+	if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768))
+		$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
+	else
+		$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
+
 	$("#map").css("left", $("#paneLeft").outerWidth());
 	$("#map").height($("body").height());
-	$("#map").width($("body").width() - $("#paneLeft").outerWidth());
-	
-	$("#paneLeft").height($("body").height());	
+	$("#map").width($("body").width() - $("#paneLeft").outerWidth());			
+		
 	$(".tilelist").height($("#paneLeft").height() - 18);
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
