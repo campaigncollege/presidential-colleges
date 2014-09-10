@@ -149,10 +149,9 @@ function finishInit() {
 	
 	var layerIcons = new esri.layers.GraphicsLayer();
 
-	var sr = new esri.SpatialReference(4326);
 	var recs = sortRecsByCount(_tableColleges.getRecords());	
 	$.each(recs, function(index, value) {
-		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y], sr);
+		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y]);
 
 		var sym = new esri.symbol.SimpleMarkerSymbol(
 				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
