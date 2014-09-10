@@ -58,9 +58,6 @@ var _tableRelationships;
 var _selectedPresident;
 var _selectedCollege;
 
-var _bSmall;
-var _bLandscape;
-
 dojo.addOnLoad(function() {_dojoReady = true;init()});
 jQuery(document).ready(function() {_jqueryReady = true;init()});
 
@@ -68,12 +65,7 @@ function init() {
 	
 	if (!_jqueryReady) return;
 	if (!_dojoReady) return;
-	
-	// initialize responsiveness-related variables
-	
-	_bSmall = $("body").width() < 600 || $("body").height() < 500;
-	_bLandscape = $("body").width() > $("body").height();
-	
+		
 	// determine whether we're in embed mode
 	
 	var queryString = esri.urlToObject(document.location.href).query;
@@ -166,12 +158,8 @@ function finishInit() {
 	dojo.connect(_map, 'onClick', function(event){
 		if (event.graphic == null) {
 			_selectedCollege = null;
-			if (_bSmall) {
-				retract();
-				clearMultiTips();
-			} else {
-				_map.infoWindow.hide();
-			}
+			retract();
+			clearMultiTips();
 		}
 	});
 	
@@ -315,28 +303,22 @@ function postSelection(index)
 	var bogus = $("<div></div>");
 	$(bogus).append(div);
 
-	if (_bSmall) {
-		$("#map").multiTips({
-			pointArray : [_selectedCollege],
-			labelValue: _selectedCollege.attributes[FIELDNAME_COLLEGE_NAME],
-			mapVariable : _map,
-			labelDirection : "top",
-			backgroundColor : "#FFFFFF",
-			textColor : "#000000",
-			pointerColor: "#FFFFFF"
-		});			
-		$("#prez-info").html($(bogus).html());
-		if ($("#alt-info").css("bottom") != "0px") {
-			$("#alt-info").animate({"bottom":0}, function(){
-				offsetCenter();
-			});
-		} else {
+	$("#map").multiTips({
+		pointArray : [_selectedCollege],
+		labelValue: _selectedCollege.attributes[FIELDNAME_COLLEGE_NAME],
+		mapVariable : _map,
+		labelDirection : "top",
+		backgroundColor : "#FFFFFF",
+		textColor : "#000000",
+		pointerColor: "#FFFFFF"
+	});			
+	$("#prez-info").html($(bogus).html());
+	if ($("#alt-info").css("bottom") != "0px") {
+		$("#alt-info").animate({"bottom":0}, function(){
 			offsetCenter();
-		}
+		});
 	} else {
-		_map.infoWindow.setContent($(bogus).html());
-		_map.infoWindow.setTitle(_selectedCollege.attributes[FIELDNAME_COLLEGE_NAME]);
-		_map.infoWindow.show(_selectedCollege.geometry);	
+		offsetCenter();
 	}
 	
 	if (presidents.length > 1) {
@@ -421,28 +403,6 @@ function hoverInfoPos(x,y){
 }
 
 function handleWindowResize() {
-	
-	var bSmall = _bSmall;
-	var bLandscape = _bLandscape;
-	
-	_bSmall = true; 	//$("body").width() < 600 || $("body").height() < 500;
-	_bLandscape = true; //$("body").width() > $("body").height();
-
-	if ((bSmall != _bSmall) && _selectedCollege) {
-		if (_bSmall) {
-			_map.infoWindow.hide();
-			_map.infoWindow.setContent("");
-		} else {
-			retract();
-			$("#alt-info").empty();
-			clearMultiTips();
-		}
-		postSelection();
-	} else if ((bLandscape != _bLandscape) && _bSmall) {
-		if (_selectedCollege) setTimeout(function(){offsetCenter()}, 1000);
-	} else {
-		// nothing
-	}
 	
 	$("#paneLeft").height($("body").height());
 			
