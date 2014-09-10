@@ -171,7 +171,7 @@ function finishInit() {
 	
 	$.each(_tablePresidents.getRecords(), function(index, value) {
 
-		tile = $('<li id="item'+value[FIELDNAME_PRESIDENT_ID]+'">');
+		tile = $('<li>');
 		
 		footer = $('<div class="footer"></div>');
 		num = $('<div class="num" style="background-color:black">'+value[FIELDNAME_PRESIDENT_ID]+'</div>');
