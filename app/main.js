@@ -85,6 +85,14 @@ function init() {
 		}
 	}
 	
+	_homeExtent = new esri.geometry.Extent({
+		xmin:-12672646,
+		ymin:2661230,
+		xmax:-8861802,
+		ymax:7372197,
+		spatialReference:{wkid:102100}
+	});						
+		
 	// jQuery event assignment
 	
 	$(this).resize(handleWindowResize);
@@ -167,40 +175,14 @@ function finishInit() {
 		}
 	});
 	
-	var img,tile,footer,num,title;
+	createTileList($("#myList"));
 	
-	$.each(_tablePresidents.getRecords(), function(index, value) {
-
-		tile = $('<li>');
-		
-		footer = $('<div class="footer"></div>');
-		num = $('<div class="num" style="background-color:black">'+value[FIELDNAME_PRESIDENT_ID]+'</div>');
-		title = $('<div class="blurb">'+value[FIELDNAME_PRESIDENT_NAME]+'</div>');	
-		$(footer).append(num);		
-		$(footer).append(title);
-		$(tile).append(footer);			
-
-		img = $('<img src="'+value[FIELDNAME_PRESIDENT_URL]+'">');
-		$(tile).append(img);
-		
-		$("#myList").append(tile);
-		
-	});
-
 	$("ul.tilelist li").mouseover(tile_onMouseOver);
 	$("ul.tilelist li").mouseout(tile_onMouseOut);
 	$("ul.tilelist li").click(tile_onClick);	
 	
 	handleWindowResize();
 	
-	_homeExtent = new esri.geometry.Extent({
-		xmin:-12672646,
-		ymin:2661230,
-		xmax:-8861802,
-		ymax:7372197,
-		spatialReference:{wkid:102100}
-	})							
-		
 	setTimeout(function(){
 		_map.setExtent(_homeExtent, true);
 		setTimeout(function(){$("#whiteOut").fadeOut()},500);
@@ -399,6 +381,29 @@ function createCollegesLayer()
 	return layerIcons;	
 }
 
+function createTileList(parent)
+{
+	var img,tile,footer,num,title;
+	
+	$.each(_tablePresidents.getRecords(), function(index, value) {
+
+		tile = $('<li>');
+		
+		footer = $('<div class="footer"></div>');
+		num = $('<div class="num" style="background-color:black">'+value[FIELDNAME_PRESIDENT_ID]+'</div>');
+		title = $('<div class="blurb">'+value[FIELDNAME_PRESIDENT_NAME]+'</div>');	
+		$(footer).append(num);		
+		$(footer).append(title);
+		$(tile).append(footer);			
+
+		img = $('<img src="'+value[FIELDNAME_PRESIDENT_URL]+'">');
+		$(tile).append(img);
+		
+		$(parent).append(tile);
+		
+	});
+}
+	
 function hoverInfoPos(x,y){
 	if (x <= ($("#map").width())-230){
 		$("#hoverInfo").css("left",x+15);
