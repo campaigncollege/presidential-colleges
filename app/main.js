@@ -5,10 +5,6 @@ dojo.require("esri.map");
 ***************** begin config section ****************
 *******************************************************/
 
-var TITLE = "This is the title."
-var BYLINE = "This is the byline"
-var WEBMAP_ID = "caca75ada5f14f1dad84a560db831a50";
-var GEOMETRY_SERVICE_URL = "http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer";
 var BASEMAP_SERVICE_URL = "http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/DGCM_2Msmaller_BASE/MapServer";
 
 var CSV_COLLEGES_URL = "data/colleges.csv";
@@ -102,10 +98,6 @@ function init() {
 	$("#zoomExtent").click(function(e) {
         _map.setExtent(_homeExtent);
     });
-	
-	$("#title").append(TITLE);
-	$("#subtitle").append(BYLINE);	
-
 
 	_map = new esri.Map("map",
 						{
