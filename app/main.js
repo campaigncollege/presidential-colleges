@@ -145,30 +145,8 @@ function finishInit() {
 	} else {
 		if (!_tableRelationships.getRecords()) return;
 	}
-	
-	
-	var layerIcons = new esri.layers.GraphicsLayer();
-
-	var recs = sortRecsByCount(_tableColleges.getRecords());	
-	$.each(recs, function(index, value) {
-		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y]);
-
-		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
-				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255,0]), 2),
-				new dojo.Color([0,255,255,0])
-			);
-
-		var iconSym = new esri.symbol.PictureMarkerSymbol(
-					"resources/icons/green-circle.png", 
-					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT]), 
-					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT])
-				);
-		layerIcons.add(new esri.Graphic(pt, iconSym, value));
-		_map.graphics.add(new esri.Graphic(pt, sym, value));
-	});
-	
-	_map.addLayer(layerIcons);
+		
+	_map.addLayer(createCollegesLayer());
 	
 	dojo.connect(_map.graphics, "onMouseOver", layer_onMouseOver);
 	dojo.connect(_map.graphics, "onMouseOut", layer_onMouseOut);
@@ -393,6 +371,32 @@ function postSelection(index)
 	}
 
 
+}
+
+function createCollegesLayer()
+{
+	var layerIcons = new esri.layers.GraphicsLayer();
+
+	var recs = sortRecsByCount(_tableColleges.getRecords());	
+	$.each(recs, function(index, value) {
+		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y]);
+
+		var sym = new esri.symbol.SimpleMarkerSymbol(
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
+				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255,0]), 2),
+				new dojo.Color([0,255,255,0])
+			);
+
+		var iconSym = new esri.symbol.PictureMarkerSymbol(
+					"resources/icons/green-circle.png", 
+					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT]), 
+					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT])
+				);
+		layerIcons.add(new esri.Graphic(pt, iconSym, value));
+		_map.graphics.add(new esri.Graphic(pt, sym, value));
+	});
+
+	return layerIcons;	
 }
 
 function hoverInfoPos(x,y){
