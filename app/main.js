@@ -237,13 +237,6 @@ function tile_onClick(e) {
 		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
 	})[0];
 	
-	var relationships2 = $.grep(
-		_tableRelationships.getRecords(), 
-		function(n, i){
-			return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] 
-		}
-	);
-	
 	var ids = $.map(
 					$.grep(_tableRelationships.getRecords(), function(n, i){
 						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
