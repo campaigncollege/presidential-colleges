@@ -218,25 +218,12 @@ function tile_onClick(e) {
 	
 	var president = _tablePresidents.getRecords()[$.inArray(this, $(".tilelist li"))];
 	
-	var relationships = $.grep(
-		_tableRelationships.getRecords(), 
-		function(n, i){
-			return n[FIELDNAME_RELATIONSHIP_PRESIDENT] == president[FIELDNAME_PRESIDENT_ID] 
-		}
-	);
-	
-	if (relationships.length == 0) {
+	_selectedCollege = selectLastCollege(president[FIELDNAME_PRESIDENT_ID]);
+	if (!_selectedCollege) {
 		retract();
 		showNoCollege(president[FIELDNAME_PRESIDENT_NAME]);
-		return;
+		return;		
 	}
-	
-	var lastRelationship = $.grep(relationships, function(n, i){return n[FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
-	_selectedCollege = $.grep(_map.graphics.graphics, function(n, i){
-		if (!n.attributes) return false;
-		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
-	})[0];
-	
 	var ids = $.map(
 					$.grep(_tableRelationships.getRecords(), function(n, i){
 						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
@@ -331,6 +318,28 @@ function postSelection(index)
 		data.stop();
 	}
 
+}
+
+function selectLastCollege(presidentID)
+{
+	
+	var relationships = $.grep(
+		_tableRelationships.getRecords(), 
+		function(n, i){
+			return n[FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
+		}
+	);
+	
+	if (relationships.length == 0) {
+		return null;
+	}
+	
+	var lastRelationship = $.grep(relationships, function(n, i){return n[FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+	
+	return $.grep(_map.graphics.graphics, function(n, i){
+		if (!n.attributes) return false;
+		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
+	})[0];
 
 }
 
