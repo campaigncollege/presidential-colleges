@@ -113,71 +113,13 @@ function postSelection(index)
 	
 	retractNoCollege();
 	
-	var presidents = getPresidentsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID])
+	constructSlidey(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID], index, function(){console.log("done constructing slidey!")});
 	
 	$("#college-title").html(_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE]);
 	
-	var div = $("<div class='banner'></div>");
-	var ul = $("<ul></ul>");
-	var img;
-	var li;
-	var relationship;
-	$(div).append(ul);
-	$.each(presidents, function(index, value){
-		img = $("<img/>");
-		$(img).addClass("presidentialPortrait");
-		$(img).attr("src", value[Presidents.FIELDNAME_PRESIDENT_URL]);
-		li = $("<li></li>");
-		$(li).append(img);
-		$(li).append("<div style='font-weight:bold'>"+value[Presidents.FIELDNAME_PRESIDENT_NAME]+"</div>");
-		relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]);
-		var note = relationship[Relationships.FIELDNAME_RELATIONSHIP_NOTE];
-		if (note) {
-			if ($.trim(note) != "") {
-				$(li).append("<div class='note'>"+note+"</div>");
-			}
-		}
-
-		$(ul).append(li);
-	});
-	var bogus = $("<div></div>");
-	$(bogus).append(div);
-	/*
-	$("#map").multiTips({
-		pointArray : [_selectedCollege],
-		labelValue: _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_NAME],
-		mapVariable : _map,
-		labelDirection : "top",
-		backgroundColor : "#FFFFFF",
-		textColor : "#000000",
-		pointerColor: "#FFFFFF"
-	});
-	*/			
-	$("#prez-info").html($(bogus).html());
-	if ($("#alt-info").css("bottom") != "0px") {
-		$("#alt-info").animate({"bottom":0}, function(){
-			//offsetCenter();
-		});
-	} else {
-		//offsetCenter();
-	}
-	
-	if (presidents.length > 1) {
-		var slidey = $('.banner').unslider({
-			speed: 500,               //  The speed to animate each slide (in milliseconds)
-			delay: 3000,              //  The delay between slide animations (in milliseconds)
-			complete: function() {},  //  A function that gets called after every slide animation
-			keys: true,               //  Enable keyboard (left, right) arrow shortcuts
-			dots: true,               //  Display dot navigation
-		});
-		var data = slidey.data("unslider");
-		if (index) data.move(index, function(){});
-		data.stop();
-	}
 
 }
-
 
 function selectLastCollege(presidentID)
 {
