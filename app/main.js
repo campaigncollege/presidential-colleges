@@ -235,16 +235,7 @@ function postSelection(index)
 	
 	retractNoCollege();
 	
-	// find all presidents associated with this college
-	var ids = $.map(
-					$.grep(_tableRelationships.getRecords(), function(n, i){
-						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
-					}), 
-					function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
-				);
-	var presidents = $.grep(_tablePresidents.getRecords(), function(n, i){
-		return $.inArray(n[FIELDNAME_PRESIDENT_ID], ids) > -1;
-	});
+	var presidents = getPresidentsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])
 	
 	$("#college-title").html(_selectedCollege.attributes[FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege.attributes[FIELDNAME_COLLEGE_IMAGE]);
@@ -346,6 +337,13 @@ function getPresidentIDsForCollege(collegeID)
 				}), 
 				function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
 				);	
+}
+
+function getPresidentsForCollege(collegeID)
+{
+	return $.grep(_tablePresidents.getRecords(), function(n, i){
+		return $.inArray(n[FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(collegeID)) > -1;
+	});	
 }
 
 function createCollegesLayer()
