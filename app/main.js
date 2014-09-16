@@ -253,21 +253,14 @@ function postSelection(index)
 		li = $("<li></li>");
 		$(li).append(img);
 		$(li).append("<div style='font-weight:bold'>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
-		relationships = $.grep(
-			_tableRelationships.getRecords(), 
-			function(n, i){
-				return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID] && 
-					   n[FIELDNAME_RELATIONSHIP_PRESIDENT] == value[FIELDNAME_PRESIDENT_ID];
-			}
-		);
-		if (relationships.length > 0) {
-			var note = relationships[0][FIELDNAME_RELATIONSHIP_NOTE];
-			if (note) {
-				if ($.trim(note) != "") {
-					$(li).append("<div class='note'>"+note+"</div>");
-				}
+		var relationship = getRelationship(value[FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[FIELDNAME_COLLEGE_ID]);
+		var note = relationship[FIELDNAME_RELATIONSHIP_NOTE];
+		if (note) {
+			if ($.trim(note) != "") {
+				$(li).append("<div class='note'>"+note+"</div>");
 			}
 		}
+
 		$(ul).append(li);
 	});
 	var bogus = $("<div></div>");
@@ -344,6 +337,17 @@ function getPresidentsForCollege(collegeID)
 	return $.grep(_tablePresidents.getRecords(), function(n, i){
 		return $.inArray(n[FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(collegeID)) > -1;
 	});	
+}
+
+function getRelationship(presidentID, collegeID)
+{
+	return  $.grep(
+		_tableRelationships.getRecords(), 
+		function(n, i){
+			return n[FIELDNAME_RELATIONSHIP_COLLEGE] == collegeID && 
+				   n[FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
+		}
+	)[0];
 }
 
 function createCollegesLayer()
