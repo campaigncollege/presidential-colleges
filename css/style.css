@@ -207,6 +207,14 @@ a:hover{
 	visibility:hidden;
 }
 
+#no-college {
+	position:absolute;
+	z-index:201;
+	background-color:white;
+	bottom:-50px;
+	padding:10px;
+}
+
 #alt-info {
 	position:absolute;
 	z-index:200;

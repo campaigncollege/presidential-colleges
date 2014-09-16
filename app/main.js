@@ -226,7 +226,8 @@ function tile_onClick(e) {
 	);
 	
 	if (relationships.length == 0) {
-		alert("President "+president[FIELDNAME_PRESIDENT_NAME]+" did not attend college.");
+		retract();
+		showNoCollege(president[FIELDNAME_PRESIDENT_NAME]);
 		return;
 	}
 	
@@ -256,6 +257,9 @@ function tile_onClick(e) {
 
 function postSelection(index)
 {
+	
+	retractNoCollege();
+	
 	// find all presidents associated with this college
 	var ids = $.map(
 					$.grep(_tableRelationships.getRecords(), function(n, i){
@@ -419,6 +423,8 @@ function handleWindowResize() {
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
 	$("#alt-info").css("left", ($("#map").outerWidth() - $("#alt-info").outerWidth())/2);	
+	$("#no-college").css("left", ($("#map").outerWidth() - $("#no-college").outerWidth())/2);	
+	
 	_map.resize();
 	
 }
@@ -452,4 +458,15 @@ function offsetCenter()
 {
 	var pt = esri.geometry.geographicToWebMercator(_selectedCollege.geometry);
 	 _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));
+}
+
+function showNoCollege(name)
+{
+	$("#no-college").html("<span style='font-weight:bold'>"+name+"</span> did not attend a college or university.");
+	$("#no-college").animate({"bottom": 20});
+}
+
+function retractNoCollege()
+{
+	$("#no-college").animate({"bottom":-$("#no-college").outerHeight()});
 }
