@@ -11,13 +11,6 @@ var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
 var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 
-var FIELDNAME_COLLEGE_ID = "id";
-var FIELDNAME_COLLEGE_NAME = "college";
-var FIELDNAME_COLLEGE_X = "x";
-var FIELDNAME_COLLEGE_Y = "y";
-var FIELDNAME_COLLEGE_IMAGE = "logo"
-var FIELDNAME_COLLEGE_COUNT = "count";
-
 var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
 var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
 var FIELDNAME_RELATIONSHIP_NOTE = "note";
@@ -108,7 +101,7 @@ function init() {
 		});
 	}
 
-	_tableColleges = new Spreadsheet();
+	_tableColleges = new Colleges();
 	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
 	
 	_tablePresidents = new Presidents();
@@ -180,8 +173,8 @@ function layer_onMouseOver(event)
 	if (_isMobile) return;
 	var graphic = event.graphic;
 	_map.setMapCursor("pointer");
-	$("#hoverInfo").html("<b>"+graphic.attributes[FIELDNAME_COLLEGE_NAME]+
-						"</b> ("+graphic.attributes[FIELDNAME_COLLEGE_COUNT]+")");
+	$("#hoverInfo").html("<b>"+graphic.attributes[Colleges.FIELDNAME_COLLEGE_NAME]+
+						"</b> ("+graphic.attributes[Colleges.FIELDNAME_COLLEGE_COUNT]+")");
 	var pt = _map.toScreen(graphic.geometry);
 	hoverInfoPos(pt.x,pt.y);	
 }
@@ -222,7 +215,7 @@ function tile_onClick(e) {
 		return;		
 	}
 					
-	postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])));
+	postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID])));
 	
 }
 
@@ -231,10 +224,10 @@ function postSelection(index)
 	
 	retractNoCollege();
 	
-	var presidents = getPresidentsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])
+	var presidents = getPresidentsForCollege(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID])
 	
-	$("#college-title").html(_selectedCollege.attributes[FIELDNAME_COLLEGE_NAME]);
-	$("#college-seal").attr("src", _selectedCollege.attributes[FIELDNAME_COLLEGE_IMAGE]);
+	$("#college-title").html(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_NAME]);
+	$("#college-seal").attr("src", _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_IMAGE]);
 	
 	var div = $("<div class='banner'></div>");
 	var ul = $("<ul></ul>");
@@ -249,7 +242,7 @@ function postSelection(index)
 		li = $("<li></li>");
 		$(li).append(img);
 		$(li).append("<div style='font-weight:bold'>"+value[Presidents.FIELDNAME_PRESIDENT_NAME]+"</div>");
-		var relationship = getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[FIELDNAME_COLLEGE_ID]);
+		var relationship = getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID]);
 		var note = relationship[FIELDNAME_RELATIONSHIP_NOTE];
 		if (note) {
 			if ($.trim(note) != "") {
@@ -264,7 +257,7 @@ function postSelection(index)
 
 	$("#map").multiTips({
 		pointArray : [_selectedCollege],
-		labelValue: _selectedCollege.attributes[FIELDNAME_COLLEGE_NAME],
+		labelValue: _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_NAME],
 		mapVariable : _map,
 		labelDirection : "top",
 		backgroundColor : "#FFFFFF",
@@ -313,7 +306,7 @@ function selectLastCollege(presidentID)
 	
 	return $.grep(_map.graphics.graphics, function(n, i){
 		if (!n.attributes) return false;
-		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
+		return n.attributes[Colleges.FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
 	})[0];
 
 }
@@ -322,7 +315,7 @@ function getPresidentIDsForCollege(collegeID)
 {
 	return $.map(
 				$.grep(_tableRelationships.getRecords(), function(n, i){
-					return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
+					return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID];
 				}), 
 				function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
 				);	
@@ -352,18 +345,18 @@ function createCollegesLayer()
 
 	var recs = sortRecsByCount(_tableColleges.getRecords());	
 	$.each(recs, function(index, value) {
-		var pt = new esri.geometry.Point(value[FIELDNAME_COLLEGE_X], value[FIELDNAME_COLLEGE_Y]);
+		var pt = new esri.geometry.Point(value[Colleges.FIELDNAME_COLLEGE_X], value[Colleges.FIELDNAME_COLLEGE_Y]);
 
 		var sym = new esri.symbol.SimpleMarkerSymbol(
-				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[FIELDNAME_COLLEGE_COUNT])),
+				esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20+10*(parseInt(value[Colleges.FIELDNAME_COLLEGE_COUNT])),
 				new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,255,255,0]), 2),
 				new dojo.Color([0,255,255,0])
 			);
 
 		var iconSym = new esri.symbol.PictureMarkerSymbol(
 					"resources/icons/green-circle.png", 
-					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT]), 
-					28+10*parseInt(value[FIELDNAME_COLLEGE_COUNT])
+					28+10*parseInt(value[Colleges.FIELDNAME_COLLEGE_COUNT]), 
+					28+10*parseInt(value[Colleges.FIELDNAME_COLLEGE_COUNT])
 				);
 		layerIcons.add(new esri.Graphic(pt, iconSym, value));
 		_map.graphics.add(new esri.Graphic(pt, sym, value));
