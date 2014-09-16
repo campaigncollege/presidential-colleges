@@ -219,19 +219,14 @@ function tile_onClick(e) {
 	var president = _tablePresidents.getRecords()[$.inArray(this, $(".tilelist li"))];
 	
 	_selectedCollege = selectLastCollege(president[FIELDNAME_PRESIDENT_ID]);
+	
 	if (!_selectedCollege) {
 		retract();
 		showNoCollege(president[FIELDNAME_PRESIDENT_NAME]);
 		return;		
 	}
-	var ids = $.map(
-					$.grep(_tableRelationships.getRecords(), function(n, i){
-						return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
-					}), 
-					function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
-				);
-				
-	postSelection($.inArray(president[FIELDNAME_PRESIDENT_ID],ids));
+					
+	postSelection($.inArray(president[FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])));
 	
 }
 
@@ -341,6 +336,16 @@ function selectLastCollege(presidentID)
 		return n.attributes[FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
 	})[0];
 
+}
+
+function getPresidentIDsForCollege(collegeID)
+{
+	return $.map(
+				$.grep(_tableRelationships.getRecords(), function(n, i){
+					return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[FIELDNAME_COLLEGE_ID];
+				}), 
+				function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
+				);	
 }
 
 function createCollegesLayer()
