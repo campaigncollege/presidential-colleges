@@ -11,11 +11,6 @@ var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
 var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 
-var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
-var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
-var FIELDNAME_RELATIONSHIP_NOTE = "note";
-var FIELDNAME_RELATIONSHIP_CODE = "code";
-
 /******************************************************
 ***************** end config section ******************
 *******************************************************/
@@ -107,7 +102,7 @@ function init() {
 	_tablePresidents = new Presidents();
 	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
 	
-	_tableRelationships = new Spreadsheet();
+	_tableRelationships = new Relationships();
 	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
 			
 }
@@ -215,7 +210,7 @@ function tile_onClick(e) {
 		return;		
 	}
 					
-	postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID])));
+	postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID])));
 	
 }
 
@@ -242,8 +237,8 @@ function postSelection(index)
 		li = $("<li></li>");
 		$(li).append(img);
 		$(li).append("<div style='font-weight:bold'>"+value[Presidents.FIELDNAME_PRESIDENT_NAME]+"</div>");
-		var relationship = getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID]);
-		var note = relationship[FIELDNAME_RELATIONSHIP_NOTE];
+		var relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID]);
+		var note = relationship[Relationships.FIELDNAME_RELATIONSHIP_NOTE];
 		if (note) {
 			if ($.trim(note) != "") {
 				$(li).append("<div class='note'>"+note+"</div>");
@@ -294,7 +289,7 @@ function selectLastCollege(presidentID)
 	var relationships = $.grep(
 		_tableRelationships.getRecords(), 
 		function(n, i){
-			return n[FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
+			return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
 		}
 	);
 	
@@ -302,41 +297,20 @@ function selectLastCollege(presidentID)
 		return null;
 	}
 	
-	var lastRelationship = $.grep(relationships, function(n, i){return n[FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+	var lastRelationship = $.grep(relationships, function(n, i){return n[Relationships.FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
 	
 	return $.grep(_map.graphics.graphics, function(n, i){
 		if (!n.attributes) return false;
-		return n.attributes[Colleges.FIELDNAME_COLLEGE_ID] == lastRelationship[FIELDNAME_RELATIONSHIP_COLLEGE];
+		return n.attributes[Colleges.FIELDNAME_COLLEGE_ID] == lastRelationship[Relationships.FIELDNAME_RELATIONSHIP_COLLEGE];
 	})[0];
 
-}
-
-function getPresidentIDsForCollege(collegeID)
-{
-	return $.map(
-				$.grep(_tableRelationships.getRecords(), function(n, i){
-					return n[FIELDNAME_RELATIONSHIP_COLLEGE] == _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID];
-				}), 
-				function(val, i){return val[FIELDNAME_RELATIONSHIP_PRESIDENT]}
-				);	
 }
 
 function getPresidentsForCollege(collegeID)
 {
 	return $.grep(_tablePresidents.getRecords(), function(n, i){
-		return $.inArray(n[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(collegeID)) > -1;
+		return $.inArray(n[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(collegeID)) > -1;
 	});	
-}
-
-function getRelationship(presidentID, collegeID)
-{
-	return  $.grep(
-		_tableRelationships.getRecords(), 
-		function(n, i){
-			return n[FIELDNAME_RELATIONSHIP_COLLEGE] == collegeID && 
-				   n[FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
-		}
-	)[0];
 }
 
 function createCollegesLayer()
