@@ -18,9 +18,11 @@ var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 var COLOR_DIM = "#E7E7E7";
 var COLOR_FULL = "#FFFFFF";
 
+var LEFT_PANE_WIDTH_ONE_COLUMN = 175;
 var LEFT_PANE_WIDTH_TWO_COLUMN = 327;
 var LEFT_PANE_WIDTH_THREE_COLUMN = 485;
 
+var ONE_COLUMN_THRESHOLD = 900;
 var TWO_COLUMN_THRESHOLD = 960;
 
 var _map;
@@ -371,10 +373,13 @@ function handleWindowResize() {
 	
 	$("#paneLeft").height($("body").height());
 			
-	if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768))
+	if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
+		$("#paneLeft").width(LEFT_PANE_WIDTH_ONE_COLUMN);
+	} else if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
 		$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
-	else
+	} else {
 		$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
+	}
 
 	$("#map").css("left", $("#paneLeft").outerWidth());
 	$("#map").height($("body").height());
