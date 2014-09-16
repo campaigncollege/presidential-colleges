@@ -2,6 +2,13 @@ Colleges.prototype = new Spreadsheet();
 
 function Colleges()
 {
+	this.getCollegeByID = function(id)
+	{
+		return $.grep(this.getRecords(), function(n, i){
+					return n[Colleges.FIELDNAME_COLLEGE_ID] == id;
+				})[0];		
+	}
+	
 }
 
 Colleges.FIELDNAME_COLLEGE_ID = "id";
