@@ -3,6 +3,26 @@ Relationships.prototype = new Spreadsheet();
 function Relationships()
 {
 	
+	this.getLastRelationship = function(presidentID)
+	{
+
+		var lastRelationship = null;
+				
+		var relationships = $.grep(
+			this.getRecords(), 
+			function(n, i){
+				return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
+			}
+		);
+				
+		if (relationships.length > 0) {
+			lastRelationship = $.grep(relationships, function(n, i){return n[Relationships.FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+		}
+	
+		return lastRelationship;	
+		
+	}
+	
 	this.getRelationship = function(presidentID, collegeID)
 	{
 		return  $.grep(

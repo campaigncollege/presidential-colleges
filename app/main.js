@@ -285,19 +285,8 @@ function postSelection(index)
 
 function selectLastCollege(presidentID)
 {
-	
-	var relationships = $.grep(
-		_tableRelationships.getRecords(), 
-		function(n, i){
-			return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
-		}
-	);
-	
-	if (relationships.length == 0) {
-		return null;
-	}
-	
-	var lastRelationship = $.grep(relationships, function(n, i){return n[Relationships.FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+	var lastRelationship = _tableRelationships.getLastRelationship(presidentID);
+	if (!lastRelationship) return null;
 	
 	return $.grep(_map.graphics.graphics, function(n, i){
 		if (!n.attributes) return false;
