@@ -297,13 +297,6 @@ function selectLastCollege(presidentID)
 
 }
 
-function getPresidentsForCollege(collegeID)
-{
-	return $.grep(_tablePresidents.getRecords(), function(n, i){
-		return $.inArray(n[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(collegeID)) > -1;
-	});	
-}
-
 function createCollegesLayer()
 {
 	var layerIcons = new esri.layers.GraphicsLayer();
@@ -330,29 +323,6 @@ function createCollegesLayer()
 	return layerIcons;	
 }
 
-function createTileList(parent)
-{
-	var img,tile,footer,num,title;
-	
-	$.each(_tablePresidents.getRecords(), function(index, value) {
-
-		tile = $('<li>');
-		
-		footer = $('<div class="footer"></div>');
-		num = $('<div class="num" style="background-color:black">'+value[Presidents.FIELDNAME_PRESIDENT_ID]+'</div>');
-		title = $('<div class="blurb">'+value[Presidents.FIELDNAME_PRESIDENT_NAME]+'</div>');	
-		$(footer).append(num);		
-		$(footer).append(title);
-		$(tile).append(footer);			
-
-		img = $('<img src="'+value[Presidents.FIELDNAME_PRESIDENT_URL]+'">');
-		$(tile).append(img);
-		
-		$(parent).append(tile);
-		
-	});
-}
-	
 function hoverInfoPos(x,y){
 	if (x <= ($("#map").width())-230){
 		$("#hoverInfo").css("left",x+15);
@@ -395,11 +365,6 @@ function handleWindowResize() {
 	
 }
 
-function retract() 
-{
-	$("#alt-info").animate({"bottom":-$("#alt-info").outerHeight()});
-}
-
 sortRecsByCount = function(recs) 
 {
 	var list = $.extend(true, [], recs);
@@ -424,15 +389,4 @@ function offsetCenter()
 {
 	var pt = esri.geometry.geographicToWebMercator(_selectedCollege.geometry);
 	 _map.centerAt(pt.offset(0, - (_map.extent.getHeight() / 4)));
-}
-
-function showNoCollege(name)
-{
-	$("#no-college").html("<span style='font-weight:bold'>"+name+"</span> did not attend a college or university.");
-	$("#no-college").animate({"bottom": 20});
-}
-
-function retractNoCollege()
-{
-	$("#no-college").animate({"bottom":-$("#no-college").outerHeight()});
 }
