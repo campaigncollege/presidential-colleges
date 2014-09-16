@@ -18,10 +18,6 @@ var FIELDNAME_COLLEGE_Y = "y";
 var FIELDNAME_COLLEGE_IMAGE = "logo"
 var FIELDNAME_COLLEGE_COUNT = "count";
 
-var FIELDNAME_PRESIDENT_ID = "id";
-var FIELDNAME_PRESIDENT_NAME = "president";
-var FIELDNAME_PRESIDENT_URL = "field1";
-
 var FIELDNAME_RELATIONSHIP_COLLEGE = "college";
 var FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
 var FIELDNAME_RELATIONSHIP_NOTE = "note";
@@ -115,7 +111,7 @@ function init() {
 	_tableColleges = new Spreadsheet();
 	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
 	
-	_tablePresidents = new Spreadsheet();
+	_tablePresidents = new Presidents();
 	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
 	
 	_tableRelationships = new Spreadsheet();
@@ -218,15 +214,15 @@ function tile_onClick(e) {
 	
 	var president = _tablePresidents.getRecords()[$.inArray(this, $(".tilelist li"))];
 	
-	_selectedCollege = selectLastCollege(president[FIELDNAME_PRESIDENT_ID]);
+	_selectedCollege = selectLastCollege(president[Presidents.FIELDNAME_PRESIDENT_ID]);
 	
 	if (!_selectedCollege) {
 		retract();
-		showNoCollege(president[FIELDNAME_PRESIDENT_NAME]);
+		showNoCollege(president[Presidents.FIELDNAME_PRESIDENT_NAME]);
 		return;		
 	}
 					
-	postSelection($.inArray(president[FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])));
+	postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(_selectedCollege.attributes[FIELDNAME_COLLEGE_ID])));
 	
 }
 
@@ -249,11 +245,11 @@ function postSelection(index)
 	$.each(presidents, function(index, value){
 		img = $("<img/>");
 		$(img).addClass("presidentialPortrait");
-		$(img).attr("src", value[FIELDNAME_PRESIDENT_URL]);
+		$(img).attr("src", value[Presidents.FIELDNAME_PRESIDENT_URL]);
 		li = $("<li></li>");
 		$(li).append(img);
-		$(li).append("<div style='font-weight:bold'>"+value[FIELDNAME_PRESIDENT_NAME]+"</div>");
-		var relationship = getRelationship(value[FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[FIELDNAME_COLLEGE_ID]);
+		$(li).append("<div style='font-weight:bold'>"+value[Presidents.FIELDNAME_PRESIDENT_NAME]+"</div>");
+		var relationship = getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[FIELDNAME_COLLEGE_ID]);
 		var note = relationship[FIELDNAME_RELATIONSHIP_NOTE];
 		if (note) {
 			if ($.trim(note) != "") {
@@ -335,7 +331,7 @@ function getPresidentIDsForCollege(collegeID)
 function getPresidentsForCollege(collegeID)
 {
 	return $.grep(_tablePresidents.getRecords(), function(n, i){
-		return $.inArray(n[FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(collegeID)) > -1;
+		return $.inArray(n[Presidents.FIELDNAME_PRESIDENT_ID], getPresidentIDsForCollege(collegeID)) > -1;
 	});	
 }
 
@@ -385,13 +381,13 @@ function createTileList(parent)
 		tile = $('<li>');
 		
 		footer = $('<div class="footer"></div>');
-		num = $('<div class="num" style="background-color:black">'+value[FIELDNAME_PRESIDENT_ID]+'</div>');
-		title = $('<div class="blurb">'+value[FIELDNAME_PRESIDENT_NAME]+'</div>');	
+		num = $('<div class="num" style="background-color:black">'+value[Presidents.FIELDNAME_PRESIDENT_ID]+'</div>');
+		title = $('<div class="blurb">'+value[Presidents.FIELDNAME_PRESIDENT_NAME]+'</div>');	
 		$(footer).append(num);		
 		$(footer).append(title);
 		$(tile).append(footer);			
 
-		img = $('<img src="'+value[FIELDNAME_PRESIDENT_URL]+'">');
+		img = $('<img src="'+value[Presidents.FIELDNAME_PRESIDENT_URL]+'">');
 		$(tile).append(img);
 		
 		$(parent).append(tile);
