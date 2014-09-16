@@ -237,7 +237,7 @@ function postSelection(index)
 		li = $("<li></li>");
 		$(li).append(img);
 		$(li).append("<div style='font-weight:bold'>"+value[Presidents.FIELDNAME_PRESIDENT_NAME]+"</div>");
-		var relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID]);
+		relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID]);
 		var note = relationship[Relationships.FIELDNAME_RELATIONSHIP_NOTE];
 		if (note) {
 			if ($.trim(note) != "") {
