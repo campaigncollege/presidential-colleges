@@ -18,6 +18,9 @@ var _tableRelationships;
 
 var _map;
 
+var _layerColleges;
+
+var _count = 0;
 
 jQuery(document).ready(function(){init()});
 
@@ -31,10 +34,7 @@ function init() {
 	
 	_tableRelationships = new Relationships();
 	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
-	
-	L.mapbox.accessToken = 'pk.eyJ1IjoibGVlYm9jayIsImEiOiJMYm1CMm1RIn0.sTAErzTkoOiUQDB2byl2EA';
-	_map = L.mapbox.map('map', 'leebock.jgom55oi').setView([37.9, -77], 5);
-				
+					
 }
 
 function finishInit() {
@@ -54,12 +54,18 @@ function finishInit() {
 	} else {
 		if (!_tableRelationships.getRecords()) return;
 	}
-		
+
+	handleWindowResize();	
+	
+	L.mapbox.accessToken = 'pk.eyJ1IjoibGVlYm9jayIsImEiOiJMYm1CMm1RIn0.sTAErzTkoOiUQDB2byl2EA';
+	_map = L.mapbox.map('map', 'leebock.jgom55oi').setView([37.9, -77], 4);		
 
 	var marker;
 	var count;
 	var mSize;
 	var recs = _tableColleges.getOrderedByCount();
+
+	_layerColleges = new L.LayerGroup();
 	
 	$.each(recs, function(index, value){
 		count = _tableRelationships.getPresidentIDsForCollege(value[Colleges.FIELDNAME_COLLEGE_ID]).length;
@@ -67,26 +73,27 @@ function finishInit() {
 		if (count == 5) mSize = 'large';
 		if (count == 2 || count == 3) mSize = 'medium';
 		marker = L.marker([value[Colleges.FIELDNAME_COLLEGE_Y], value[Colleges.FIELDNAME_COLLEGE_X]], {
-			zIndexOffset: index,
+			zIndexOffset: 1000+index,
 			title: value[Colleges.FIELDNAME_COLLEGE_NAME],
+			id: value[Colleges.FIELDNAME_COLLEGE_ID],
 			icon: L.mapbox.marker.icon({
 				'marker-size': mSize,
 				'marker-color': '#00ff00'
 				}), riseOnHover:true, riseOffset:30
 		});
 		marker.bindPopup("<b>"+value[Colleges.FIELDNAME_COLLEGE_NAME]+"</b>");
-		marker.addTo(_map);
 		marker.on('click', 
-				function(e){					
-					var width = e.target.options.icon.options.iconSize[0];
-					var mSize = 'small';
-					if (width == 30) mSize = 'medium';
-					if (width == 35) mSize = 'large';
-					e.target.setIcon(L.mapbox.marker.icon({'marker-size': mSize,'marker-color': '#ff0000'}))
+				function(e){
+					_selectedCollege = _tableColleges.getCollegeByID(e.target.options.id);
+					postSelection();
+					
 				}
 		);	
+		marker.addTo(_layerColleges);
 	});
 
+	_layerColleges.addTo(_map);
+	
 	createTileList($("#myList"));
 
 	$("ul.tilelist li").mouseover(tile_onMouseOver);
@@ -94,7 +101,6 @@ function finishInit() {
 	$("ul.tilelist li").click(tile_onClick);	
 
 	$(this).resize(handleWindowResize);	
-	handleWindowResize();	
 	$("#whiteOut").fadeOut()
 	
 }
@@ -159,8 +165,18 @@ function postSelection(index)
 	
 	$("#college-title").html(_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE]);
-	
 
+	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]})[0];	
+	setMarkerColorAll("#b9b9b9");
+	setMarkerColor(marker, '#00ff00');
+	marker.openPopup();
+	
+	
+	if (_count == 0) _map.setView(marker.getLatLng(),6);
+	else _map.panTo(marker.getLatLng());
+	
+	_count++;
+	
 }
 
 function selectLastCollege(presidentID)
@@ -174,6 +190,30 @@ function selectLastCollege(presidentID)
 	
 	return lastCollege;
 }
+
+/********************** NEW **********************/
+
+function setMarkerColorAll(hex)
+{					
+	$.each(_layerColleges.getLayers(), function(index, value){
+		var w = value.options.icon.options.iconSize[0];
+		var sz = 'small';
+		if (w == 30) sz = 'medium';
+		if (w == 35) sz = 'large';
+		value.setIcon(L.mapbox.marker.icon({'marker-size': sz,'marker-color': hex}));
+	});
+}
+
+function setMarkerColor(marker, hex)
+{										
+	var width = marker.options.icon.options.iconSize[0];
+	var mSize = 'small';
+	if (width == 30) mSize = 'medium';
+	if (width == 35) mSize = 'large';
+	marker.setIcon(L.mapbox.marker.icon({'marker-size': mSize,'marker-color': hex}));
+}
+
+
 
 
 
