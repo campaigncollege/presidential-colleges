@@ -113,7 +113,7 @@ function postSelection(index)
 	
 	retractNoCollege();
 	
-	constructSlidey(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID], index, function(){console.log("done constructing slidey!")});
+	constructSlidey(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID], index, function(){});
 	
 	$("#college-title").html(_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE]);
