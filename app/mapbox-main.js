@@ -12,6 +12,13 @@ var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
 var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
 
+var _tableColleges;
+var _tablePresidents;
+var _tableRelationships;
+
+var _map;
+
+
 jQuery(document).ready(function(){init()});
 
 function init() {
@@ -24,7 +31,10 @@ function init() {
 	
 	_tableRelationships = new Relationships();
 	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
-		
+	
+	L.mapbox.accessToken = 'pk.eyJ1IjoibGVlYm9jayIsImEiOiJMYm1CMm1RIn0.sTAErzTkoOiUQDB2byl2EA';
+	_map = L.mapbox.map('map', 'leebock.jgom55oi').setView([37.9, -77], 5);
+				
 }
 
 function finishInit() {
@@ -45,6 +55,38 @@ function finishInit() {
 		if (!_tableRelationships.getRecords()) return;
 	}
 		
+
+	var marker;
+	var count;
+	var mSize;
+	var recs = _tableColleges.getOrderedByCount();
+	
+	$.each(recs, function(index, value){
+		count = _tableRelationships.getPresidentIDsForCollege(value[Colleges.FIELDNAME_COLLEGE_ID]).length;
+		mSize = 'small';
+		if (count == 5) mSize = 'large';
+		if (count == 2 || count == 3) mSize = 'medium';
+		marker = L.marker([value[Colleges.FIELDNAME_COLLEGE_Y], value[Colleges.FIELDNAME_COLLEGE_X]], {
+			zIndexOffset: index,
+			title: value[Colleges.FIELDNAME_COLLEGE_NAME],
+			icon: L.mapbox.marker.icon({
+				'marker-size': mSize,
+				'marker-color': '#00ff00'
+				}), riseOnHover:true, riseOffset:30
+		});
+		marker.bindPopup("<b>"+value[Colleges.FIELDNAME_COLLEGE_NAME]+"</b>");
+		marker.addTo(_map);
+		marker.on('click', 
+				function(e){					
+					var width = e.target.options.icon.options.iconSize[0];
+					var mSize = 'small';
+					if (width == 30) mSize = 'medium';
+					if (width == 35) mSize = 'large';
+					e.target.setIcon(L.mapbox.marker.icon({'marker-size': mSize,'marker-color': '#ff0000'}))
+				}
+		);	
+	});
+
 	createTileList($("#myList"));
 
 	$("ul.tilelist li").mouseover(tile_onMouseOver);
