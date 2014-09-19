@@ -9,6 +9,13 @@ function Colleges()
 				})[0];		
 	}
 	
+	this.getOrderedByCount = function()
+	{		
+		var recs = $.extend(true, [], this.getRecords());
+		recs.sort(function(a,b){return b[Colleges.FIELDNAME_COLLEGE_COUNT] - a[Colleges.FIELDNAME_COLLEGE_COUNT]});
+		return recs;	
+	}
+	
 }
 
 Colleges.FIELDNAME_COLLEGE_ID = "id";
