@@ -11,11 +11,11 @@ function CSVService() {
 
 	this.process = function(text) {
 		_arr = CSVToArray(text);		
-	}
+	};
 
 	this.getLines = function() {
 		return _arr;
-	}
+	};
 	
 	// *****************
 	// private functions

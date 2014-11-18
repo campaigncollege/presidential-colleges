@@ -16,12 +16,12 @@ function Relationships()
 		);
 				
 		if (relationships.length > 0) {
-			lastRelationship = $.grep(relationships, function(n, i){return n[Relationships.FIELDNAME_RELATIONSHIP_CODE] == 1})[0];
+			lastRelationship = $.grep(relationships, function(n, i){return n[Relationships.FIELDNAME_RELATIONSHIP_CODE] == 1;})[0];
 		}
 	
 		return lastRelationship;	
 		
-	}
+	};
 	
 	this.getRelationship = function(presidentID, collegeID)
 	{
@@ -32,7 +32,7 @@ function Relationships()
 					   n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
 			}
 		)[0];
-	}
+	};
 	
 
 	this.getPresidentIDsForCollege = function(collegeID)
@@ -41,9 +41,9 @@ function Relationships()
 					$.grep(this.getRecords(), function(n, i){
 						return n[Relationships.FIELDNAME_RELATIONSHIP_COLLEGE] == collegeID;
 					}), 
-					function(val, i){return val[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT]}
+					function(val, i){return val[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT];}
 					);	
-	}	
+	};	
 	
 }
 

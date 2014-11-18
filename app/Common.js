@@ -47,7 +47,7 @@ function retractNoCollege()
 function constructSlidey(collegeID, index, callBack)
 {
 
-	var presidents = getPresidentsForCollege(collegeID)
+	var presidents = getPresidentsForCollege(collegeID);
 
 	var div = $("<div class='banner'></div>");
 	var ul = $("<ul></ul>");
@@ -65,7 +65,7 @@ function constructSlidey(collegeID, index, callBack)
 		relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], collegeID);
 		var note = relationship[Relationships.FIELDNAME_RELATIONSHIP_NOTE];
 		if (note) {
-			if ($.trim(note) != "") {
+			if ($.trim(note) !== "") {
 				$(li).append("<div class='note'>"+note+"</div>");
 			}
 		}

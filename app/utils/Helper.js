@@ -9,4 +9,4 @@ Helper.isMobile = function()
 	var ios = navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
 	var windows = navigator.userAgent.match(/IEMobile/i) ? true : false;
 	return (android || blackberry || ios || windows);
-}
+};

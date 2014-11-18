@@ -28,26 +28,26 @@ function Spreadsheet() {
 			  }, 100);
 		  }
 		});	
-	}	
+	};	
 
 	this.getFetchTime = function()
 	{
 		return _fetchTime;
-	}
+	};
 	
 	this.getParseTime = function()
 	{
 		return _parseTime;
-	}
+	};
 	
 	this.getLoadTime = function()
 	{
 		return _loadTime;
-	}
+	};
 	
 	this.getRecords = function()
 	{
 		return _recs;
-	}
+	};
 	
 }

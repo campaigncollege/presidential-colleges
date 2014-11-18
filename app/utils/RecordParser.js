@@ -4,7 +4,7 @@ function RecordParser()
 	this.getRecs = function(lines)
 	{
 		return parseRecs(lines);
-	}
+	};
 		
 	function parseRecs(lines) 
 	{
@@ -13,7 +13,8 @@ function RecordParser()
 		
 		var values;
 		var rec;
-		var recs = [];		
+		var recs = [];
+
 		for (var i = 1; i < lines.length; i++) {
 			
 			values = lines[i];
@@ -21,20 +22,28 @@ function RecordParser()
 				break;
 			}
 
-			rec = new Object();
-			$.each(fields, function(index, value) {
-				rec[value.toLowerCase()] = values[getFieldIndex(value, fields)];
-			})
-			recs.push(rec);
+			recs.push(createRec(fields, values));
 	
 		}	
 		
 		return recs;
+	}
+
+	function createRec(fields, values) 
+	{
+		rec = {};
+		$.each(
+			fields, 
+			function(index, value) {
+				rec[value.toLowerCase()] = values[getFieldIndex(value, fields)];
+			}
+		);
+		return rec;
 	}	
 	
 	function checkValue(value) 
 	{
-		return $.trim(value) == "" ? null : value;		
+		return $.trim(value) === "" ? null : value;		
 	}
 	
 	function getFieldIndex(name,fields) 

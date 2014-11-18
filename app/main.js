@@ -9,7 +9,7 @@ var BASEMAP_SERVICE_URL = "http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis
 
 var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
-var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
+var CSV_RELATIONSHIPS_URL = "data/relationships.csv";
 
 /******************************************************
 ***************** end config section ******************
@@ -44,8 +44,8 @@ var _tableRelationships;
 var _selectedPresident;
 var _selectedCollege;
 
-dojo.addOnLoad(function() {_dojoReady = true;init()});
-jQuery(document).ready(function() {_jqueryReady = true;init()});
+dojo.addOnLoad(function() {_dojoReady = true; init();});
+jQuery(document).ready(function() {_jqueryReady = true; init();});
 
 function init() {
 	
@@ -99,13 +99,13 @@ function init() {
 	}
 
 	_tableColleges = new Colleges();
-	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
+	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit();});
 	
 	_tablePresidents = new Presidents();
-	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
+	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit();});
 	
 	_tableRelationships = new Relationships();
-	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
+	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit();});
 			
 }
 
@@ -142,7 +142,7 @@ function finishInit() {
 	// causes a deselect.
 
 	dojo.connect(_map, 'onClick', function(event){
-		if (event.graphic == null) {
+		if (event.graphic === null) {
 			_selectedCollege = null;
 			retract();
 			clearMultiTips();
@@ -159,7 +159,7 @@ function finishInit() {
 	
 	setTimeout(function(){
 		_map.setExtent(_homeExtent, true);
-		setTimeout(function(){$("#whiteOut").fadeOut()},500);
+		setTimeout(function(){$("#whiteOut").fadeOut();},500);
 	}, 500);
 	
 }
@@ -226,7 +226,7 @@ function postSelection(index)
 	$("#college-title").html(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_IMAGE]);
 	
-	constructSlidey(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID], index, function(){offsetCenter()});
+	constructSlidey(_selectedCollege.attributes[Colleges.FIELDNAME_COLLEGE_ID], index, function(){offsetCenter();});
 	
 	$("#map").multiTips({
 		pointArray : [_selectedCollege],
@@ -320,10 +320,10 @@ function handleWindowResize() {
 	
 }
 
-sortRecsByCount = function(recs) 
+function sortRecsByCount(recs) 
 {
 	var list = $.extend(true, [], recs);
-	list.sort(function(a,b){return b.count - a.count});
+	list.sort(function(a,b){return b.count - a.count;});
 	return list;
 }
 

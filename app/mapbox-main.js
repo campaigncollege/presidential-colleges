@@ -10,7 +10,7 @@ var TWO_COLUMN_THRESHOLD = 960;
 
 var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
-var CSV_RELATIONSHIPS_URL = "data/relationships.csv"
+var CSV_RELATIONSHIPS_URL = "data/relationships.csv";
 
 var _tableColleges;
 var _tablePresidents;
@@ -22,18 +22,18 @@ var _layerColleges;
 
 var _count = 0;
 
-jQuery(document).ready(function(){init()});
+jQuery(document).ready(function(){init();});
 
 function init() {
 	
 	_tableColleges = new Colleges();
-	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit()});
+	_tableColleges.doLoad(CSV_COLLEGES_URL, null, function(){finishInit();});
 	
 	_tablePresidents = new Presidents();
-	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit()});
+	_tablePresidents.doLoad(CSV_PRESIDENTS_URL, null, function(){finishInit();});
 	
 	_tableRelationships = new Relationships();
-	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit()});
+	_tableRelationships.doLoad(CSV_RELATIONSHIPS_URL, null, function(){finishInit();});
 					
 }
 
@@ -101,7 +101,7 @@ function finishInit() {
 	$("ul.tilelist li").click(tile_onClick);	
 
 	$(this).resize(handleWindowResize);	
-	$("#whiteOut").fadeOut()
+	$("#whiteOut").fadeOut();
 	
 }
 
@@ -166,13 +166,13 @@ function postSelection(index)
 	$("#college-title").html(_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME]);
 	$("#college-seal").attr("src", _selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE]);
 
-	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]})[0];	
+	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID];})[0];	
 	setMarkerColorAll("#b9b9b9");
 	setMarkerColor(marker, '#00ff00');
 	marker.openPopup();
 	
 	
-	if (_count == 0) _map.setView(marker.getLatLng(),6);
+	if (_count === 0) _map.setView(marker.getLatLng(),6);
 	else _map.panTo(marker.getLatLng());
 	
 	_count++;

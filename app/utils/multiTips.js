@@ -23,7 +23,7 @@
 		update : function(){
 			makePoints($(this));
 		}
-	}
+	};
 	
 	var initMultiTips = function(mapDiv,options){
 		
@@ -41,7 +41,7 @@
 		
 		makePoints(mapDiv);
 		
-	}
+	};
 	
 	var makePoints = function(mapDiv){
 		
@@ -52,7 +52,7 @@
 		var arrowPos = [];
 		var _firstPan = false;	
 
-		if (settings.zoomToPoints == true){
+		if (settings.zoomToPoints === true){
 			settings.mapVariable.setExtent(getGraphicsExtent(settings.pointArray));
 		}
 
@@ -77,7 +77,7 @@
 		});
 		
 		dojo.connect(settings.mapVariable,"onPan",function(extent,delta){
-			if (_firstPan == false){
+			if (_firstPan === false){
 				$(".mtArrow").each(function(i) {
 					$(this).css("top",arrowPos[i].top+delta.y).css("left",arrowPos[i].left+delta.x);
 				});
@@ -92,7 +92,7 @@
 		});
 		
 		dojo.connect(settings.mapVariable,"onExtentChange",function(){
-			if(_firstPan == true){
+			if(_firstPan === true){
 				$(".mtArrow").show();
 				$(".multiTip").show();
 				_firstPan = false;
@@ -119,7 +119,7 @@
 			var scrPt = settings.mapVariable.toScreen(pt.geometry);
 			displayMultiTips(scrPt,i,settings);
 		});
-	}
+	};
 	
 	var displayMultiTips = function (scrPt,i,settings){
 		if (settings.labelDirection != "auto"){
@@ -157,7 +157,7 @@
 			$(this).css("top",parseInt($(this).css("top"))-10);
 		});
 		if (settings.pointerColor == "#FF0000") $(".mtArrow").css("display", "none");
-	}
+	};
 	
 	var chkVrtDst = function(settings,curPt){
 		var curTop = settings.mapVariable.toScreen(curPt.geometry).y;
@@ -172,7 +172,7 @@
 			}
 		});
 		return verDst;
-	}
+	};
 	
 	var labelDown = function (scrPt,i,settings){
 		$('#multiTip'+i).css("top",scrPt.y + 10);
@@ -183,7 +183,7 @@
 		$("#arrow"+i).css("border-right","10px solid transparent");
 		$("#arrow"+i).css("border-bottom","10px solid");
 		$("#arrow"+i).css("border-bottom-color",settings.pointerColor);
-	}
+	};
 	
 	var labelUp = function (scrPt,i,settings){
 		$('#multiTip'+i).css("top",scrPt.y - $('#multiTip'+i).height()-20);
@@ -194,7 +194,7 @@
 		$("#arrow"+i).css("border-right","10px solid transparent");
 		$("#arrow"+i).css("border-top","10px solid");
 		$("#arrow"+i).css("border-top-color",settings.pointerColor);
-	}
+	};
 	
 	var labelRight = function (scrPt,i,settings){
 		$('#multiTip'+i).css("top",scrPt.y - 10 - (($('#multiTip'+i).height()-10)/2));
@@ -205,7 +205,7 @@
 		$("#arrow"+i).css("border-bottom","10px solid transparent");
 		$("#arrow"+i).css("border-right","10px solid");
 		$("#arrow"+i).css("border-right-color",settings.pointerColor);
-	}
+	};
 	
 	var labelLeft = function (scrPt,i,settings){
 		$('#multiTip'+i).css("top",scrPt.y - 10 - (($('#multiTip'+i).height()-10)/2));
@@ -216,7 +216,7 @@
 		$("#arrow"+i).css("border-bottom","10px solid transparent");
 		$("#arrow"+i).css("border-left","10px solid");
 		$("#arrow"+i).css("border-left-color",settings.pointerColor);
-	}
+	};
 	
 	var getGraphicsExtent = function( graphics ) {
 		_firstPan = true;
@@ -237,6 +237,6 @@
 	
 		var extent = new esri.geometry.Extent({"xmin":minx,"ymin":miny,"xmax":maxx,"ymax":maxy,"spatialReference":{"wkid":102100}});
 		return extent.expand(1.8);
-	}
+	};
 
 })( jQuery );
