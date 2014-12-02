@@ -238,7 +238,7 @@ a:hover{
 }
 
 #college-seal {
-	max-width:150px;
+	max-width:150px !important;
 }
 
 #prez-info {
