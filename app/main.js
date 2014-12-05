@@ -150,7 +150,7 @@ function handleWindowResize() {
 	$(".tilelist").height($("#paneLeft").height() - 18);
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
-	$("#alt-info").css("left", ($("#map").outerWidth() - $("#alt-info").outerWidth())/2);	
+	$("#info").css("left", ($("#map").outerWidth() - $("#info").outerWidth())/2);	
 	$("#no-college").css("left", ($("#map").outerWidth() - $("#no-college").outerWidth())/2);	
 		
 }

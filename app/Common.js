@@ -30,7 +30,7 @@ function getPresidentsForCollege(collegeID)
 
 function retract() 
 {
-	$("#alt-info").animate({"bottom":-$("#alt-info").outerHeight()});
+	$("#info").animate({"bottom":-$("#info").outerHeight()});
 }
 
 function showNoCollege(name)
@@ -76,8 +76,8 @@ function constructSlidey(collegeID, index, callBack)
 	$(bogus).append(div);
 	
 	$("#prez-info").html($(bogus).html());
-	if ($("#alt-info").css("bottom") != "0px") {
-		$("#alt-info").animate({"bottom":0}, function(){
+	if ($("#info").css("bottom") != "0px") {
+		$("#info").animate({"bottom":0}, function(){
 			callBack();
 		});
 	} else {

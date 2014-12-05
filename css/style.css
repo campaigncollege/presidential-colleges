@@ -215,7 +215,7 @@ a:hover{
 	padding:10px;
 }
 
-#alt-info {
+#info {
 	position:absolute;
 	z-index:200;
 	background-color:white;
