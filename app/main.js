@@ -150,13 +150,17 @@ function handleWindowResize() {
 	}
 
 	$("#paneLeft").height($("body").height());
-			
-	if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
-		$("#paneLeft").width(LEFT_PANE_WIDTH_ONE_COLUMN);
-	} else if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
-		$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
+
+	if (_isMobile) {
+		$('#paneLeft').width($('body').width());
 	} else {
-		$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
+		if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
+			$("#paneLeft").width(LEFT_PANE_WIDTH_ONE_COLUMN);
+		} else if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
+			$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
+		} else {
+			$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
+		}
 	}
 
 	$("#map").css("left", $("#paneLeft").outerWidth());

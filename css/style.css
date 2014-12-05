@@ -258,6 +258,7 @@ a:hover{
 	overflow:hidden;
 	background-color:#b9b9b9;
 	padding:8px;
+	position: absolute;
 }
 
 ul.tilelist {
