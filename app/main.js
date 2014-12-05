@@ -8,6 +8,8 @@ var LEFT_PANE_WIDTH_THREE_COLUMN = 485;
 var ONE_COLUMN_THRESHOLD = 900;
 var TWO_COLUMN_THRESHOLD = 960;
 
+var THRESHOLD_WIDTH_MOBILE = 500;
+
 var CSV_COLLEGES_URL = "data/colleges.csv";
 var CSV_PRESIDENTS_URL = "data/presidents.csv";
 var CSV_RELATIONSHIPS_URL = "data/relationships.csv";
@@ -21,6 +23,8 @@ var _map;
 var _layerColleges;
 
 var _count = 0;
+
+var _isMobile;
 
 jQuery(document).ready(function(){init();});
 
@@ -131,8 +135,20 @@ function tile_onClick(e) {
 
 }
 
+function changeMode()
+{
+	console.log("adjusting for mobile = ", _isMobile);
+}
+
+
 function handleWindowResize() {
-	
+
+	var modeMobile = $("body").width() < THRESHOLD_WIDTH_MOBILE;
+	if (modeMobile != _isMobile) {
+		_isMobile = modeMobile;
+		changeMode();
+	}
+
 	$("#paneLeft").height($("body").height());
 			
 	if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
