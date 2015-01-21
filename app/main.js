@@ -153,6 +153,7 @@ function tile_onClick(e) {
 	if (!_selectedCollege) {
 		retract();
 		showNoCollege(president[Presidents.FIELDNAME_PRESIDENT_NAME]);
+		_map.closePopup();
 		return;		
 	} else {
 		postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID])));
