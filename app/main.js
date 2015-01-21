@@ -61,7 +61,7 @@ function finishInit() {
 
 	handleWindowResize();	
 
-	_map = L.map('map').setView([37.9, -77], 4);
+	_map = L.map('map').setView([37.9, -95], 4);
 	L.esri.basemapLayer('Gray', {}).addTo(_map);
 	_map.on('click', function(e){_selectedCollege = null; retract()})
 
