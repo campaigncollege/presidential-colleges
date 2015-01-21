@@ -66,16 +66,33 @@ function finishInit() {
 
 	var marker;
 	var count;
-	var mSize;
 	var recs = _tableColleges.getOrderedByCount();
 
 	_layerColleges = new L.LayerGroup();
+
+	// quick and dirty: create a big icon
+	L.Icon.Big = L.Icon.Default.extend({
+	    options: {
+	    	iconSize: [35, 57],
+	    	iconAnchor: [17, 57],
+	    	popupAnchor: [0, -45],
+	    	shadowSize:[70, 89],
+	    	shadowAnchor:[20, 89]	    	
+		}
+	});	
+
+	L.Icon.Medium = L.Icon.Default.extend({
+	    options: {
+	    	iconSize: [30, 49],
+	    	iconAnchor: [15, 49],
+	    	popupAnchor: [-1, -40],
+	    	shadowSize: [60, 75],
+	    	shadowAnchor:[20, 75]
+		}
+	});	
 	
 	$.each(recs, function(index, value){
 		count = _tableRelationships.getPresidentIDsForCollege(value[Colleges.FIELDNAME_COLLEGE_ID]).length;
-		mSize = 'small';
-		if (count == 5) mSize = 'large';
-		if (count == 2 || count == 3) mSize = 'medium';
 		marker = L.marker(
 			[value[Colleges.FIELDNAME_COLLEGE_Y], value[Colleges.FIELDNAME_COLLEGE_X]], 
 			{
@@ -83,9 +100,16 @@ function finishInit() {
 				title: value[Colleges.FIELDNAME_COLLEGE_NAME],
 				id: value[Colleges.FIELDNAME_COLLEGE_ID],
 				riseOnHover:true, 
-				riseOffset:30
+				riseOffset:30,
 			}
 		);
+		if (count == 5) {
+			marker.setIcon(new L.Icon.Big());
+		} else if (count == 2 || count == 3) {
+			marker.setIcon(new L.Icon.Medium());	
+		} else {
+			// nothing
+		}
 		marker.bindPopup("<b>"+value[Colleges.FIELDNAME_COLLEGE_NAME]+"</b>");
 		marker.on('click', 
 				function(e){
