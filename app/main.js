@@ -62,7 +62,8 @@ function finishInit() {
 	handleWindowResize();	
 
 	_map = L.map('map').setView([37.9, -77], 4);
-	L.esri.basemapLayer('Gray', {}).addTo(_map);		
+	L.esri.basemapLayer('Gray', {}).addTo(_map);
+	_map.on('click', function(e){_selectedCollege = null; retract()})
 
 	var marker;
 	var count;
@@ -110,7 +111,7 @@ function finishInit() {
 		} else {
 			// nothing
 		}
-		marker.bindPopup("<b>"+value[Colleges.FIELDNAME_COLLEGE_NAME]+"</b>");
+		marker.bindPopup("<b>"+value[Colleges.FIELDNAME_COLLEGE_NAME]+"</b>", {closeButton: false});
 		marker.on('click', 
 				function(e){
 					_selectedCollege = _tableColleges.getCollegeByID(e.target.options.id);
