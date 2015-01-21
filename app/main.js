@@ -19,6 +19,7 @@ var _tablePresidents;
 var _tableRelationships;
 
 var _map;
+var _contentPlaque;
 
 var _layerColleges;
 
@@ -58,6 +59,8 @@ function finishInit() {
 	} else {
 		if (!_tableRelationships.getRecords()) return;
 	}
+
+	_contentPlaque = new ContentPlaque("#info");
 
 	handleWindowResize();	
 
@@ -208,10 +211,15 @@ function postSelection(index)
 	
 	retractNoCollege();
 	
-	constructSlidey(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID], index, function(){});
-	
-	$("#college-title").html(_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME]);
-	$("#college-seal").attr("src", _selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE]);
+
+	_contentPlaque.update(
+		_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID],
+		_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME],
+		_selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE],
+		getPresidentsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]),
+		index
+		);
+	_contentPlaque.show();
 
 	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID];})[0];	
 	marker.openPopup();
