@@ -189,15 +189,15 @@ function handleWindowResize() {
 		}
 	}
 
-	$("#map").css("left", $("#paneLeft").outerWidth());
-	$("#map").height($("body").height());
-	$("#map").width($("body").width() - $("#paneLeft").outerWidth());			
+	$("#paneRight").css("left", $("#paneLeft").outerWidth());
+	$("#paneRight").height($("body").height());
+	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
 	$(".tilelist").height($("#paneLeft").height() - 18);
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
-	$("#info").css("left", ($("#map").outerWidth() - $("#info").outerWidth())/2);	
-	$("#no-college").css("left", ($("#map").outerWidth() - $("#no-college").outerWidth())/2);	
+	$("#info").css("left", ($("#paneRight").outerWidth() - $("#info").outerWidth())/2);	
+	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	
 		
 }
 

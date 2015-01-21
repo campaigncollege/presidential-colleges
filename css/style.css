@@ -115,13 +115,16 @@ a:hover{
 }
 
 #map {
-	position:absolute; /* keep it absolute so it doesn't get knocked down to the next line in float:left situations */
 	border:none;
 	padding:0;
-	top:0px;
 	height:100%;
 	width:100%;
-	overflow:hidden;
+}
+
+#paneRight {
+	font-family: Arial;
+	position:absolute; /* keep it absolute so it doesn't get knocked down to the next line in float:left situations */
+	top:0px;	
 }
 
 #hoverInfo{
