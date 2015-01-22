@@ -68,14 +68,19 @@ function ContentPlaque(div) {
 				dots: true,               //  Display dot navigation
 			});
 			var data = slidey.data("unslider");
-			if (index > 0) data.move(index);
-			$("#notes").html(_notes[index]);
+			if (index > 0) {
+				data.move(index);
+			} else {
+				$("#notes").html(_notes[index]);	
+				$(this).trigger("activatePresident", [_presidents[index]]);
+			}
 		} else {
 			$(".banner li").css("float", "none");
 			$("#notes").html(_notes[0]);
+			$(this).trigger("activatePresident", [_presidents[index]]);
 		}
 
-		$(this).trigger("activatePresident", [_presidents[index]]);
+		
 
 	}
 
