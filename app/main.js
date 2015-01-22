@@ -22,6 +22,7 @@ var _map;
 var _contentPlaque;
 
 var _layerColleges;
+var _layerTransferRoute;
 
 var _count = 0;
 
@@ -61,18 +62,19 @@ function finishInit() {
 	}
 
 	_contentPlaque = new ContentPlaque("#info");
+	$(_contentPlaque).on("activatePresident", onActivatePresident);
 
 	handleWindowResize();	
 
 	_map = L.map('map').setView([37.9, -95], 4);
 	L.esri.basemapLayer('Gray', {}).addTo(_map);
-	_map.on('click', function(e){_selectedCollege = null; retract()})
+	_layerTransferRoute = new L.LayerGroup().addTo(_map);
+	_layerColleges = new L.LayerGroup().addTo(_map);
+	_map.on('click', function(e){_selectedCollege = null; retract();_layerTransferRoute.clearLayers()})
 
 	var marker;
 	var count;
 	var recs = _tableColleges.getOrderedByCount();
-
-	_layerColleges = new L.LayerGroup();
 
 	// quick and dirty: create a big icon
 	L.Icon.Big = L.Icon.Default.extend({
@@ -124,8 +126,6 @@ function finishInit() {
 		);	
 		marker.addTo(_layerColleges);
 	});
-
-	_layerColleges.addTo(_map);
 	
 	createTileList($("#myList"));
 
@@ -162,6 +162,16 @@ function tile_onClick(e) {
 		postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID])));
 	}
 
+}
+
+function onActivatePresident(event, president)
+{
+	var colleges = getCollegesForPresident(president[Presidents.FIELDNAME_PRESIDENT_ID]);
+	var latLngs = [];
+	$.each(colleges, function(index, value){
+		latLngs.push(L.latLng(value[Colleges.FIELDNAME_COLLEGE_Y], value[Colleges.FIELDNAME_COLLEGE_X]));
+	});
+	_layerTransferRoute.addLayer(L.polyline(latLngs));
 }
 
 function changeMode()
@@ -209,9 +219,9 @@ function handleWindowResize() {
 function postSelection(index)
 {
 	
+	_layerTransferRoute.clearLayers();
 	retractNoCollege();
 	
-
 	_contentPlaque.update(
 		_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID],
 		_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME],
