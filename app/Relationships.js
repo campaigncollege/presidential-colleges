@@ -44,6 +44,16 @@ function Relationships()
 					function(val, i){return val[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT];}
 					);	
 	};	
+
+	this.getCollegeIDsForPresident = function(presidentID)
+	{
+		return $.map(
+						$.grep(this.getRecords(), function(n, i){
+							return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID;
+						}), 
+						function(val, i){return val[Relationships.FIELDNAME_RELATIONSHIP_COLLEGE];}
+					);
+	}
 	
 }
 
