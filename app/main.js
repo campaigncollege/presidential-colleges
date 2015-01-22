@@ -166,6 +166,7 @@ function tile_onClick(e) {
 
 function onActivatePresident(event, president)
 {
+	_layerTransferRoute.clearLayers();
 	var colleges = getCollegesForPresident(president[Presidents.FIELDNAME_PRESIDENT_ID]);
 	var latLngs = [];
 	$.each(colleges, function(index, value){
