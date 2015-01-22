@@ -1,11 +1,14 @@
 function ContentPlaque(div) {
 
+	var _this = this;
+
 	var _div = div;
 
 	var _title = $("<div id='college-title'></div>");
 	var _seal = $("<img id='college-seal'/>");
 	var _prezInfo = $("<div id='prez-info'></div>");
 
+	var _presidents;
 	var _notes;
 
 	var divCollegeInfo = $("<div id='college-info'></div>");
@@ -20,6 +23,8 @@ function ContentPlaque(div) {
 
 		$(_title).html(collegeName);
 		$(_seal).attr("src", collegeSeal);
+
+		_presidents = presidents;
 
 		var div = $("<div class='banner'></div>");
 		var ul = $("<ul></ul>");
@@ -48,28 +53,29 @@ function ContentPlaque(div) {
 		$(bogus).append("<div id='notes'></div>")
 		$(_prezInfo).html($(bogus).html());
 
+		if (!index) index = 0;
+
 		if (presidents.length > 1) {
 			var slidey = $('.banner').unslider({
 				speed: 500,               //  The speed to animate each slide (in milliseconds)
 				delay: false,              //  The delay between slide animations (in milliseconds)
 				complete: function() {  //  A function that gets called after every slide animation
 					var index = $('.banner').find('.dot.active').index();
-					$("#notes").html(_notes[index])
+					$("#notes").html(_notes[index]);
+					$(_this).trigger("activatePresident", [_presidents[index]]);
 				},
 				keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 				dots: true,               //  Display dot navigation
 			});
 			var data = slidey.data("unslider");
-			if (index) {
-				data.move(index);
-				$("#notes").html(_notes[index]);
-			} else {
-				$("#notes").html(_notes[0]);
-			}
+			if (index > 0) data.move(index);
+			$("#notes").html(_notes[index]);
 		} else {
 			$(".banner li").css("float", "none");
 			$("#notes").html(_notes[0]);
 		}
+
+		$(this).trigger("activatePresident", [_presidents[index]]);
 
 	}
 
