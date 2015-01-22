@@ -255,8 +255,14 @@ function postSelection(index)
 	marker.openPopup();
 	
 	
-	if (_count === 0) _map.setView(marker.getLatLng(),6);
-	else _map.panTo(marker.getLatLng());
+	if (_count === 0) {
+		_map.setView(marker.getLatLng(),6);
+		setTimeout(offsetCenter, 500);
+	} else {
+		offsetCenter();		
+	}	
+
+	
 	
 	_count++;
 	
@@ -273,3 +279,16 @@ function selectLastCollege(presidentID)
 	
 	return lastCollege;
 }
+
+function offsetCenter()
+{
+	if (!_selectedCollege) {
+		return;
+	}
+	
+	var height = _map.getBounds().getNorth() - _map.getBounds().getSouth();
+	var pt = L.latLng(_selectedCollege[Colleges.FIELDNAME_COLLEGE_Y] - height*0.2, _selectedCollege[Colleges.FIELDNAME_COLLEGE_X]);
+	_map.panTo(pt);
+}
+
+
