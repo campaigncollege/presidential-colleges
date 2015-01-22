@@ -40,34 +40,35 @@ function ContentPlaque(div) {
 			relationship = _tableRelationships.getRelationship(value[Presidents.FIELDNAME_PRESIDENT_ID], collegeID);
 			var note = relationship[Relationships.FIELDNAME_RELATIONSHIP_NOTE];
 			_notes.push(note);
-			/*
-			if (note) {
-				if ($.trim(note) !== "") {
-					$(li).append("<div class='note'>"+note+"</div>");
-				}
-			}
-			*/
 			$(ul).append(li);
 		});
 
 		var bogus = $("<div></div>");
 		$(bogus).append(div);
-		$(bogus).append("<div id='notes'>This is where the notes will go, and it will scroll!  Even if the content is very, very long.  I mean...really, REALLY long.  It.  Will.  Still. Scroll!  (The quick brown fox jumped over the lazy dog.)</div>")
+		$(bogus).append("<div id='notes'></div>")
 		$(_prezInfo).html($(bogus).html());
 
 		if (presidents.length > 1) {
 			var slidey = $('.banner').unslider({
 				speed: 500,               //  The speed to animate each slide (in milliseconds)
 				delay: false,              //  The delay between slide animations (in milliseconds)
-				complete: function() {},  //  A function that gets called after every slide animation
+				complete: function() {  //  A function that gets called after every slide animation
+					var index = $('.banner').find('.dot.active').index();
+					$("#notes").html(_notes[index])
+				},
 				keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 				dots: true,               //  Display dot navigation
 			});
 			var data = slidey.data("unslider");
-			if (index) data.move(index, function(){});
-			data.stop();
+			if (index) {
+				data.move(index);
+				$("#notes").html(_notes[index]);
+			} else {
+				$("#notes").html(_notes[0]);
+			}
 		} else {
 			$(".banner li").css("float", "none");
+			$("#notes").html(_notes[0]);
 		}
 
 	}
