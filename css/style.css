@@ -246,12 +246,16 @@ a:hover{
 
 #prez-info {
 	width:225px;
-	height:250px;	
+	height:300px;	
 	padding:10px;
 	text-align:center;
-	overflow:auto;
-	max-height:500px;
+	max-height:600px;
 	float:left;
+}
+
+#notes {
+	height:80px;
+	overflow-y: auto;
 }
 
 #paneLeft {
