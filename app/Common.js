@@ -28,6 +28,13 @@ function getPresidentsForCollege(collegeID)
 	});	
 }
 
+function getCollegesForPresident(presidentID)
+{
+	return $.grep(_tableColleges.getRecords(), function(n, i){
+		return $.inArray(n[Colleges.FIELDNAME_COLLEGE_ID], _tableRelationships.getCollegeIDsForPresident(presidentID)) > -1;
+	});	
+}
+
 function retract() 
 {
 	_contentPlaque.retract();
