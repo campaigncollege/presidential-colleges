@@ -129,7 +129,25 @@ function finishInit() {
 	
 	createPresidentTileList($("#myList"));
 
-	$(this).resize(handleWindowResize);	
+	$(this).resize(handleWindowResize);
+
+	$("#tabPresidents").addClass("selected");
+	$(".tab").click(
+		function(e){
+			_selectedCollege = null; 
+			retract();
+			_layerTransferRoute.clearLayers();
+			_map.closePopup();
+			$(".tab").removeClass("selected");
+			$(e.target).addClass("selected");
+			if ($(e.target).html() == "Colleges") {
+				createCollegeTileList($("#myList"));
+			} else {
+				createPresidentTileList($("#myList"));				
+			}
+		}
+	);
+
 	$("#whiteOut").fadeOut();
 	
 }
@@ -208,7 +226,7 @@ function handleWindowResize() {
 	$("#paneRight").height($("body").height());
 	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
-	$(".tilelist").height($("#paneLeft").height() - 18);
+	$(".tilelist").height($("#paneLeft").height() - 18 - $(".tab").outerHeight());
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
 	$("#info").css("left", ($("#paneRight").outerWidth() - $("#info").outerWidth())/2);	

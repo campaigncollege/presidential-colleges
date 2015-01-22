@@ -268,6 +268,21 @@ a:hover{
 	position: absolute;
 }
 
+.tab {
+	float:left;
+	font-family: Arial;
+	background-color: #a9a9a9;
+	padding:5px;
+	margin-left:5px;
+	color:black;
+	cursor: pointer;
+}
+
+.tab.selected {
+	color:white;
+	font-weight: bold;
+}
+
 ul.tilelist {
 	/* initial width -- will be re-calculated in app */
 	width: 485px;
