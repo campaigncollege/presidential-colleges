@@ -1,32 +1,32 @@
-"ID","College","Logo","Y","X","Count"
-1,"Harvard","http://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Harvard_Wreath_Logo_1.svg/220px-Harvard_Wreath_Logo_1.svg.png",42.37,-71.11,5
-2,"William and Mary","http://upload.wikimedia.org/wikipedia/en/a/a5/W%26M_Stacked_Wordmark.png",37.27,-76.71,3
-3,"Princeton","http://upload.wikimedia.org/wikipedia/en/thumb/7/71/Princeton_shield.svg/200px-Princeton_shield.svg.png",40.34,-74.65,3
-4,"Hampden-Sydney","http://upload.wikimedia.org/wikipedia/en/thumb/3/3e/HampdenSydneyLogo.PNG/170px-HampdenSydneyLogo.PNG",37.24,-78.46,1
-5,"U. of North Carolina","http://upload.wikimedia.org/wikipedia/en/thumb/4/4d/UNC_Chapel_Hill_seal.svg/225px-UNC_Chapel_Hill_seal.svg.png",35.90,-79.04,1
-6,"Bowdoin","http://upload.wikimedia.org/wikipedia/en/a/af/Bowdoin_College_Seal.png",43.90,-69.96,1
-7,"Dickinson","http://upload.wikimedia.org/wikipedia/en/d/de/DickinsonRedDevilsLogo.png",40.20,-77.19,1
-8,"US Military Academy","http://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/U.S._Military_Academy_COA.png/250px-U.S._Military_Academy_COA.png",41.39,-73.96,2
-9,"Kenyon","http://upload.wikimedia.org/wikipedia/en/f/fe/KCshield_3CU.png",40.37,-82.39,1
-10,"Williams","http://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Williams_College_Seal.png/150px-Williams_College_Seal.png",42.71,-73.20,1
-11,"Miami University (Ohio)","http://upload.wikimedia.org/wikipedia/en/1/16/Seal_of_Miami_University.png",39.51,-84.73,1
-12,"Allegheny College","http://upload.wikimedia.org/wikipedia/en/9/91/Alleghenycollegelogo.png",41.64,-80.14,1
-13,"Yale","http://upload.wikimedia.org/wikipedia/commons/c/ca/Yale_logo.png",41.31,-72.92,3
-14,"Stanford","http://upload.wikimedia.org/wikipedia/en/thumb/b/b7/Stanford_University_seal_2003.svg/220px-Stanford_University_seal_2003.svg.png",37.42,-122.16,1
-15,"Whittier","http://upload.wikimedia.org/wikipedia/en/4/49/WhittierCollegeSeal.png",33.97,-118.03,1
-16,"US Naval Academy","http://upload.wikimedia.org/wikipedia/commons/d/dd/USNA_Gold_Seal.png",38.98,-76.48,1
-17,"Eureka College","http://upload.wikimedia.org/wikipedia/en/b/b3/Eureka_College_%28logo%29.jpg",40.71,-89.26,1
-19,"Georgetown","http://upload.wikimedia.org/wikipedia/en/thumb/0/08/Georgetown_University_Seal.svg/241px-Georgetown_University_Seal.svg.png",38.90,-77.07,1
-20,"Columbia University","http://upload.wikimedia.org/wikipedia/en/thumb/6/66/ColumbiaU_Wordmarklogo.svg/362px-ColumbiaU_Wordmarklogo.svg.png",40.80,-73.96,1
-21,"Davidson College","http://upload.wikimedia.org/wikipedia/en/2/2b/Davidson_College_%28seal%29.jpg",35.50,-80.84,1
-22,"Occidental College","http://upload.wikimedia.org/wikipedia/en/8/81/Seal-OccidentalCollege.png",34.12,-118.21,1
-24,"Leiden University","http://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Leiden_University_Seal.png/800px-Leiden_University_Seal.png",52.15,4.48,1
-26,"Hiram College","http://upload.wikimedia.org/wikipedia/en/0/01/HIRAM_logo.png",41.31,-81.14,1
-27,"Union College","http://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/UnionCollegeSeal.svg/390px-UnionCollegeSeal.svg.png",42.81,-73.93,1
-28,"Ohio Central College","http://www.hmdb.org/Photos/66/Photo66432o.jpg",40.10,-82.82,1
-29,"Amherst","http://upload.wikimedia.org/wikipedia/en/c/c2/Amherst_College_Seal.png",42.37,-72.51,1
-30,"Spalding's Commercial College","http://www.vintagekansascity.com/education/spaldingscollege/spaulding_college_logo.gif",39.10,-94.58,1
-31,"Georgia Southwestern College","http://upload.wikimedia.org/wikipedia/en/7/70/GASouthwesternULogo.png",32.05,-84.21,1
-32,"Georgia Institute of Technology","http://upload.wikimedia.org/wikipedia/commons/6/6b/Georgia_Tech_shortened_logo.png",33.77,-84.39,1
-33,"Southwest Texas State College","http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Texas_State_University%E2%80%93San_Marcos_Logo.svg/437px-Texas_State_University%E2%80%93San_Marcos_Logo.svg.png",29.88,-97.94,1
-34,"University of Michigan","http://upload.wikimedia.org/wikipedia/en/b/b8/Umichigan_color_seal.png",42.27,-83.73,1
+"ID","College","Description","Logo","Y","X","Count"
+1,"Harvard","Harvard is a private Ivy League research university located in Cambridge, Massachusetts.","http://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Harvard_Wreath_Logo_1.svg/220px-Harvard_Wreath_Logo_1.svg.png",42.37,-71.11,5
+2,"William and Mary","The College of William & Mary is a public research university located in Williamsburg, Virginia.","http://upload.wikimedia.org/wikipedia/en/a/a5/W%26M_Stacked_Wordmark.png",37.27,-76.71,3
+3,"Princeton","Princeton University is a private Ivy League research university in Princeton, New Jersey.","http://upload.wikimedia.org/wikipedia/en/thumb/7/71/Princeton_shield.svg/200px-Princeton_shield.svg.png",40.34,-74.65,3
+4,"Hampden-Sydney","Hampden–Sydney College is a liberal arts college for men located in Hampden Sydney, Virginia.","http://upload.wikimedia.org/wikipedia/en/thumb/3/3e/HampdenSydneyLogo.PNG/170px-HampdenSydneyLogo.PNG",37.24,-78.46,1
+5,"U. of North Carolina","The University of North Carolina at Chapel Hill is a coeducational public research university located in Chapel Hill, North Carolina.","http://upload.wikimedia.org/wikipedia/en/thumb/4/4d/UNC_Chapel_Hill_seal.svg/225px-UNC_Chapel_Hill_seal.svg.png",35.90,-79.04,1
+6,"Bowdoin","Bowdoin College is a private liberal arts college located in the coastal Maine town of Brunswick.","http://upload.wikimedia.org/wikipedia/en/a/af/Bowdoin_College_Seal.png",43.90,-69.96,1
+7,"Dickinson","Dickinson College is a private, residential liberal arts college in Carlisle, Pennsylvania.","http://upload.wikimedia.org/wikipedia/en/d/de/DickinsonRedDevilsLogo.png",40.20,-77.19,1
+8,"US Military Academy","The United States Military Academy at West Point, also known as West Point, Army, The Academy or simply, The Point, is a four-year coeducational federal service academy located in West Point, New York.","http://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/U.S._Military_Academy_COA.png/250px-U.S._Military_Academy_COA.png",41.39,-73.96,2
+9,"Kenyon","Kenyon College is a private liberal arts college in Gambier, Ohio, founded in 1824. It is the oldest private college in Ohio.The campus is noted for its Collegiate Gothic architecture and rural setting.","http://upload.wikimedia.org/wikipedia/en/f/fe/KCshield_3CU.png",40.37,-82.39,1
+10,"Williams","Williams College is a private liberal arts college located in Williamstown, Massachusetts. It was established in 1793 with funds from the estate of Ephraim Williams. Originally a men's college, Williams became co-educational in 1970.","http://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Williams_College_Seal.png/150px-Williams_College_Seal.png",42.71,-73.20,1
+11,"Miami University (Ohio)","Miami University is a coeducational public research university located in Oxford, Ohio.","http://upload.wikimedia.org/wikipedia/en/1/16/Seal_of_Miami_University.png",39.51,-84.73,1
+12,"Allegheny College","Allegheny College is a private, coeducational liberal arts college in northwestern Pennsylvania in the town of Meadville, approximately 35 miles south of Erie.","http://upload.wikimedia.org/wikipedia/en/9/91/Alleghenycollegelogo.png",41.64,-80.14,1
+13,"Yale","Yale University is a private Ivy League research university in New Haven, Connecticut.","http://upload.wikimedia.org/wikipedia/commons/c/ca/Yale_logo.png",41.31,-72.92,3
+14,"Stanford","Stanford University is a private research university in Stanford, California (adjacent to Palo Alto).","http://upload.wikimedia.org/wikipedia/en/thumb/b/b7/Stanford_University_seal_2003.svg/220px-Stanford_University_seal_2003.svg.png",37.42,-122.16,1
+15,"Whittier","Whittier College is a private liberal arts college in Whittier, California.","http://upload.wikimedia.org/wikipedia/en/4/49/WhittierCollegeSeal.png",33.97,-118.03,1
+16,"US Naval Academy","The United States Naval Academy is a four-year coeducational federal service academy located in Annapolis, Maryland.","http://upload.wikimedia.org/wikipedia/commons/d/dd/USNA_Gold_Seal.png",38.98,-76.48,1
+17,"Eureka College","Eureka College is a liberal arts college in Eureka, Illinois.","http://upload.wikimedia.org/wikipedia/en/b/b3/Eureka_College_%28logo%29.jpg",40.71,-89.26,1
+19,"Georgetown","Georgetown University is a private research university in Washington, D.C. Founded in 1789, it is the oldest traditionally Jesuit university in the United States.","http://upload.wikimedia.org/wikipedia/en/thumb/0/08/Georgetown_University_Seal.svg/241px-Georgetown_University_Seal.svg.png",38.90,-77.07,1
+20,"Columbia University","Columbia University in the City of New York, or simply Columbia University, is an American private Ivy League research university located in the Morningside Heights neighborhood of Upper Manhattan in New York City.","http://upload.wikimedia.org/wikipedia/en/thumb/6/66/ColumbiaU_Wordmarklogo.svg/362px-ColumbiaU_Wordmarklogo.svg.png",40.80,-73.96,1
+21,"Davidson College","Davidson College is a private liberal arts college in Davidson, North Carolina.","http://upload.wikimedia.org/wikipedia/en/2/2b/Davidson_College_%28seal%29.jpg",35.50,-80.84,1
+22,"Occidental College","Occidental College is a private, co-educational liberal arts college located in the historic Eagle Rock neighborhood of Los Angeles, California.","http://upload.wikimedia.org/wikipedia/en/8/81/Seal-OccidentalCollege.png",34.12,-118.21,1
+24,"Leiden University","Leiden University, located in the city of Leiden, is the oldest university in the Netherlands.","http://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Leiden_University_Seal.png/800px-Leiden_University_Seal.png",52.15,4.48,1
+26,"Hiram College","Hiram College is a private liberal arts college located in Hiram, Ohio.","http://upload.wikimedia.org/wikipedia/en/0/01/HIRAM_logo.png",41.31,-81.14,1
+27,"Union College","Union College is a private, non-denominational liberal arts college located in Schenectady, New York.","http://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/UnionCollegeSeal.svg/390px-UnionCollegeSeal.svg.png",42.81,-73.93,1
+28,"Ohio Central College","Ohio Central College was a college located in Iberia, Ohio in northwestern Morrow County, Ohio during the second half of the 19th century.","http://www.hmdb.org/Photos/66/Photo66432o.jpg",40.10,-82.82,1
+29,"Amherst","Amherst College is a private liberal arts college located in Amherst, Massachusetts, United States.","http://upload.wikimedia.org/wikipedia/en/c/c2/Amherst_College_Seal.png",42.37,-72.51,1
+30,"Spalding's Commercial College","Spalding's Commercial College was a vocational school located in Kansas City, Missouri.","http://www.vintagekansascity.com/education/spaldingscollege/spaulding_college_logo.gif",39.10,-94.58,1
+31,"Georgia Southwestern College","Georgia Southwestern State University, located in Americus, Georgia, is a state university within the University System of Georgia that offers a full range of bachelor degree programs, along with selected master’s and specialist degree programs.","http://upload.wikimedia.org/wikipedia/en/7/70/GASouthwesternULogo.png",32.05,-84.21,1
+32,"Georgia Institute of Technology","The Georgia Institute of Technology is a public research university in Atlanta, Georgia.","http://upload.wikimedia.org/wikipedia/commons/6/6b/Georgia_Tech_shortened_logo.png",33.77,-84.39,1
+33,"Southwest Texas State College","Texas State University is a state university located in San Marcos, Texas. Established in 1899 as the Southwest Texas State Normal School, it opened its doors in 1903 to 303 students with a focus to educate students to become teachers.","http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Texas_State_University%E2%80%93San_Marcos_Logo.svg/437px-Texas_State_University%E2%80%93San_Marcos_Logo.svg.png",29.88,-97.94,1
+34,"University of Michigan","The University of Michigan, frequently referred to as simply Michigan, is a public research university located in Ann Arbor, Michigan.","http://upload.wikimedia.org/wikipedia/en/b/b8/Umichigan_color_seal.png",42.27,-83.73,1
