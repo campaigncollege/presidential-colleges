@@ -1,5 +1,8 @@
-function createTileList(parent)
+function createPresidentTileList(parent)
 {
+
+	$(parent).empty();
+
 	var img,tile,footer,num,title;
 	
 	$.each(_tablePresidents.getRecords(), function(index, value) {
@@ -19,6 +22,41 @@ function createTileList(parent)
 		$(parent).append(tile);
 		
 	});
+
+	$("ul.tilelist li").mouseover(tile_onMouseOver);
+	$("ul.tilelist li").mouseout(tile_onMouseOut);
+	$("ul.tilelist li").click(tilePresident_onClick);
+
+}
+
+function createCollegeTileList(parent)
+{
+
+
+	$(parent).empty();
+
+	var img,tile,footer,title;
+	
+	$.each(_tableColleges.getRecords(), function(index, value) {
+
+		tile = $('<li>');
+		
+		footer = $('<div class="footer"></div>');
+		title = $('<div class="blurb">'+value[Colleges.FIELDNAME_COLLEGE_NAME]+'</div>');	
+		$(footer).append(title);
+		$(tile).append(footer);			
+
+		img = $('<img src="'+value[Colleges.FIELDNAME_COLLEGE_IMAGE]+'">');
+		$(tile).append(img);
+		
+		$(parent).append(tile);
+		
+	});
+
+	$("ul.tilelist li").mouseover(tile_onMouseOver);
+	$("ul.tilelist li").mouseout(tile_onMouseOut);
+	$("ul.tilelist li").click(tileCollege_onClick);
+
 }
 
 function getPresidentsForCollege(collegeID)

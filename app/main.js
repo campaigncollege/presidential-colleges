@@ -127,11 +127,7 @@ function finishInit() {
 		marker.addTo(_layerColleges);
 	});
 	
-	createTileList($("#myList"));
-
-	$("ul.tilelist li").mouseover(tile_onMouseOver);
-	$("ul.tilelist li").mouseout(tile_onMouseOut);
-	$("ul.tilelist li").click(tile_onClick);	
+	createPresidentTileList($("#myList"));
 
 	$(this).resize(handleWindowResize);	
 	$("#whiteOut").fadeOut();
@@ -148,7 +144,7 @@ function tile_onMouseOut(e) {
 	$(this).css('background-color', COLOR_DIM);
 }
 
-function tile_onClick(e) {
+function tilePresident_onClick(e) {
 		
 	var president = _tablePresidents.getRecords()[$.inArray(this, $(".tilelist li"))];
 	_selectedCollege = selectLastCollege(president[Presidents.FIELDNAME_PRESIDENT_ID]);
@@ -162,6 +158,11 @@ function tile_onClick(e) {
 		postSelection($.inArray(president[Presidents.FIELDNAME_PRESIDENT_ID], _tableRelationships.getPresidentIDsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID])));
 	}
 
+}
+
+function tileCollege_onClick(e) {
+	_selectedCollege = _tableColleges.getRecords()[$.inArray(this, $(".tilelist li"))];
+	postSelection();
 }
 
 function onActivatePresident(event, president)
