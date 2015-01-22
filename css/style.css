@@ -241,6 +241,10 @@ a:hover{
 	max-width:150px !important;
 }
 
+#college-description {
+	padding-top: 10px;
+}
+
 #prez-info {
 	width:225px;
 	height:300px;	

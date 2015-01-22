@@ -245,6 +245,7 @@ function postSelection(index)
 	_contentPlaque.update(
 		_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID],
 		_selectedCollege[Colleges.FIELDNAME_COLLEGE_NAME],
+		_selectedCollege[Colleges.FIELDNAME_COLLEGE_DESCRIPTION],
 		_selectedCollege[Colleges.FIELDNAME_COLLEGE_IMAGE],
 		getPresidentsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]),
 		index

@@ -6,6 +6,7 @@ function ContentPlaque(div) {
 
 	var _title = $("<div id='college-title'></div>");
 	var _seal = $("<img id='college-seal'/>");
+	var _description = $("<div id='college-description'></div>");
 	var _prezInfo = $("<div id='prez-info'></div>");
 
 	var _presidents;
@@ -14,15 +15,20 @@ function ContentPlaque(div) {
 	var divCollegeInfo = $("<div id='college-info'></div>");
 
 	$(divCollegeInfo).append(_seal);
+	$(divCollegeInfo).append(_description);
 
 	$(_div).append(_title);
 	$(_div).append(divCollegeInfo);
 	$(_div).append(_prezInfo);
 
-	this.update = function(collegeID, collegeName, collegeSeal, presidents, index) {
+	this.update = function(collegeID, collegeName, collegeDescription, collegeSeal, presidents, index) {
 
 		$(_title).html(collegeName);
 		$(_seal).attr("src", collegeSeal);
+		if (presidents.length > 1) {
+			collegeDescription = collegeDescription + "<br><br>" + ["One", "Two", "Three", "Four", "Five"][presidents.length-1] + " U.S. presidents have attended "+collegeName+"."
+		}
+		$(_description).html(collegeDescription);
 
 		_presidents = presidents;
 
