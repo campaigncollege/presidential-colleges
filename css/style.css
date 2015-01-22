@@ -198,9 +198,6 @@ a:hover{
 	padding-bottom:5px;
 }
 
-.note {
-	font-style:italic;
-}
 .esriPopup .sizer {
 	width: 240px;
 	text-align: center;
@@ -254,8 +251,11 @@ a:hover{
 }
 
 #notes {
-	height:80px;
+	height:70px;
 	overflow-y: auto;
+	margin-top: 10px;
+	font-style:italic;	
+	padding:5px;
 }
 
 #paneLeft {
