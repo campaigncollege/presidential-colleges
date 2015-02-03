@@ -219,9 +219,11 @@ a:hover{
 	position:absolute;
 	z-index:200;
 	background-color:white;
-	bottom:-520px;
+	width:275px;
+	right:-300px;
 	padding:10px;
-	min-width:500px;
+	top:50%;
+	text-align: center;
 }
 
 #college-title {
@@ -231,10 +233,9 @@ a:hover{
 }
 
 #college-info {
-	width:225px;
-	padding:10px;
-	float:left;
+	width:100%;
 	text-align:center;
+	padding-top: 15px;
 }
 
 #college-seal {
@@ -246,12 +247,11 @@ a:hover{
 }
 
 #prez-info {
-	width:225px;
-	height:300px;	
-	padding:10px;
+	width:100%;
+	height:320px;	
+	padding-top:10px;
 	text-align:center;
 	max-height:600px;
-	float:left;
 }
 
 #notes {

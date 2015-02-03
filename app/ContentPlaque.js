@@ -16,6 +16,7 @@ function ContentPlaque(div) {
 
 	$(divCollegeInfo).append(_seal);
 	$(divCollegeInfo).append(_description);
+	$(divCollegeInfo).append("<hr style='width:80%;margin-left:10%;height:2px;margin-top:10px;margin-bottom:5px;background-color:gray;opacity:0.5'/>")
 
 	$(_div).append(_title);
 	$(_div).append(divCollegeInfo);
@@ -91,12 +92,12 @@ function ContentPlaque(div) {
 	}
 
 	this.retract = function() {
-		$(_div).animate({"bottom":-$("#info").outerHeight()});
+		$(_div).animate({"right":-$("#info").outerWidth()});
 	}
 
 	this.show = function() {
-		if ($(_div).css("bottom") != "20px") {
-			$(_div).animate({"bottom":20});
+		if ($(_div).css("right") != "20px") {
+			$(_div).animate({"right":20});
 		}
 	}
 	

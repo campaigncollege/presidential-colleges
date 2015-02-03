@@ -229,7 +229,7 @@ function handleWindowResize() {
 	$(".tilelist").height($("#paneLeft").height() - 18 - $(".tab").outerHeight());
 	$(".tilelist").width($("#paneLeft").width() + 7);		
 
-	$("#info").css("left", ($("#paneRight").outerWidth() - $("#info").outerWidth())/2);	
+	$("#info").css("margin-top", -$("#info").outerHeight()/2);	
 	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	
 		
 }
@@ -250,6 +250,7 @@ function postSelection(index)
 		getPresidentsForCollege(_selectedCollege[Colleges.FIELDNAME_COLLEGE_ID]),
 		index
 		);
+	handleWindowResize();
 	_contentPlaque.show();
 
 	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID];})[0];	
@@ -287,8 +288,9 @@ function offsetCenter()
 		return;
 	}
 	
-	var height = _map.getBounds().getNorth() - _map.getBounds().getSouth();
-	var pt = L.latLng(_selectedCollege[Colleges.FIELDNAME_COLLEGE_Y] - height*0.2, _selectedCollege[Colleges.FIELDNAME_COLLEGE_X]);
+	var width = _map.getBounds().getEast() - _map.getBounds().getWest();
+	console.log(width);
+	var pt = L.latLng(_selectedCollege[Colleges.FIELDNAME_COLLEGE_Y], parseInt(_selectedCollege[Colleges.FIELDNAME_COLLEGE_X]) + width*0.2);
 	_map.panTo(pt);
 }
 
