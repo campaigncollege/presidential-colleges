@@ -127,6 +127,12 @@ a:hover{
 	top:0px;	
 }
 
+#intro {
+	width:100%;
+	background-color: white;
+	display:inline-block;
+}
+
 #hoverInfo{
 	font-size:10px;
 	font-family:Verdana, Geneva, sans-serif;
