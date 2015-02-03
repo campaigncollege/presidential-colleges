@@ -286,6 +286,8 @@ a:hover{
 	font-weight: bold;
 	color:#9b9b9b;
 	cursor: pointer;
+	border-radius: 3px 3px 0px 0px;
+	/*box-shadow: -2px -4px 5px 1px rgba(255,255,255,1);*/
 }
 
 .tab.selected {
