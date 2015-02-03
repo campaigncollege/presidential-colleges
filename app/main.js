@@ -226,7 +226,7 @@ function handleWindowResize() {
 	$("#paneRight").height($("body").height());
 	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
-	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18 - $(".tab").outerHeight());
+	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18);
 	$(".tilelist").width($("#paneLeft").width()-10);		
 
 	$("#info").css("margin-top", -$("#info").outerHeight()/2);	
