@@ -227,7 +227,7 @@ function handleWindowResize() {
 	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
 	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18 - $(".tab").outerHeight());
-	$(".tilelist").width($("#paneLeft").width() + 7);		
+	$(".tilelist").width($("#paneLeft").width()-2);		
 
 	$("#info").css("margin-top", -$("#info").outerHeight()/2);	
 	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	

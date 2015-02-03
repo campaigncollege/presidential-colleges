@@ -273,8 +273,7 @@ a:hover{
 	width:485px;
 	height:100%;
 	overflow:hidden;
-	background-color:#b9b9b9;
-	padding:8px;
+	padding:0px;
 	position: absolute;
 }
 
@@ -302,6 +301,7 @@ ul.tilelist {
 	margin-top:0px;
 	margin:auto;
 	padding-bottom:10px;
+	background-color:#b9b9b9;
 }
 
 ul.tilelist li {
