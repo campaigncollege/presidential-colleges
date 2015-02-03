@@ -295,7 +295,8 @@ a:hover{
 ul.tilelist {
 	/* initial width -- will be re-calculated in app */
 	width: 485px;
-	padding-left:1px;
+	padding-left:9px;
+	padding-top:8px;
     display:inline-block;
 	overflow:auto;
 	margin-top:0px;

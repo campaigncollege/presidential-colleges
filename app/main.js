@@ -1,9 +1,9 @@
 var COLOR_DIM = "#E7E7E7";
 var COLOR_FULL = "#FFFFFF";
 
-var LEFT_PANE_WIDTH_ONE_COLUMN = 175;
-var LEFT_PANE_WIDTH_TWO_COLUMN = 327;
-var LEFT_PANE_WIDTH_THREE_COLUMN = 485;
+var LEFT_PANE_WIDTH_ONE_COLUMN = 185;
+var LEFT_PANE_WIDTH_TWO_COLUMN = 338;
+var LEFT_PANE_WIDTH_THREE_COLUMN = 493;
 
 var ONE_COLUMN_THRESHOLD = 900;
 var TWO_COLUMN_THRESHOLD = 960;
@@ -227,7 +227,7 @@ function handleWindowResize() {
 	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
 	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18 - $(".tab").outerHeight());
-	$(".tilelist").width($("#paneLeft").width()-2);		
+	$(".tilelist").width($("#paneLeft").width()-10);		
 
 	$("#info").css("margin-top", -$("#info").outerHeight()/2);	
 	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	
