@@ -326,6 +326,7 @@ ul.tilelist li {
 	background-color:#E7E7E7;
 	cursor:pointer;
 	position:relative;
+	text-align: center;
 }
 
 ul.tilelist > a {
@@ -358,14 +359,11 @@ ul.tilelist .footer {
 
 ul.tilelist .num {
 	width:16px;
-	padding-top:1px;
-	padding-bottom:1px;
 	float:left;
-	border:solid;
-	border-width:thin;
-	color:white;
-	font-size:11px;
-	text-align:center;
+	color:#3888cd;
+	font-size:22px;
+	text-align:center;	
+	margin-top:5px;
 }
 
 ul.tilelist .blurb {
@@ -373,6 +371,6 @@ ul.tilelist .blurb {
 	height: 35px;
 	overflow: hidden;
 	float:left;
-	margin-left:4px;
+	margin-left:10px;
 	text-align:left;
 }

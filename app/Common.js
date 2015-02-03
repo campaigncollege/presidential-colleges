@@ -10,7 +10,7 @@ function createPresidentTileList(parent)
 		tile = $('<li>');
 		
 		footer = $('<div class="footer"></div>');
-		num = $('<div class="num" style="background-color:black">'+value[Presidents.FIELDNAME_PRESIDENT_ID]+'</div>');
+		num = $('<div class="num">'+value[Presidents.FIELDNAME_PRESIDENT_ID]+'</div>');
 		title = $('<div class="blurb">'+value[Presidents.FIELDNAME_PRESIDENT_NAME]+'</div>');	
 		$(footer).append(num);		
 		$(footer).append(title);
@@ -42,7 +42,7 @@ function createCollegeTileList(parent)
 		tile = $('<li>');
 		
 		footer = $('<div class="footer"></div>');
-		title = $('<div class="blurb">'+value[Colleges.FIELDNAME_COLLEGE_NAME]+'</div>');	
+		title = $('<div class="blurb" style="margin-top:10px">'+value[Colleges.FIELDNAME_COLLEGE_NAME]+'</div>');	
 		$(footer).append(title);
 		$(tile).append(footer);			
 
