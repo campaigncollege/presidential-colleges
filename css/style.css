@@ -250,6 +250,7 @@ a:hover{
 
 #college-seal {
 	max-width:150px !important;
+	max-height:100px;
 }
 
 #college-description {
