@@ -16,7 +16,7 @@ function ContentPlaque(div) {
 
 	$(divCollegeInfo).append(_seal);
 	$(divCollegeInfo).append(_description);
-	$(divCollegeInfo).append("<hr style='width:80%;margin-left:10%;height:2px;margin-top:10px;margin-bottom:5px;background-color:gray;opacity:0.5'/>")
+	//$(divCollegeInfo).append("<hr style='width:80%;margin-left:10%;height:2px;margin-top:10px;margin-bottom:5px;background-color:gray;opacity:0.5'/>")
 
 	$(_div).append(_title);
 	$(_div).append(divCollegeInfo);
@@ -27,7 +27,7 @@ function ContentPlaque(div) {
 		$(_title).html(collegeName);
 		$(_seal).attr("src", collegeSeal);
 		if (presidents.length > 1) {
-			collegeDescription = collegeDescription + "<br><br>" + ["One", "Two", "Three", "Four", "Five"][presidents.length-1] + " U.S. presidents have attended "+collegeName+"."
+			collegeDescription = collegeDescription + "<br><br><span style='color:black'>" + ["One", "Two", "Three", "Four", "Five"][presidents.length-1] + " U.S. presidents have attended "+collegeName+".</span>"
 		}
 		$(_description).html(collegeDescription);
 
