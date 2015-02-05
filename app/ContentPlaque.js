@@ -77,17 +77,18 @@ function ContentPlaque(div) {
 			var data = slidey.data("unslider");
 			if (index > 0) {
 				data.move(index);
+				setTimeout(reposition, 500);
 			} else {
-				$("#notes").html(_notes[index]);	
+				$("#notes").html(_notes[index]);
+				reposition();	
 				$(this).trigger("activatePresident", [_presidents[index]]);
 			}
 		} else {
 			$(".banner li").css("float", "none");
 			$("#notes").html(_notes[0]);
+			reposition();
 			$(this).trigger("activatePresident", [_presidents[index]]);
 		}
-
-		
 
 	}
 
@@ -99,6 +100,15 @@ function ContentPlaque(div) {
 		if ($(_div).css("right") != "20px") {
 			$(_div).animate({"right":20});
 		}
+	}
+
+	this.reposition = function() {
+		reposition();
+	}
+
+	function reposition() {
+		//$(_div).animate({"margin-top":-$(_div).outerHeight()/2});
+		$(_div).css("margin-top", -$(_div).outerHeight()/2);
 	}
 	
 }

@@ -66,11 +66,15 @@ function finishInit() {
 
 	handleWindowResize();	
 
-	_map = L.map('map').setView([37.9, -95], 4);
+	_map = L.map('map',{attributionControl:false}).setView([37.9, -95], 4);
 	L.esri.basemapLayer('Gray', {}).addTo(_map);
 	_layerTransferRoute = new L.LayerGroup().addTo(_map);
 	_layerColleges = new L.LayerGroup().addTo(_map);
 	_map.on('click', function(e){_selectedCollege = null; retract();_layerTransferRoute.clearLayers()})
+	_map.addControl(L.control.attribution({position:'bottomleft'}));
+
+	$(".esri-leaflet-logo").hide();
+
 
 	var marker;
 	var count;
@@ -229,7 +233,7 @@ function handleWindowResize() {
 	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18);
 	$(".tilelist").width($("#paneLeft").width()-10);		
 
-	$("#info").css("margin-top", -$("#info").outerHeight()/2);	
+	_contentPlaque.reposition();
 	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	
 		
 }
