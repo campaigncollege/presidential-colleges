@@ -68,9 +68,40 @@ function getPresidentsForCollege(collegeID)
 
 function getCollegesForPresident(presidentID)
 {
-	return $.grep(_tableColleges.getRecords(), function(n, i){
+
+	var colleges = $.grep(_tableColleges.getRecords(), function(n, i){
 		return $.inArray(n[Colleges.FIELDNAME_COLLEGE_ID], _tableRelationships.getCollegeIDsForPresident(presidentID)) > -1;
 	});	
+
+	// this part is tedious -- sorting for code.  this will tell us -- for presidents who attended more than
+	// on college -- the sequence of colleges.
+
+	colleges.sort(function(a, b) {
+
+		var relationShipA = $.grep(
+			_tableRelationships.getRecords(), 
+			function(n,i){
+				return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID && n[Relationships.FIELDNAME_RELATIONSHIP_COLLEGE] == a[Colleges.FIELDNAME_COLLEGE_ID];
+			}
+		)[0];
+
+		var codeA = relationShipA[Relationships.FIELDNAME_RELATIONSHIP_CODE];
+
+		var relationShipB = $.grep(
+			_tableRelationships.getRecords(), 
+			function(n,i){
+				return n[Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT] == presidentID && n[Relationships.FIELDNAME_RELATIONSHIP_COLLEGE] == b[Colleges.FIELDNAME_COLLEGE_ID];
+			}
+		)[0];
+
+		var codeB = relationShipB[Relationships.FIELDNAME_RELATIONSHIP_CODE];
+
+		return codeA > codeB;
+
+	});
+
+	return colleges;
+
 }
 
 function retract() 
