@@ -195,7 +195,7 @@ function onActivatePresident(event, president)
 	$.each(colleges, function(index, value){
 		latLngs.push(L.latLng(value[Colleges.FIELDNAME_COLLEGE_Y], value[Colleges.FIELDNAME_COLLEGE_X]));
 	});
-	_layerTransferRoute.addLayer(L.polyline(latLngs));
+	_layerTransferRoute.addLayer(L.polyline(latLngs, {opacity:0.3,dashArray:"10,10"}));
 }
 
 function changeMode()
