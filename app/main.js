@@ -183,7 +183,7 @@ function tilePresident_onClick(e) {
 }
 
 function tileCollege_onClick(e) {
-	_selectedCollege = _tableColleges.getRecords()[$.inArray(this, $(".tilelist li"))];
+	_selectedCollege = _tableColleges.getOrderedByName()[$.inArray(this, $(".tilelist li"))];
 	postSelection();
 }
 

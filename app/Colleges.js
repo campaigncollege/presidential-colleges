@@ -15,6 +15,25 @@ function Colleges()
 		recs.sort(function(a,b){return b[Colleges.FIELDNAME_COLLEGE_COUNT] - a[Colleges.FIELDNAME_COLLEGE_COUNT];});
 		return recs;	
 	};
+
+	this.getOrderedByName = function()
+	{
+		var recs = $.extend(true, [], this.getRecords());
+		recs.sort(
+			function(a,b){
+				var val;
+				if (a[Colleges.FIELDNAME_COLLEGE_NAME] < b[Colleges.FIELDNAME_COLLEGE_NAME]) {
+					val = -1;
+				} else if (a[Colleges.FIELDNAME_COLLEGE_NAME] > b[Colleges.FIELDNAME_COLLEGE_NAME]) {
+					val = 1;
+				} else {
+					val = 0;
+				}
+				return val;
+			}
+		);
+		return recs;	
+	}
 	
 }
 

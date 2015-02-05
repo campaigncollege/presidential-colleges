@@ -37,7 +37,7 @@ function createCollegeTileList(parent)
 
 	var img,tile,footer,title;
 	
-	$.each(_tableColleges.getRecords(), function(index, value) {
+	$.each(_tableColleges.getOrderedByName(), function(index, value) {
 
 		tile = $('<li>');
 		
