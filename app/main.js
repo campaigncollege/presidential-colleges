@@ -217,10 +217,13 @@ function handleWindowResize() {
 	} else {
 		if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
 			$("#paneLeft").width(LEFT_PANE_WIDTH_ONE_COLUMN);
+			formatIntroSlim();
 		} else if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
 			$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
+			formatIntroSlim();
 		} else {
 			$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
+			formatIntroFat();
 		}
 	}
 
@@ -234,6 +237,30 @@ function handleWindowResize() {
 	_contentPlaque.reposition();
 	$("#no-college").css("left", ($("#paneRight").outerWidth() - $("#no-college").outerWidth())/2);	
 		
+}
+
+function formatIntroSlim()
+{
+	var text = $("#intro-text");
+	$(text).remove();
+	$(text).width("100%");
+	$(text).css("padding-left", 15);
+	$("#intro img").css("max-height", 200);
+	$("#intro img").width("initial");
+	$("#intro img").css("margin-left", $("#paneLeft").width()/2 - $("#intro img").width()/2);
+	$("#intro").prepend(text);
+}
+
+function formatIntroFat()
+{
+	var text = $("#intro-text");
+	$(text).remove();
+	$(text).width("50%");
+	$(text).css("padding-left", 0);
+	$("#intro img").css("max-height", "none");
+	$("#intro img").width("50%");
+	$("#intro img").css("margin-left", 0);
+	$("#intro").append(text);
 }
 
 /************ CHANGED ***************/
