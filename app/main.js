@@ -244,10 +244,16 @@ function formatIntroSlim()
 	var text = $("#intro-text");
 	$(text).remove();
 	$(text).width("100%");
-	$(text).css("padding-left", 15);
+	//$(text).css("padding-left", 15);
+
+
+	$("#intro").css("padding-left", 15);
+	$("#intro").css("padding-right", 15);
+	$("#intro").css("box-sizing", "border-box");
+
 	$("#intro img").css("max-height", 200);
 	$("#intro img").width("initial");
-	$("#intro img").css("margin-left", $("#paneLeft").width()/2 - $("#intro img").width()/2);
+	$("#intro img").css("margin-left", $("#intro").width()/2 - $("#intro img").width()/2);
 	$("#intro").prepend(text);
 }
 
@@ -256,7 +262,12 @@ function formatIntroFat()
 	var text = $("#intro-text");
 	$(text).remove();
 	$(text).width("50%");
-	$(text).css("padding-left", 0);
+	//$(text).css("padding-left", 0);
+
+	$("#intro").css("padding-left", 0);
+	$("#intro").css("padding-right", 0);
+	$("#intro").css("box-sizing", "none");
+
 	$("#intro img").css("max-height", "none");
 	$("#intro img").width("50%");
 	$("#intro img").css("margin-left", 0);
