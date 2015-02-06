@@ -279,6 +279,7 @@ a:hover{
 	overflow:hidden;
 	padding:0px;
 	position: absolute;
+	background-color:#b9b9b9;
 }
 
 .tab {
@@ -299,17 +300,20 @@ a:hover{
 	background-color: #b9b9b9;
 }
 
+#wrapper {
+	overflow-y:auto;
+	overflow-x:hidden;
+	padding-left:9px;
+	margin-top:8px;
+	-webkit-overflow-scrolling: touch;
+}
+
 ul.tilelist {
 	/* initial width -- will be re-calculated in app */
 	width: 485px;
-	padding-left:9px;
-	padding-top:8px;
     display:inline-block;
-	overflow:auto;
-	margin-top:0px;
 	margin:auto;
-	padding-bottom:10px;
-	background-color:#b9b9b9;
+	margin-bottom:5px;
 }
 
 ul.tilelist li {
@@ -317,6 +321,8 @@ ul.tilelist li {
     box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     margin: 2px;
+    margin-top: 0px;
+    margin-bottom: 4px;
     width: 150px;
     height: 150px;
     float: left;

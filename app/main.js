@@ -212,8 +212,6 @@ function handleWindowResize() {
 		changeMode();
 	}
 
-	$("#paneLeft").height($("body").height());
-
 	if (_isMobile) {
 		$('#paneLeft').width($('body').width());
 	} else {
@@ -230,7 +228,7 @@ function handleWindowResize() {
 	$("#paneRight").height($("body").height());
 	$("#paneRight").width($("body").width() - $("#paneLeft").outerWidth());			
 		
-	$(".tilelist").height($("#paneLeft").height() - $("#intro").outerHeight() - 18);
+	$("#wrapper").height($("#paneLeft").height() - $("#intro").outerHeight() - 8);
 	$(".tilelist").width($("#paneLeft").width()-10);		
 
 	_contentPlaque.reposition();
