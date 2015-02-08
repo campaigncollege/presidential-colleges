@@ -233,6 +233,8 @@ a:hover{
 	-webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);
 	box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.75);	
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 #college-title {

@@ -107,7 +107,7 @@ function ContentPlaque(div) {
 	}
 
 	function reposition() {
-		//$(_div).animate({"margin-top":-$(_div).outerHeight()/2});
+		$(_div).css("max-height", $(_div).parent().innerHeight() - 30);
 		$(_div).css("margin-top", -$(_div).outerHeight()/2);
 	}
 	
