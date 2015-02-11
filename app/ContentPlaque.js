@@ -69,6 +69,12 @@ function ContentPlaque(div) {
 				complete: function() {  //  A function that gets called after every slide animation
 					var index = $('.banner').find('.dot.active').index();
 					$("#notes").html(_notes[index]);
+					// is plaque offscreen?  if so, rectify...
+					var top = parseInt($(_div).position().top)+parseInt($(_div).css('margin-top'));
+					if (top+$(_div).outerHeight() > $(_div).parent().height()) {
+						console.log('adjusting...');
+						reposition();
+					}
 					$(_this).trigger("activatePresident", [_presidents[index]]);
 				},
 				keys: true,               //  Enable keyboard (left, right) arrow shortcuts
@@ -107,7 +113,7 @@ function ContentPlaque(div) {
 	}
 
 	function reposition() {
-		$(_div).css("max-height", $(_div).parent().innerHeight() - 30);
+		$(_div).css("max-height", $(_div).parent().height() - 60);
 		$(_div).css("margin-top", -$(_div).outerHeight()/2);
 	}
 	
