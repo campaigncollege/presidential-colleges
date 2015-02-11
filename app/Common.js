@@ -42,7 +42,7 @@ function createCollegeTileList(parent)
 		tile = $('<li>');
 		
 		footer = $('<div class="footer"></div>');
-		title = $('<div class="blurb" style="margin-top:10px">'+value[Colleges.FIELDNAME_COLLEGE_NAME]+'</div>');	
+		title = $('<div class="blurb" style="margin-top:5px">'+value[Colleges.FIELDNAME_COLLEGE_NAME]+'</div>');	
 		$(footer).append(title);
 		$(tile).append(footer);			
 
