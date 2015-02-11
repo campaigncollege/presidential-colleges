@@ -207,25 +207,33 @@ function changeMode()
 function handleWindowResize() {
 
 	var modeMobile = $("body").width() < THRESHOLD_WIDTH_MOBILE;
+
 	if (modeMobile != _isMobile) {
 		_isMobile = modeMobile;
 		changeMode();
 	}
 
+	/*
+
 	if (_isMobile) {
 		$('#paneLeft').width($('body').width());
 	} else {
-		if ($("body").width() <= ONE_COLUMN_THRESHOLD) {
-			$("#paneLeft").width(LEFT_PANE_WIDTH_ONE_COLUMN);
-			formatIntroSlim();
-		} else if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
+
+	*/
+
+		if($("body").width() <= TWO_COLUMN_THRESHOLD || ($("body").width() <= 1024 && $("body").height() <= 768)) {
 			$("#paneLeft").width(LEFT_PANE_WIDTH_TWO_COLUMN);
 			formatIntroSlim();
 		} else {
 			$("#paneLeft").width(LEFT_PANE_WIDTH_THREE_COLUMN);
 			formatIntroFat();
 		}
+
+	/*
+
 	}
+
+	*/
 
 	$("#paneRight").css("left", $("#paneLeft").outerWidth());
 	$("#paneRight").height($("body").height());
