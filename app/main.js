@@ -200,7 +200,7 @@ function onActivatePresident(event, president)
 
 function changeMode()
 {
-	console.log("adjusting for mobile = ", _isMobile);
+	//console.log("adjusting for mobile = ", _isMobile);
 }
 
 
@@ -337,7 +337,6 @@ function offsetCenter()
 	}
 	
 	var width = _map.getBounds().getEast() - _map.getBounds().getWest();
-	console.log(width);
 	var pt = L.latLng(_selectedCollege[Colleges.FIELDNAME_COLLEGE_Y], parseInt(_selectedCollege[Colleges.FIELDNAME_COLLEGE_X]) + width*0.2);
 	_map.panTo(pt);
 }

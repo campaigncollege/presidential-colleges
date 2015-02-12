@@ -72,7 +72,6 @@ function ContentPlaque(div) {
 					// is plaque offscreen?  if so, rectify...
 					var top = parseInt($(_div).position().top)+parseInt($(_div).css('margin-top'));
 					if (top+$(_div).outerHeight() > $(_div).parent().height()) {
-						console.log('adjusting...');
 						reposition();
 					}
 					$(_this).trigger("activatePresident", [_presidents[index]]);
