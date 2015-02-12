@@ -94,6 +94,7 @@ a:hover{
 
 #social{
 	position: absolute;
+	z-index: 2004;
 	top: 20px;
 	right: 20px;
 	background-color: black;
