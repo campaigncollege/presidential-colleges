@@ -93,7 +93,11 @@ a:hover{
 }
 
 #social{
-	margin-bottom:20px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background-color: black;
+	border-color: white;
 }
 
 #msLink{
@@ -384,3 +388,65 @@ ul.tilelist .blurb {
 	margin-left:10px;
 	text-align:left;
 }
+
+@font-face {
+  font-family: 'fontello';
+  src: url('../resources/fonts/fontello/font/fontello.eot?11945057');
+  src: url('../resources/fonts/fontello/font/fontello.eot?11945057#iefix') format('embedded-opentype'),
+       url('../resources/fonts/fontello/font/fontello.woff?11945057') format('woff'),
+       url('../resources/fonts/fontello/font/fontello.ttf?11945057') format('truetype'),
+       url('../resources/fonts/fontello/font/fontello.svg?11945057#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-facebook:before { content: '\e800'; } /* '' */
+.icon-twitter:before { content: '\e801'; } /* '' */
+
+.social-media {
+  font-size: 1.2em;
+}
+
+.social-media a,
+.social-media .social-button {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.social-media a:hover,
+.social-media .social-button:hover {
+  color: #ccc;
+}
+
