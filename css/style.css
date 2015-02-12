@@ -95,9 +95,9 @@ a:hover{
 #social{
 	position: absolute;
 	z-index: 2004;
-	top: 20px;
-	right: 20px;
-	background-color: black;
+	top: 10px;
+	right: 10px;
+	background-color: #b9b9b9;
 	border-color: white;
 }
 
@@ -448,6 +448,6 @@ ul.tilelist .blurb {
 
 .social-media a:hover,
 .social-media .social-button:hover {
-  color: #ccc;
+  color: #fff;
 }
 
