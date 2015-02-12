@@ -199,6 +199,8 @@ function finishInit() {
 		}
 	});	
 
+	$('[title]').qtip();
+
 	$("#whiteOut").fadeOut();
 	
 }
@@ -347,6 +349,8 @@ function postSelection(index)
 		);
 	handleWindowResize();
 	_contentPlaque.show();
+
+	$('.qtip:visible').qtip("hide");	
 
 	var marker = $.grep(_layerColleges.getLayers(), function(n, i){return n.options.id == _selectedCollege[Colleges.FIELDNAME_COLLEGE_ID];})[0];	
 	marker.openPopup();
