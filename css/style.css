@@ -31,7 +31,6 @@ body {
 	background-color:#fff;
 	color:#333;
 	font-size:14px;
-	overflow:hidden;
 	min-width:750px;	
 }
 
@@ -128,7 +127,8 @@ a:hover{
 
 #paneRight {
 	position:absolute; /* keep it absolute so it doesn't get knocked down to the next line in float:left situations */
-	top:0px;	
+	top:0px;
+	overflow:hidden;
 }
 
 #intro {
