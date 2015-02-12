@@ -149,6 +149,7 @@ function finishInit() {
 			} else {
 				createPresidentTileList($("#myList"));				
 			}
+		$("#wrapper").animate({ scrollTop: 0 }, { duration: 200 } );
 		}
 	);
 
