@@ -69,6 +69,7 @@ function ContentPlaque(div) {
 				complete: function() {  //  A function that gets called after every slide animation
 					var index = $('.banner').find('.dot.active').index();
 					$("#notes").html(_notes[index]);
+					$(_div).scrollTop(0);
 					// is plaque offscreen?  if so, rectify...
 					var top = parseInt($(_div).position().top)+parseInt($(_div).css('margin-top'));
 					if (top+$(_div).outerHeight() > $(_div).parent().height()) {
@@ -82,15 +83,18 @@ function ContentPlaque(div) {
 			var data = slidey.data("unslider");
 			if (index > 0) {
 				data.move(index);
+				$(_div).scrollTop(0);
 				setTimeout(reposition, 500);
 			} else {
 				$("#notes").html(_notes[index]);
+				$(_div).scrollTop(0);
 				reposition();	
 				$(this).trigger("activatePresident", [_presidents[index]]);
 			}
 		} else {
 			$(".banner li").css("float", "none");
 			$("#notes").html(_notes[0]);
+			$(_div).scrollTop(0);
 			reposition();
 			$(this).trigger("activatePresident", [_presidents[index]]);
 		}
