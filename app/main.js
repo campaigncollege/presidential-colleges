@@ -335,6 +335,8 @@ function offsetCenter()
 	if (!_selectedCollege) {
 		return;
 	}
+
+	//todo:  _map.invalidateSize(); ???
 	
 	var width = _map.getBounds().getEast() - _map.getBounds().getWest();
 	var pt = L.latLng(_selectedCollege[Colleges.FIELDNAME_COLLEGE_Y], parseInt(_selectedCollege[Colleges.FIELDNAME_COLLEGE_X]) + width*0.2);
