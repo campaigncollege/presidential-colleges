@@ -201,6 +201,12 @@ function finishInit() {
 	});	
 
 	$('[title]').qtip();
+	$("#source").qtip({
+		show: 'click',
+		hide: 'unfocus',
+		position: { my: 'top right', at: 'bottom left' },
+		content: 'All information sourced from Wikipedia:<br/><br/>College description sourced verbatim from individual college/university Wikipedia page.<br/><br/>Synopsis of presidential college experience adapted/condensed from president Wikipedia page.'
+	});
 
 	$("#whiteOut").fadeOut();
 	

@@ -100,6 +100,21 @@ a:hover{
 	border-color: white;
 }
 
+#source {
+	position: absolute;
+	z-index: 2005;
+	top: 7px;
+	right: 80px;
+	text-decoration:underline;
+	cursor: pointer;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;	
+}
+
 #msLink{
 	color:#fff;
 	font-family:Arial, Helvetica, sans-serif;
