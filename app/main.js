@@ -80,6 +80,8 @@ function finishInit() {
 	var count;
 	var recs = _tableColleges.getOrderedByCount();
 
+	L.Icon.Default.imagePath = "resources/icons"
+
 	// quick and dirty: create a big icon
 	L.Icon.Big = L.Icon.Default.extend({
 	    options: {
