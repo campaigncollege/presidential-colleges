@@ -9,7 +9,7 @@ This github repo contains the source code for the Presidential Colleges Story Ma
 
 ## Data Relationships
 
-The nature of the data requires the application to handle both one-to-many and many-to-one relationships between presidents and colleges.  In other words:
+From a technical perspective, the most challenging part of this application is handling both one-to-many and many-to-one relationships between presidents and colleges.  In other words:
 
 * A college may boast multiple presidential alumni.
 * A president may have attended more than one college (the most recent example being President Obama, who transferred from Occidental College to Columbia University).
