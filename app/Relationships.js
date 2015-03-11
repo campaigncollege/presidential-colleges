@@ -57,8 +57,8 @@ function Relationships()
 	
 }
 
-Relationships.FIELDNAME_RELATIONSHIP_COLLEGE = "college";
-Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT = "president";
+Relationships.FIELDNAME_RELATIONSHIP_COLLEGE = "college-id";
+Relationships.FIELDNAME_RELATIONSHIP_PRESIDENT = "president-id";
 Relationships.FIELDNAME_RELATIONSHIP_NOTE = "note";
 Relationships.FIELDNAME_RELATIONSHIP_CODE = "code";
 
