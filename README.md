@@ -5,4 +5,4 @@ This github repo contains the source code for the Presidential Colleges Story Ma
 
 [View live app here](http://storymaps.esri.com/stories/2015/presidential-colleges/)
 
-![App](presidential-colleges.png)
+![App](resources/images/presidential-colleges.png)
