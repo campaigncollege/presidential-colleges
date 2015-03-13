@@ -18,8 +18,11 @@ module.exports = function (grunt) {
         'app/Presidents.js'
       ]
     },
+    clean: {
+      deploy: ['dist/']
+    },    
     copy: {
-      main: {
+      dev: {
         files: [
           {expand: true, cwd: 'bower_components/jquery/dist/', src: 'jquery.min.js', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/qtip2/basic/', src: 'jquery.qtip.min.js', dest: 'lib/'},
@@ -28,6 +31,14 @@ module.exports = function (grunt) {
           {expand: true, cwd: 'bower_components/leaflet/dist/', src: 'leaflet.css', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/esri-leaflet/dist/', src: 'esri-leaflet.js', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/unslider/src/', src: 'unslider.min.js', dest: 'lib/'}
+        ]
+      },
+      dist: {
+        files: [
+          {expand: true, cwd: '', src: 'css/*.*', dest: 'dist/'},
+          {expand: true, cwd: '', src: 'lib/*.*', dest: 'dist/'},
+          {expand: true, cwd: '', src: 'data/*.csv', dest: 'dist/'},
+          {expand: true, cwd: '', src: 'resources/**', dest: 'dist/'}
         ]
       }
     },
@@ -48,19 +59,14 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-processhtml');
   
-  grunt.registerTask('default', 
-    [
-      'jshint', 'copy'
-    ]
-  );
-
-  grunt.registerTask('build', [
-    'processhtml', 'uglify'
-  ]);  
+  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('build', ['clean:deploy', 'processhtml', 'uglify', 'copy:dist']);
+  grunt.registerTask('update-dependencies', ['copy:dev']);  
   
 };
