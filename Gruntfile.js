@@ -13,7 +13,7 @@ module.exports = function (grunt) {
       ]
     },
     clean: {
-      deploy: ['dist/']
+      dist: ['dist/']
     },    
     copy: {
       dev: {
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-processhtml');
   
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('build', ['clean:deploy', 'processhtml', 'uglify', 'copy:dist']);
+  grunt.registerTask('build', ['clean:dist', 'processhtml', 'uglify', 'copy:dist']);
   grunt.registerTask('update-dependencies', ['copy:dev']);  
   
 };
