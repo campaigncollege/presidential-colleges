@@ -19,11 +19,14 @@ module.exports = function (grunt) {
       dev: {
         files: [
           {expand: true, cwd: 'bower_components/jquery/dist/', src: 'jquery.min.js', dest: 'lib/'},
+          {expand: true, cwd: 'bower_components/jquery/dist/', src: 'jquery.min.map', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/qtip2/basic/', src: 'jquery.qtip.min.js', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/qtip2/basic/', src: 'jquery.qtip.min.css', dest: 'lib/'},
+          {expand: true, cwd: 'bower_components/qtip2/basic/', src: 'jquery.qtip.min.map', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/leaflet/dist/', src: 'leaflet.js', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/leaflet/dist/', src: 'leaflet.css', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/esri-leaflet/dist/', src: 'esri-leaflet.js', dest: 'lib/'},
+          {expand: true, cwd: 'bower_components/esri-leaflet/dist/', src: 'esri-leaflet.js.map', dest: 'lib/'},
           {expand: true, cwd: 'bower_components/unslider/src/', src: 'unslider.min.js', dest: 'lib/'}
         ]
       },
