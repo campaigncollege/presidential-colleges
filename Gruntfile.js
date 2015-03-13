@@ -35,8 +35,15 @@ module.exports = function (grunt) {
       options: {mangle: false},
       my_target: {
         files: {
-          'dist/output.min.js':['app/*.js', 'app/utils/*.js']
+          'dist/app.min.js':['app/*.js', 'app/utils/*.js']
         }
+      }
+    },
+    processhtml: {
+      build: {
+        files: {
+          'dist/index.html': ['index.html']
+        }    
       }
     }
   });
@@ -44,11 +51,16 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-processhtml');
   
   grunt.registerTask('default', 
     [
-      'jshint', 'copy', 'uglify'
+      'jshint', 'copy'
     ]
   );
+
+  grunt.registerTask('build', [
+    'processhtml', 'uglify'
+  ]);  
   
 };
