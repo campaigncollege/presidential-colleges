@@ -1,12 +1,6 @@
 'use strict';
 var packagejson = require('./package.json');
 
-var config = {
-  pkg: packagejson,
-  lib: 'lib',
-  dist: 'dist'
-}
- 
 module.exports = function (grunt) {
  
   // Configuration
